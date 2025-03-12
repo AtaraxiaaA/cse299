@@ -3,10 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dashboard.dart'; // Import DashboardScreen
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: AuthScreen(),
-  ));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: AuthScreen()));
 }
 
 class AuthScreen extends StatefulWidget {
@@ -14,7 +11,8 @@ class AuthScreen extends StatefulWidget {
   _AuthScreenState createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateMixin {
+class _AuthScreenState extends State<AuthScreen>
+    with SingleTickerProviderStateMixin {
   bool isLogin = true;
   late AnimationController _controller;
   late Animation<double> _planeAnimation;
@@ -35,30 +33,36 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
     )..repeat();
 
     // Airplane animation (flying across the screen)
-    _planeAnimation = Tween<double>(begin: -100, end: 500).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.linear),
-    );
+    _planeAnimation = Tween<double>(
+      begin: -100,
+      end: 500,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
 
     // Cloud animations (floating slowly)
-    _cloudAnimation1 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-    _cloudAnimation2 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-    _cloudAnimation3 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _cloudAnimation1 = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _cloudAnimation2 = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _cloudAnimation3 = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // Umbrella animation (subtle swaying)
-    _umbrellaAnimation = Tween<double>(begin: -0.1, end: 0.1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _umbrellaAnimation = Tween<double>(
+      begin: -0.1,
+      end: 0.1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // Pyramid animation (static, but placed in the background)
-    _pyramidAnimation = Tween<double>(begin: 0, end: 0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.linear),
-    );
+    _pyramidAnimation = Tween<double>(
+      begin: 0,
+      end: 0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
   }
 
   void navigateToDashboard() {
@@ -99,9 +103,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                 ),
               ),
             ),
-            Center(
-              child: _buildAuthCard(),
-            ),
+            Center(child: _buildAuthCard()),
           ],
         ),
       ),
@@ -118,7 +120,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             return Positioned(
               top: 60, // Adjusted to fly over the title
               left: _planeAnimation.value,
-              child: Icon(Icons.flight, size: 80, color: Colors.white.withOpacity(0.7)),
+              child: Icon(
+                Icons.flight,
+                size: 80,
+                color: Colors.white.withOpacity(0.7),
+              ),
             );
           },
         ),
@@ -130,7 +136,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             return Positioned(
               top: 100,
               left: 50 + (_cloudAnimation1.value * 50),
-              child: Icon(Icons.cloud, size: 60, color: Colors.white.withOpacity(0.6)),
+              child: Icon(
+                Icons.cloud,
+                size: 60,
+                color: Colors.white.withOpacity(0.6),
+              ),
             );
           },
         ),
@@ -142,7 +152,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             return Positioned(
               top: 150,
               left: 200 + (_cloudAnimation2.value * 50),
-              child: Icon(Icons.cloud, size: 70, color: Colors.white.withOpacity(0.5)),
+              child: Icon(
+                Icons.cloud,
+                size: 70,
+                color: Colors.white.withOpacity(0.5),
+              ),
             );
           },
         ),
@@ -154,7 +168,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             return Positioned(
               top: 50,
               left: 300 + (_cloudAnimation3.value * 50),
-              child: Icon(Icons.cloud, size: 50, color: Colors.white.withOpacity(0.4)),
+              child: Icon(
+                Icons.cloud,
+                size: 50,
+                color: Colors.white.withOpacity(0.4),
+              ),
             );
           },
         ),
@@ -168,7 +186,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
               right: 40,
               child: Transform.rotate(
                 angle: _umbrellaAnimation.value,
-                child: Icon(Icons.beach_access, size: 100, color: Colors.white.withOpacity(0.6)),
+                child: Icon(
+                  Icons.beach_access,
+                  size: 100,
+                  color: Colors.white.withOpacity(0.6),
+                ),
               ),
             );
           },
@@ -181,7 +203,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             return Positioned(
               bottom: 50,
               left: 20,
-              child: Icon(Icons.landscape, size: 80, color: Colors.white.withOpacity(0.6)),
+              child: Icon(
+                Icons.landscape,
+                size: 80,
+                color: Colors.white.withOpacity(0.6),
+              ),
             );
           },
         ),
@@ -196,20 +222,31 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 6, spreadRadius: 2)],
+        boxShadow: [
+          BoxShadow(color: Colors.black26, blurRadius: 6, spreadRadius: 2),
+        ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(isLogin ? "Welcome Back!" : "Create an Account", style: GoogleFonts.poppins(fontSize: 18, color: Colors.black54)),
+          Text(
+            isLogin ? "Welcome Back!" : "Create an Account",
+            style: GoogleFonts.poppins(fontSize: 18, color: Colors.black54),
+          ),
           SizedBox(height: 20),
           _buildAuthForm(),
           SizedBox(height: 10),
           GestureDetector(
             onTap: () => setState(() => isLogin = !isLogin),
             child: Text(
-              isLogin ? "Don't have an account? Sign up" : "Already have an account? Login",
-              style: GoogleFonts.poppins(fontSize: 14, color: Color(0xFF003653), decoration: TextDecoration.underline),
+              isLogin
+                  ? "Don't have an account? Sign up"
+                  : "Already have an account? Login",
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                color: Color(0xFF003653),
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
         ],
@@ -232,12 +269,22 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             decoration: BoxDecoration(
               color: Color(0xFF003653),
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4, spreadRadius: 1)],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 4,
+                  spreadRadius: 1,
+                ),
+              ],
             ),
             child: Center(
               child: Text(
                 isLogin ? "Login" : "Sign Up",
-                style: GoogleFonts.poppins(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
@@ -246,7 +293,11 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
     );
   }
 
-  Widget _buildInputField(IconData icon, String hint, {bool isPassword = false}) {
+  Widget _buildInputField(
+    IconData icon,
+    String hint, {
+    bool isPassword = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextField(
@@ -256,7 +307,10 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
           hintText: hint,
           filled: true,
           fillColor: Colors.grey[200],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
     );

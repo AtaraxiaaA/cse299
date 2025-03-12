@@ -1,98 +1,99 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
+import 'listofhotels.dart';
 
 class DashboardScreen extends StatelessWidget {
   // Hotel data for each destination
-  final Map<String, List<Map<String, dynamic>>> hotels = {
-    "Cox's Bazar": [
-      {
-        "name": "Sayeman Beach Resort",
-        "rating": 4.5,
-        "reviews": 426,
-        "price": "৳8,500",
-        "discount": "10% Off",
-      },
-      {
-        "name": "Seagull Hotel Ltd",
-        "rating": 4.2,
-        "reviews": 320,
-        "price": "৳7,200",
-        "discount": "5% Off",
-      },
-      {
-        "name": "Ocean Paradise Hotel & Resort",
-        "rating": 4.7,
-        "reviews": 512,
-        "price": "৳9,000",
-        "discount": "15% Off",
-      },
-    ],
-    "Teknaf": [
-      {
-        "name": "Hotel Ne-Taung",
-        "rating": 3.9,
-        "reviews": 120,
-        "price": "৳5,500",
-        "discount": "8% Off",
-      },
-      {
-        "name": "Milky Resort",
-        "rating": 4.1,
-        "reviews": 210,
-        "price": "৳6,800",
-        "discount": "12% Off",
-      },
-    ],
-    "Bandarban": [
-      {
-        "name": "Hotel Plaza Bandarban",
-        "rating": 4.3,
-        "reviews": 340,
-        "price": "৳7,000",
-        "discount": "7% Off",
-      },
-      {
-        "name": "Hill View Resort",
-        "rating": 4.0,
-        "reviews": 280,
-        "price": "৳6,500",
-        "discount": "10% Off",
-      },
-    ],
-    "Sreemangal": [
-      {
-        "name": "Grand Sultan Tea Resort & Golf",
-        "rating": 4.6,
-        "reviews": 450,
-        "price": "৳10,000",
-        "discount": "20% Off",
-      },
-      {
-        "name": "Tea Heaven Resort",
-        "rating": 4.4,
-        "reviews": 390,
-        "price": "৳9,500",
-        "discount": "15% Off",
-      },
-    ],
-    "Sajek": [
-      {
-        "name": "Sajek Resort",
-        "rating": 4.2,
-        "reviews": 310,
-        "price": "৳6,000",
-        "discount": "5% Off",
-      },
-      {
-        "name": "Resort RungRang",
-        "rating": 4.0,
-        "reviews": 260,
-        "price": "৳5,800",
-        "discount": "8% Off",
-      },
-    ],
-  };
+  // final Map<String, List<Map<String, dynamic>>> hotels = {
+  //   "Cox's Bazar": [
+  //     {
+  //       "name": "Sayeman Beach Resort",
+  //       "rating": 4.5,
+  //       "reviews": 426,
+  //       "price": "৳8,500",
+  //       "discount": "10% Off",
+  //     },
+  //     {
+  //       "name": "Seagull Hotel Ltd",
+  //       "rating": 4.2,
+  //       "reviews": 320,
+  //       "price": "৳7,200",
+  //       "discount": "5% Off",
+  //     },
+  //     {
+  //       "name": "Ocean Paradise Hotel & Resort",
+  //       "rating": 4.7,
+  //       "reviews": 512,
+  //       "price": "৳9,000",
+  //       "discount": "15% Off",
+  //     },
+  //   ],
+  //   "Teknaf": [
+  //     {
+  //       "name": "Hotel Ne-Taung",
+  //       "rating": 3.9,
+  //       "reviews": 120,
+  //       "price": "৳5,500",
+  //       "discount": "8% Off",
+  //     },
+  //     {
+  //       "name": "Milky Resort",
+  //       "rating": 4.1,
+  //       "reviews": 210,
+  //       "price": "৳6,800",
+  //       "discount": "12% Off",
+  //     },
+  //   ],
+  //   "Bandarban": [
+  //     {
+  //       "name": "Hotel Plaza Bandarban",
+  //       "rating": 4.3,
+  //       "reviews": 340,
+  //       "price": "৳7,000",
+  //       "discount": "7% Off",
+  //     },
+  //     {
+  //       "name": "Hill View Resort",
+  //       "rating": 4.0,
+  //       "reviews": 280,
+  //       "price": "৳6,500",
+  //       "discount": "10% Off",
+  //     },
+  //   ],
+  //   "Sreemangal": [
+  //     {
+  //       "name": "Grand Sultan Tea Resort & Golf",
+  //       "rating": 4.6,
+  //       "reviews": 450,
+  //       "price": "৳10,000",
+  //       "discount": "20% Off",
+  //     },
+  //     {
+  //       "name": "Tea Heaven Resort",
+  //       "rating": 4.4,
+  //       "reviews": 390,
+  //       "price": "৳9,500",
+  //       "discount": "15% Off",
+  //     },
+  //   ],
+  //   "Sajek": [
+  //     {
+  //       "name": "Sajek Resort",
+  //       "rating": 4.2,
+  //       "reviews": 310,
+  //       "price": "৳6,000",
+  //       "discount": "5% Off",
+  //     },
+  //     {
+  //       "name": "Resort RungRang",
+  //       "rating": 4.0,
+  //       "reviews": 260,
+  //       "price": "৳5,800",
+  //       "discount": "8% Off",
+  //     },
+  //   ],
+  // };
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +130,11 @@ class DashboardScreen extends StatelessWidget {
                         child: CircleAvatar(
                           radius: 20,
                           backgroundColor: Color(0xFF003B53),
-                          child: Icon(Icons.person, size: 28, color: Colors.white),
+                          child: Icon(
+                            Icons.person,
+                            size: 28,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -182,7 +187,10 @@ class DashboardScreen extends StatelessWidget {
 
               // Icon Menu (Flights, Hotels, Car Rentals, etc.)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -196,7 +204,10 @@ class DashboardScreen extends StatelessWidget {
 
               // Second Row for Experiences, Trains, Transfers, Travel Guides
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -210,7 +221,10 @@ class DashboardScreen extends StatelessWidget {
 
               // Search Bookings and Add Tourify Button
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -239,7 +253,9 @@ class DashboardScreen extends StatelessWidget {
                                 content: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Image.asset('assets/add_to_home_demo.png'), // Add your demo image here
+                                    Image.asset(
+                                      'assets/add_to_home_demo.png',
+                                    ), // Add your demo image here
                                     SizedBox(height: 10),
                                     Text(
                                       "Follow these steps to add Tourify to your home screen for quick access:",
@@ -262,7 +278,7 @@ class DashboardScreen extends StatelessWidget {
                                       Navigator.of(context).pop();
                                     },
                                     child: Text("Close"),
-                                  )
+                                  ),
                                 ],
                               );
                             },
@@ -285,7 +301,10 @@ class DashboardScreen extends StatelessWidget {
 
               // Additional Features Section
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: Column(
                   children: [
                     buildFeatureCard(
@@ -297,7 +316,8 @@ class DashboardScreen extends StatelessWidget {
                     buildFeatureCard(
                       icon: Icons.verified_user,
                       title: "Travel Worry-free",
-                      description: "Enjoy a seamless and secure travel experience.",
+                      description:
+                          "Enjoy a seamless and secure travel experience.",
                     ),
                     SizedBox(height: 10),
                     buildFeatureCard(
@@ -311,7 +331,10 @@ class DashboardScreen extends StatelessWidget {
 
               // Popular Destinations Section
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -369,7 +392,11 @@ class DashboardScreen extends StatelessWidget {
   }
 
   // Feature Card for Additional Features
-  Widget buildFeatureCard({required IconData icon, required String title, required String description}) {
+  Widget buildFeatureCard({
+    required IconData icon,
+    required String title,
+    required String description,
+  }) {
     return Card(
       color: Colors.white.withOpacity(0.9),
       child: Padding(
@@ -457,7 +484,11 @@ class DashboardScreen extends StatelessWidget {
                                 SizedBox(height: 5),
                                 Row(
                                   children: [
-                                    Icon(Icons.star, color: Colors.amber, size: 16),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 16,
+                                    ),
                                     SizedBox(width: 5),
                                     Text(
                                       "${hotel["rating"]} (${hotel["reviews"]} reviews)",
@@ -491,10 +522,7 @@ class DashboardScreen extends StatelessWidget {
         child: Chip(
           label: Text(
             destination,
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 14,
-            ),
+            style: GoogleFonts.poppins(color: Colors.white, fontSize: 14),
           ),
           backgroundColor: Color(0xFF264653),
         ),
