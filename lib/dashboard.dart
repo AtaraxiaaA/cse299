@@ -2,99 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
+import 'profile.dart'; // Importing the ProfileScreen
 
 class DashboardScreen extends StatelessWidget {
-  // Hotel data for each destination
-  // final Map<String, List<Map<String, dynamic>>> hotels = {
-  //   "Cox's Bazar": [
-  //     {
-  //       "name": "Sayeman Beach Resort",
-  //       "rating": 4.5,
-  //       "reviews": 426,
-  //       "price": "৳8,500",
-  //       "discount": "10% Off",
-  //     },
-  //     {
-  //       "name": "Seagull Hotel Ltd",
-  //       "rating": 4.2,
-  //       "reviews": 320,
-  //       "price": "৳7,200",
-  //       "discount": "5% Off",
-  //     },
-  //     {
-  //       "name": "Ocean Paradise Hotel & Resort",
-  //       "rating": 4.7,
-  //       "reviews": 512,
-  //       "price": "৳9,000",
-  //       "discount": "15% Off",
-  //     },
-  //   ],
-  //   "Teknaf": [
-  //     {
-  //       "name": "Hotel Ne-Taung",
-  //       "rating": 3.9,
-  //       "reviews": 120,
-  //       "price": "৳5,500",
-  //       "discount": "8% Off",
-  //     },
-  //     {
-  //       "name": "Milky Resort",
-  //       "rating": 4.1,
-  //       "reviews": 210,
-  //       "price": "৳6,800",
-  //       "discount": "12% Off",
-  //     },
-  //   ],
-  //   "Bandarban": [
-  //     {
-  //       "name": "Hotel Plaza Bandarban",
-  //       "rating": 4.3,
-  //       "reviews": 340,
-  //       "price": "৳7,000",
-  //       "discount": "7% Off",
-  //     },
-  //     {
-  //       "name": "Hill View Resort",
-  //       "rating": 4.0,
-  //       "reviews": 280,
-  //       "price": "৳6,500",
-  //       "discount": "10% Off",
-  //     },
-  //   ],
-  //   "Sreemangal": [
-  //     {
-  //       "name": "Grand Sultan Tea Resort & Golf",
-  //       "rating": 4.6,
-  //       "reviews": 450,
-  //       "price": "৳10,000",
-  //       "discount": "20% Off",
-  //     },
-  //     {
-  //       "name": "Tea Heaven Resort",
-  //       "rating": 4.4,
-  //       "reviews": 390,
-  //       "price": "৳9,500",
-  //       "discount": "15% Off",
-  //     },
-  //   ],
-  //   "Sajek": [
-  //     {
-  //       "name": "Sajek Resort",
-  //       "rating": 4.2,
-  //       "reviews": 310,
-  //       "price": "৳6,000",
-  //       "discount": "5% Off",
-  //     },
-  //     {
-  //       "name": "Resort RungRang",
-  //       "rating": 4.0,
-  //       "reviews": 260,
-  //       "price": "৳5,800",
-  //       "discount": "8% Off",
-  //     },
-  //   ],
-  // };
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +32,11 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Profile button action
+                        // Navigate to the ProfileScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                        );
                       },
                       child: CircleAvatar(
                         radius: 22,
@@ -215,86 +129,6 @@ class DashboardScreen extends StatelessWidget {
                     buildIconCard(Icons.train, "Trains"),
                     buildIconCard(Icons.airport_shuttle, "Transfers"),
                     buildIconCard(Icons.map, "Travel Guides"),
-                  ],
-                ),
-              ),
-
-              // Search Bookings and Add Tourify Button
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.search, color: Colors.orange),
-                        label: Text("Search Bookings"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.orange[100],
-                          foregroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text("Add Tourify to Home"),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Image.asset(
-                                      'assets/add_to_home_demo.png',
-                                    ), // Add your demo image here
-                                    SizedBox(height: 10),
-                                    Text(
-                                      "Follow these steps to add Tourify to your home screen for quick access:",
-                                      style: GoogleFonts.poppins(fontSize: 14),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      "Step 1: Tap the icon at the bottom.",
-                                      style: GoogleFonts.poppins(fontSize: 14),
-                                    ),
-                                    Text(
-                                      "Step 2: Tap 'Add to Home Screen' from the menu.",
-                                      style: GoogleFonts.poppins(fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text("Close"),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        icon: Icon(Icons.add, color: Colors.blue),
-                        label: Text("Add Tourify"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue[100],
-                          foregroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -434,7 +268,9 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
+        
+        // Navigation logic for destinations
+      showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
