@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
+import 'flight.dart'; // Importing the FlightScreen
+import 'experiences.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -35,7 +37,9 @@ class DashboardScreen extends StatelessWidget {
                         // Navigate to the ProfileScreen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
                         );
                       },
                       child: CircleAvatar(
@@ -108,13 +112,44 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    buildIconCard(Icons.flight, "Flights"),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FlightScreen(),
+                          ),
+                        );
+                      },
+                      child: buildIconCard(Icons.flight, "Flights"),
+                    ),
+
                     buildIconCard(Icons.hotel, "Hotels"),
                     buildIconCard(Icons.directions_car, "Car Rentals"),
                     buildIconCard(Icons.tour, "Tour Packages"),
                   ],
                 ),
               ),
+
+              //for clicking flight
+
+              // Flight button to navigate to FlightScreen
+              // ElevatedButton.icon(
+              //   onPressed: () {
+              //     // Navigate to FlightScreen when the button is pressed
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => FlightScreen()),
+              //     );
+              //   },
+              //   icon: Icon(Icons.flight), // Flight icon on the button
+              //   label: Text('Flights'), // Text on the button
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Color(
+              //       0xFF003653,
+              //     ), // Button color matching theme
+              //   ),
+              // ),
 
               // Second Row for Experiences, Trains, Transfers, Travel Guides
               Padding(
@@ -125,7 +160,18 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    buildIconCard(Icons.explore, "Experiences"),
+                    // buildIconCard(Icons.explore, "Experiences"),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ExperienceScreen(),
+                          ),
+                        );
+                      },
+                      child: buildIconCard(Icons.explore, "Experiences"),
+                    ),
                     buildIconCard(Icons.train, "Trains"),
                     buildIconCard(Icons.airport_shuttle, "Transfers"),
                     buildIconCard(Icons.map, "Travel Guides"),
@@ -268,9 +314,8 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
         // Navigation logic for destinations
-      showModalBottomSheet(
+        showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
