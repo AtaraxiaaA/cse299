@@ -6,6 +6,7 @@ import 'profile.dart'; // Importing the ProfileScreen
 import 'tourpackages.dart'; // Importing the TourPackagesScreen
 import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
 import 'Rewards&Discounts.dart'; // Importing the RewardsDiscountsScreen
+import 'customersupport.dart'; // Importing the CustomerSupportScreen
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -158,23 +159,32 @@ class DashboardScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 10,
+                  vertical: 20,
                 ),
                 child: Column(
                   children: [
-                    buildFeatureCard(
-                      icon: Icons.support_agent,
-                      title: "Customer Support in Seconds",
-                      description: "Get instant help with your bookings.",
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the CustomerSupportScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CustomerSupportScreen()),
+                        );
+                      },
+                      child: buildFeatureCard(
+                        icon: Icons.support_agent,
+                        title: "Customer Support in Seconds",
+                        description: "Get instant help with your bookings.",
+                      ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     buildFeatureCard(
                       icon: Icons.verified_user,
                       title: "Travel Worry-free",
                       description:
-                          "Enjoy a seamless and secure travel experience.",
+                          "Enjoy a seamless travel experience.",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {
                         // Navigate to the RewardsDiscountsScreen
@@ -186,7 +196,7 @@ class DashboardScreen extends StatelessWidget {
                       child: buildFeatureCard(
                         icon: Icons.discount,
                         title: "Exclusive Rewards & Discounts",
-                        description: "Save big with exclusive deals and rewards.",
+                        description: "Save with exclusive deals and rewards.",
                       ),
                     ),
                   ],
