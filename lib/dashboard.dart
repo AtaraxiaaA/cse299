@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
+import 'tourpackages.dart'; // Importing the TourPackagesScreen
+import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -111,7 +113,16 @@ class DashboardScreen extends StatelessWidget {
                     buildIconCard(Icons.flight, "Flights"),
                     buildIconCard(Icons.hotel, "Hotels"),
                     buildIconCard(Icons.directions_car, "Car Rentals"),
-                    buildIconCard(Icons.tour, "Tour Packages"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the TourPackagesScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TourPackagesScreen()),
+                        );
+                      },
+                      child: buildIconCard(Icons.tour, "Tour Packages"),
+                    ),
                   ],
                 ),
               ),
@@ -128,7 +139,16 @@ class DashboardScreen extends StatelessWidget {
                     buildIconCard(Icons.explore, "Experiences"),
                     buildIconCard(Icons.train, "Trains"),
                     buildIconCard(Icons.airport_shuttle, "Transfers"),
-                    buildIconCard(Icons.map, "Travel Guides"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the TravelGuidesScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TravelGuidesScreen()),
+                        );
+                      },
+                      child: buildIconCard(Icons.map, "Travel Guides"),
+                    ),
                   ],
                 ),
               ),
@@ -268,9 +288,8 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
         // Navigation logic for destinations
-      showModalBottomSheet(
+        showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
