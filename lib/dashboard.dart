@@ -5,6 +5,7 @@ import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
 import 'tourpackages.dart'; // Importing the TourPackagesScreen
 import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
+import 'Rewards&Discounts.dart'; // Importing the RewardsDiscountsScreen
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -174,10 +175,19 @@ class DashboardScreen extends StatelessWidget {
                           "Enjoy a seamless and secure travel experience.",
                     ),
                     SizedBox(height: 10),
-                    buildFeatureCard(
-                      icon: Icons.discount,
-                      title: "Exclusive Rewards & Discounts",
-                      description: "Save big with exclusive deals and rewards.",
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the RewardsDiscountsScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RewardsDiscountsScreen()),
+                        );
+                      },
+                      child: buildFeatureCard(
+                        icon: Icons.discount,
+                        title: "Exclusive Rewards & Discounts",
+                        description: "Save big with exclusive deals and rewards.",
+                      ),
                     ),
                   ],
                 ),
