@@ -126,30 +126,21 @@ class DashboardScreen extends StatelessWidget {
 
                     buildIconCard(Icons.hotel, "Hotels"),
                     buildIconCard(Icons.directions_car, "Car Rentals"),
-                    buildIconCard(Icons.tour, "Tour Packages"),
+                    GestureDetector(
+                      onTap: () {
+                        // // Navigate to the TourPackagesScreen
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => TourPackagesScreen(),
+                        //   ),
+                        // );
+                      },
+                      child: buildIconCard(Icons.tour, "Tour Packages"),
+                    ),
                   ],
                 ),
               ),
-
-              //for clicking flight
-
-              // Flight button to navigate to FlightScreen
-              // ElevatedButton.icon(
-              //   onPressed: () {
-              //     // Navigate to FlightScreen when the button is pressed
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(builder: (context) => FlightScreen()),
-              //     );
-              //   },
-              //   icon: Icon(Icons.flight), // Flight icon on the button
-              //   label: Text('Flights'), // Text on the button
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Color(
-              //       0xFF003653,
-              //     ), // Button color matching theme
-              //   ),
-              // ),
 
               // Second Row for Experiences, Trains, Transfers, Travel Guides
               Padding(
@@ -174,7 +165,10 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     buildIconCard(Icons.train, "Trains"),
                     buildIconCard(Icons.airport_shuttle, "Transfers"),
-                    buildIconCard(Icons.map, "Travel Guides"),
+                    GestureDetector(
+                      onTap: () {},
+                      child: buildIconCard(Icons.map, "Travel Guides"),
+                    ),
                   ],
                 ),
               ),
