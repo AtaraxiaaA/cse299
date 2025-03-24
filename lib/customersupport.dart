@@ -717,35 +717,40 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
   }
 
   Widget _buildActionButton(String text, IconData icon) {
-    return ElevatedButton.icon(
-      onPressed: () {
-        if (text == 'Chat') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChatScreen(),
-            ),
-          );
-        } else if (text == 'Call Us') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CallUsScreen(),
-            ),
-          );
-        } else if (text == 'FAQ') {
-          // Handle FAQ button logic
-        }
-      },
-      icon: Icon(icon),
-      label: Text(text),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
-        foregroundColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      ),
-    );
-  }
+  return ElevatedButton.icon(
+    onPressed: () {
+      if (text == 'Chat') {
+        showDialog(
+          context: context,
+          barrierDismissible: true, // Allow closing by tapping outside
+          builder: (context) {
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              insetPadding: EdgeInsets.all(10),
+              child: HotelServiceChat(),
+            );
+          },
+        );
+      } else if (text == 'Call Us') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CallUsScreen(),
+          ),
+        );
+      } else if (text == 'FAQ') {
+        // Handle FAQ button logic
+      }
+    },
+    icon: Icon(icon),
+    label: Text(text),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.green,
+      foregroundColor: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+  );
+}
 }
 
 class ChatBoxScreen extends StatelessWidget {
@@ -844,104 +849,6 @@ class FAQScreen extends StatelessWidget {
   }
 }
 
-class ChatScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Hotels Service Chat'),
-        backgroundColor: Color(0xFF2D4A53),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.all(16),
-              children: [
-                Text(
-                  'Trip.com Chatbot',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Hi, Tourify Member. We\'re glad to be able to help you out.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'You might want to ask:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8),
-                _buildChatOption('How do I contact the hotel?'),
-                _buildChatOption('How can I modify my booking?'),
-                _buildChatOption('How can I cancel my booking?'),
-                _buildChatOption('How can I request an e-receipt/invoice?'),
-                SizedBox(height: 16),
-                Text(
-                  'Payment failed for my booking, what should I do?',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Please describe your problem in one sentence',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () {
-                    // Send message logic
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildChatOption(String text) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.blue.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.blue,
-        ),
-      ),
-    );
-  }
-}
 
 class CallUsScreen extends StatelessWidget {
   @override
@@ -991,4 +898,389 @@ class CallUsScreen extends StatelessWidget {
       ),
     );
   }
+  // Adding extra these classes at the bottom of my file
+
+  }
+class ChatMessage {
+  final String text;
+  final bool isUser;
+  final bool isTyping;
+
+  ChatMessage({
+    required this.text,
+    required this.isUser,
+    this.isTyping = false,
+  });
 }
+
+class ChatBubble extends StatelessWidget {
+  final String message;
+  final bool isUser;
+
+  const ChatBubble({
+    Key? key,
+    required this.message,
+    required this.isUser,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          Container(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.7,
+            ),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: isUser ? Color(0xFF2D4A53) : Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(15),
+                topRight: const Radius.circular(15),
+                bottomLeft: isUser 
+                    ? const Radius.circular(15)
+                    : const Radius.circular(0),
+                bottomRight: isUser
+                    ? const Radius.circular(0)
+                    : const Radius.circular(15),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 2,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            child: Text(
+              message,
+              style: TextStyle(
+                color: isUser ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HotelServiceChat extends StatefulWidget {
+  const HotelServiceChat({Key? key}) : super(key: key);
+
+  @override
+  _HotelServiceChatState createState() => _HotelServiceChatState();
+}
+
+class _HotelServiceChatState extends State<HotelServiceChat> {
+  final List<ChatMessage> _messages = [];
+  final TextEditingController _textController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _addBotMessage(
+      "Hi, Tourify Member. We're glad to be able to help you out.\n\n"
+      "You might want to ask:\n"
+      "- How do I contact the hotel?\n"
+      "- How can I modify my booking?\n"
+      "- How can I cancel my booking?\n"
+      "- How can I request an e-receipt/invoice?\n"
+      "- Payment failed for my booking, what should I do?\n\n"
+      "Please describe your problem in one sentence...",
+    );
+  }
+
+
+  void _addBotMessage(String text) {
+    setState(() {
+      _messages.add(ChatMessage(
+        text: text,
+        isUser: false,
+      ));
+    });
+  }
+
+  void _addUserMessage(String text) {
+    setState(() {
+      _messages.add(ChatMessage(
+        text: text,
+        isUser: true,
+      ));
+    });
+    _simulateBotResponse(text);
+  }
+
+  void _simulateBotResponse(String userMessage) {
+    // Show typing indicator
+    setState(() {
+      _messages.add(ChatMessage(
+        text: 'typing',
+        isUser: false,
+        isTyping: true,
+      ));
+    });
+
+    // Simulate delay for bot response
+    Future.delayed(const Duration(seconds: 1), () {
+      // Remove typing indicator
+      setState(() {
+        _messages.removeWhere((msg) => msg.isTyping);
+      });
+
+      // Process user message and add bot response
+      String botResponse = _processUserMessage(userMessage);
+      _addBotMessage(botResponse);
+    });
+  }
+
+  String _processUserMessage(String message) {
+    String lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.contains('contact') || lowerMessage.contains('reach') || lowerMessage.contains('get in touch')) {
+      return "You can contact the hotel directly using the phone number or email provided in your booking confirmation. Alternatively, you can reply with the hotel name and booking reference, and we can connect you.\n\nWould you like me to provide the contact details for your specific booking?";
+    } 
+    else if (lowerMessage.contains('modify') || lowerMessage.contains('change') || lowerMessage.contains('edit')) {
+      return "To modify your booking, please provide your booking reference number. Most modifications can be done through your Tourify account under \"My Bookings\".\n\nWhat would you like to change? Your dates, room type, or something else?";
+    } 
+    else if (lowerMessage.contains('cancel') || lowerMessage.contains('refund')) {
+      return "Cancellation policies vary by hotel. You can cancel your booking through your Tourify account or by replying with your booking reference.\n\nWould you like to check the cancellation policy for your booking?";
+    } 
+    else if (lowerMessage.contains('receipt') || lowerMessage.contains('invoice') || lowerMessage.contains('voucher')) {
+      return "You can download your e-receipt or invoice from your Tourify account under \"My Bookings\" > \"Booking Details\".\n\nIf you need a specific format or have trouble accessing it, please provide your booking reference and email address, and we'll send it to you.";
+    } 
+    else if (lowerMessage.contains('payment') || lowerMessage.contains('failed') || lowerMessage.contains('declined')) {
+      return "If your payment failed, please:\n1. Check if your payment method has sufficient funds\n2. Verify your card details are correct\n3. Try again in a few minutes\n\nIf the problem persists, you may need to contact your bank or try a different payment method.\n\nWould you like to try the payment again now?";
+    } 
+    else if (lowerMessage.contains('yes') || lowerMessage.contains('yeah') || lowerMessage.contains('yep')) {
+      return "Great! Please provide your booking reference number so I can assist you further.";
+    } 
+    else if (lowerMessage.contains('no') || lowerMessage.contains('nope') || lowerMessage.contains('not')) {
+      return "Okay, no problem. Is there anything else I can help you with?";
+    } 
+    else {
+      return "I understand you're asking about \"$message\". To better assist you, could you please provide your booking reference number or be more specific about your inquiry?";
+    }
+  }
+
+  void _handleSendMessage() {
+    if (_textController.text.trim().isNotEmpty) {
+      _addUserMessage(_textController.text);
+      _textController.clear();
+    }
+  }
+
+  Widget _buildTypingIndicator() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 2,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildTypingDot(0),
+          _buildTypingDot(1),
+          _buildTypingDot(2),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTypingDot(int index) {
+    return Container(
+      width: 8,
+      height: 8,
+      margin: const EdgeInsets.symmetric(horizontal: 2),
+      decoration: const BoxDecoration(
+        color: Colors.grey,
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+
+  Widget _buildSuggestedQuestion(String question) {
+    return GestureDetector(
+      onTap: () {
+        _textController.text = question;
+        _handleSendMessage();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: Color(0xFF2D4A53)),
+        ),
+        child: Text(
+          question,
+          style: const TextStyle(
+            color: Color(0xFF2D4A53),
+            fontSize: 12,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.7,
+      constraints: const BoxConstraints(
+        maxWidth: 350,
+        maxHeight: 500,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Chat header
+          Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Color(0xFF2D4A53),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Hotels Service Chat',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.close, color: Colors.white),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // This closes the dialog
+                  },
+                ),
+              ],
+            ),
+          ),
+
+          // Messages list
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(10),
+              reverse: false,
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final message = _messages[index];
+                if (message.isTyping) {
+                  return _buildTypingIndicator();
+                }
+                return ChatBubble(
+                  message: message.text,
+                  isUser: message.isUser,
+                );
+              },
+            ),
+          ),
+
+          // Suggested questions
+          if (_messages.length == 1) // Show only at the beginning
+            Container(
+              padding: const EdgeInsets.all(10),
+              color: Colors.grey[100],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'You might want to ask:',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _buildSuggestedQuestion('How do I contact the hotel?'),
+                      _buildSuggestedQuestion('How can I modify my booking?'),
+                      _buildSuggestedQuestion('How can I cancel my booking?'),
+                      _buildSuggestedQuestion('How can I request an e-receipt/invoice?'),
+                      _buildSuggestedQuestion('Payment failed for my booking, what should I do?'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+          // Input area
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(top: BorderSide(color: Colors.grey[200]!)),
+              color: Colors.white,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _textController,
+                    decoration: InputDecoration(
+                      hintText: 'Type your message here...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[100],
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 10,
+                      ),
+                    ),
+                    onSubmitted: (_) => _handleSendMessage(),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                CircleAvatar(
+                  backgroundColor: Color(0xFF2D4A53),
+                  child: IconButton(
+                    icon: const Icon(Icons.send, color: Colors.white),
+                    onPressed: _handleSendMessage,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+    
+    
