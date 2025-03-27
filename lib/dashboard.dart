@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
+import 'carrentals.dart';
+import 'BusSearchScreen.dart';
+
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -109,14 +112,26 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildIconCard(Icons.flight, "Flights"),
+
+
                     buildIconCard(Icons.hotel, "Hotels"),
-                    buildIconCard(Icons.directions_car, "Car Rentals"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the CarRentalsPage when the Car Rentals icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CarRentalsPage()),
+                        );
+                      },
+                      child: buildIconCard(Icons.directions_car, "Car Rentals"),
+                    ),
+
                     buildIconCard(Icons.tour, "Tour Packages"),
                   ],
                 ),
               ),
 
-              // Second Row for Experiences, Trains, Transfers, Travel Guides
+              // Second Row for Experiences, Trains, Buses , Travel Guides
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -127,7 +142,18 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     buildIconCard(Icons.explore, "Experiences"),
                     buildIconCard(Icons.train, "Trains"),
-                    buildIconCard(Icons.airport_shuttle, "Transfers"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the BusSearchScreen when the Buses icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BusSearchScreen()), // Changed to BusSearchScreen
+                        );
+                      },
+                      child: buildIconCard(Icons.airport_shuttle, "Buses"),
+                    ),
+
+
                     buildIconCard(Icons.map, "Travel Guides"),
                   ],
                 ),
@@ -151,7 +177,7 @@ class DashboardScreen extends StatelessWidget {
                       icon: Icons.verified_user,
                       title: "Travel Worry-free",
                       description:
-                          "Enjoy a seamless and secure travel experience.",
+                      "Enjoy a seamless and secure travel experience.",
                     ),
                     SizedBox(height: 10),
                     buildFeatureCard(
@@ -268,9 +294,9 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
+
         // Navigation logic for destinations
-      showModalBottomSheet(
+        showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
