@@ -3,8 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
-import 'flight.dart'; // Importing the FlightScreen
-import 'experiences.dart';
+import 'tourpackages.dart'; // Importing the TourPackagesScreen
+import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
+import 'Rewards&Discounts.dart'; // Importing the RewardsDiscountsScreen
+import 'customersupport.dart'; // Importing the CustomerSupportScreen
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -37,9 +39,7 @@ class DashboardScreen extends StatelessWidget {
                         // Navigate to the ProfileScreen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => ProfileScreen(),
-                          ),
+                          MaterialPageRoute(builder: (context) => ProfileScreen()),
                         );
                       },
                       child: CircleAvatar(
@@ -112,29 +112,16 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FlightScreen(),
-                          ),
-                        );
-                      },
-                      child: buildIconCard(Icons.flight, "Flights"),
-                    ),
-
+                    buildIconCard(Icons.flight, "Flights"),
                     buildIconCard(Icons.hotel, "Hotels"),
                     buildIconCard(Icons.directions_car, "Car Rentals"),
                     GestureDetector(
                       onTap: () {
-                        // // Navigate to the TourPackagesScreen
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => TourPackagesScreen(),
-                        //   ),
-                        // );
+                        // Navigate to the TourPackagesScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TourPackagesScreen()),
+                        );
                       },
                       child: buildIconCard(Icons.tour, "Tour Packages"),
                     ),
@@ -151,22 +138,17 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    // buildIconCard(Icons.explore, "Experiences"),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ExperienceScreen(),
-                          ),
-                        );
-                      },
-                      child: buildIconCard(Icons.explore, "Experiences"),
-                    ),
+                    buildIconCard(Icons.explore, "Experiences"),
                     buildIconCard(Icons.train, "Trains"),
                     buildIconCard(Icons.airport_shuttle, "Transfers"),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // Navigate to the TravelGuidesScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TravelGuidesScreen()),
+                        );
+                      },
                       child: buildIconCard(Icons.map, "Travel Guides"),
                     ),
                   ],
@@ -177,27 +159,45 @@ class DashboardScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 10,
+                  vertical: 20,
                 ),
                 child: Column(
                   children: [
-                    buildFeatureCard(
-                      icon: Icons.support_agent,
-                      title: "Customer Support in Seconds",
-                      description: "Get instant help with your bookings.",
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the CustomerSupportScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CustomerSupportScreen()),
+                        );
+                      },
+                      child: buildFeatureCard(
+                        icon: Icons.support_agent,
+                        title: "Customer Support in Seconds",
+                        description: "Get instant help with your bookings.",
+                      ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     buildFeatureCard(
                       icon: Icons.verified_user,
                       title: "Travel Worry-free",
                       description:
-                          "Enjoy a seamless and secure travel experience.",
+                          "Enjoy a seamless travel experience.",
                     ),
-                    SizedBox(height: 10),
-                    buildFeatureCard(
-                      icon: Icons.discount,
-                      title: "Exclusive Rewards & Discounts",
-                      description: "Save big with exclusive deals and rewards.",
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the RewardsDiscountsScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RewardsDiscountsScreen()),
+                        );
+                      },
+                      child: buildFeatureCard(
+                        icon: Icons.discount,
+                        title: "Exclusive Rewards & Discounts",
+                        description: "Save with exclusive deals and rewards.",
+                      ),
                     ),
                   ],
                 ),
