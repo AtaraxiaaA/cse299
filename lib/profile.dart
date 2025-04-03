@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(
-        0xFF007E95,
-      ), // Match the dashboard's gradient background
+      backgroundColor: Color(0xFF007E95), // Match the dashboard's gradient background
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,18 +56,14 @@ class ProfileScreen extends StatelessWidget {
                         CircleAvatar(
                           radius: 40,
                           backgroundColor: Color(0xFF264653),
-                          child: Icon(
-                            Icons.person,
-                            size: 50,
-                            color: Colors.white,
-                          ),
+                          child: Icon(Icons.person, size: 50, color: Colors.white),
                         ),
                         SizedBox(width: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Jumma",
+                              "Emu Easmin",
                               style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -90,10 +86,7 @@ class ProfileScreen extends StatelessWidget {
                     // Profile Options
                     buildProfileOption(Icons.account_circle, "My Account"),
                     buildProfileOption(Icons.bookmark, "Bookings & Trips"),
-                    buildProfileOption(
-                      Icons.loyalty,
-                      "Genius Loyalty Programme",
-                    ),
+                    buildProfileOption(Icons.loyalty, "Genius Loyalty Programme"),
                     buildProfileOption(Icons.wallet, "Rewards & Wallet"),
                     buildProfileOption(Icons.reviews, "Reviews"),
                     buildProfileOption(Icons.save, "Saved"),
@@ -121,7 +114,11 @@ class ProfileScreen extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 6, spreadRadius: 2),
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 6,
+              spreadRadius: 2,
+            ),
           ],
         ),
         child: Row(

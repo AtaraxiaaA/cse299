@@ -21,9 +21,12 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
   int travelers = 1;
   bool directBuses = false;
   String? driverAge;
+  String? _selectedBusType; // Added bus type selection
 
   List<String> ageOptions =
   List.generate(80 - 18 + 1, (index) => (18 + index).toString());
+
+  List<String> busTypeOptions = ['All', 'AC', 'Non-AC']; // Added bus type options
 
   List<Map<String, String>> _availableBuses = [
     {
@@ -31,26 +34,84 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'price': '\$30',
       'departureTime': '08:00 AM',
       'arrivalTime': '04:00 PM',
-      'from': 'City A',
-      'to': 'City B',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'AC',
     },
     {
-      'bus': 'Scania Multi-Axle',
-      'price': '\$25',
+      'bus': 'Scania AC Deluxe',
+      'price': '\$35',
       'departureTime': '10:00 AM',
       'arrivalTime': '06:00 PM',
-      'from': 'City C',
-      'to': 'City D',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'AC',
+    },
+    {
+      'bus': 'Mercedes Benz AC',
+      'price': '\$40',
+      'departureTime': '12:00 PM',
+      'arrivalTime': '08:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'AC',
+    },
+    {
+      'bus': 'Tata AC Express',
+      'price': '\$45',
+      'departureTime': '02:00 PM',
+      'arrivalTime': '10:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'AC',
     },
     {
       'bus': 'Non-AC Seater',
       'price': '\$15',
-      'departureTime': '12:00 PM',
-      'arrivalTime': '08:00 PM',
-      'from': 'City E',
-      'to': 'City F',
+      'departureTime': '09:00 AM',
+      'arrivalTime': '05:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'Non-AC',
+    },
+    {
+      'bus': 'Ashok Leyland Non-AC',
+      'price': '\$20',
+      'departureTime': '11:00 AM',
+      'arrivalTime': '07:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'Non-AC',
+    },
+    {
+      'bus': 'Non-AC Deluxe',
+      'price': '\$22',
+      'departureTime': '01:00 PM',
+      'arrivalTime': '09:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-26',
+      'type': 'Non-AC',
+    },
+    {
+      'bus': 'Non-AC Express',
+      'price': '\$25',
+      'departureTime': '03:00 PM',
+      'arrivalTime': '11:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2024-10-26',
+      'type': 'Non-AC',
     },
   ];
+
+  List<Map<String, String>> filteredBuses = [];
 
   Future<void> _selectDate(BuildContext context, bool isDeparture) async {
     final DateTime? picked = await showDatePicker(
@@ -72,20 +133,44 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
     }
   }
 
+  void _searchBuses(BuildContext context) {
+    setState(() {
+      filteredBuses = _availableBuses
+          .where((bus) =>
+      bus['from']!.toLowerCase().contains(_fromLocationController.text.toLowerCase()) &&
+          bus['to']!.toLowerCase().contains(_toLocationController.text.toLowerCase()) &&
+          bus['date'] == _departureDateController.text &&
+          (_selectedBusType == null || _selectedBusType == 'All' || bus['type'] == _selectedBusType))
+          .toList();
+    });
+
+    if (filteredBuses.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('No buses found!')),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BusSearchResultsScreen(
+            filteredBuses: filteredBuses,
+            travelers: travelers,
+            driverAge: driverAge,
+            fromLocation: _fromLocationController.text,
+            toLocation: _toLocationController.text,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> filteredBuses = _availableBuses
-        .where((bus) =>
-    bus['from']!.toLowerCase().contains(_fromLocationController.text.toLowerCase()) &&
-        bus['to']!.toLowerCase().contains(_toLocationController.text.toLowerCase()))
-        .toList();
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "Search for Buses",
-          style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.black),
         ),
         backgroundColor: Color(0xFF007E95),
       ),
@@ -94,10 +179,6 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Search Buses',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
             SizedBox(height: 20),
             TextField(
               controller: _fromLocationController,
@@ -151,26 +232,81 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                 ),
                 onTap: () => _selectDate(context, false),
               ),
-            SizedBox(height: 20),
-            Text(
-              'Available Buses',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            SizedBox(height: 10),
+            DropdownButtonFormField<String>(
+              value: _selectedBusType,
+              items: busTypeOptions.map((type) {
+                return DropdownMenuItem<String>(
+                  value: type,
+                  child: Text(type),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedBusType = value;
+                });
+              },
+              decoration: InputDecoration(
+                labelText: 'Bus Type',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
             ),
             SizedBox(height: 20),
-            if (filteredBuses.isEmpty)
-              Text('No buses found', style: TextStyle(fontSize: 18)),
-            for (var bus in filteredBuses)
-              buildBusCard(
-                context,
-                bus['bus']!,
-                bus['price']!,
-                bus['departureTime']!,
-                bus['arrivalTime']!,
-                bus['from']!,
-                bus['to']!,
+            ElevatedButton(
+              onPressed: () => _searchBuses(context),
+              child: Text('Search Buses'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF007E95),
+                foregroundColor: Colors.white,
               ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BusSearchResultsScreen extends StatelessWidget {
+  final List<Map<String, String>> filteredBuses;
+  final int travelers;
+  final String? driverAge;
+  final String fromLocation;
+  final String toLocation;
+
+  BusSearchResultsScreen({
+    required this.filteredBuses,
+    required this.travelers,
+    required this.driverAge,
+    required this.fromLocation,
+    required this.toLocation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Available Buses'),
+        backgroundColor: Color(0xFF007E95),
+      ),
+      body: ListView.builder(
+        itemCount: filteredBuses.length,
+        itemBuilder: (context, index) {
+          var bus = filteredBuses[index];
+          return buildBusCard(
+            context,
+            bus['bus']!,
+            bus['price']!,
+            bus['departureTime']!,
+            bus['arrivalTime']!,
+            bus['from']!,
+            bus['to']!,
+            fromLocation,
+            toLocation,
+          );
+        },
       ),
     );
   }
@@ -183,6 +319,8 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       String arrivalTime,
       String from,
       String to,
+      String fromLocation,
+      String toLocation,
       ) {
     return Card(
       elevation: 5,
@@ -205,12 +343,13 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                   Text('Departure: $departureTime'),
                   Text('Arrival: $arrivalTime'),
                   Text('Price: $price'),
+                  Text('Pick-up: $fromLocation'),
+                  Text('Drop-off: $toLocation'),
                 ],
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigate to the BusBookingScreen with bus details
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -223,8 +362,8 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                         'from': from,
                         'to': to,
                       },
-                      travelers: travelers, // Pass travelers here
-                      driverAge: driverAge, // Pass driverAge here
+                      travelers: travelers,
+                      driverAge: driverAge,
                     ),
                   ),
                 );

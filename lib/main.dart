@@ -7,6 +7,8 @@ void main() {
 }
 
 class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -294,10 +296,10 @@ class _AuthScreenState extends State<AuthScreen>
   }
 
   Widget _buildInputField(
-    IconData icon,
-    String hint, {
-    bool isPassword = false,
-  }) {
+      IconData icon,
+      String hint, {
+        bool isPassword = false,
+      }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextField(

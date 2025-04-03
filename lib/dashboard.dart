@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
-import 'tourpackages.dart'; // Importing the TourPackagesScreen
-import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
-import 'Rewards&Discounts.dart'; // Importing the RewardsDiscountsScreen
-import 'customersupport.dart'; // Importing the CustomerSupportScreen
+import 'carrentals.dart';
+import 'BusSearchScreen.dart';
+
+
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -113,23 +113,26 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildIconCard(Icons.flight, "Flights"),
+
+
                     buildIconCard(Icons.hotel, "Hotels"),
-                    buildIconCard(Icons.directions_car, "Car Rentals"),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to the TourPackagesScreen
+                        // Navigate to the CarRentalsPage when the Car Rentals icon card is tapped
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TourPackagesScreen()),
+                          MaterialPageRoute(builder: (context) => CarRentalsPage()),
                         );
                       },
-                      child: buildIconCard(Icons.tour, "Tour Packages"),
+                      child: buildIconCard(Icons.directions_car, "Car Rentals"),
                     ),
+
+                    buildIconCard(Icons.tour, "Tour Packages"),
                   ],
                 ),
               ),
 
-              // Second Row for Experiences, Trains, Transfers, Travel Guides
+              // Second Row for Experiences, Trains, Buses , Travel Guides
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -140,17 +143,19 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     buildIconCard(Icons.explore, "Experiences"),
                     buildIconCard(Icons.train, "Trains"),
-                    buildIconCard(Icons.airport_shuttle, "Transfers"),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to the TravelGuidesScreen
+                        // Navigate to the BusSearchScreen when the Buses icon card is tapped
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TravelGuidesScreen()),
+                          MaterialPageRoute(builder: (context) => BusSearchScreen()), // Changed to BusSearchScreen
                         );
                       },
-                      child: buildIconCard(Icons.map, "Travel Guides"),
+                      child: buildIconCard(Icons.airport_shuttle, "Buses"),
                     ),
+
+
+                    buildIconCard(Icons.map, "Travel Guides"),
                   ],
                 ),
               ),
@@ -159,45 +164,27 @@ class DashboardScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 20,
+                  vertical: 10,
                 ),
                 child: Column(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to the CustomerSupportScreen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CustomerSupportScreen()),
-                        );
-                      },
-                      child: buildFeatureCard(
-                        icon: Icons.support_agent,
-                        title: "Customer Support in Seconds",
-                        description: "Get instant help with your bookings.",
-                      ),
+                    buildFeatureCard(
+                      icon: Icons.support_agent,
+                      title: "Customer Support in Seconds",
+                      description: "Get instant help with your bookings.",
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     buildFeatureCard(
                       icon: Icons.verified_user,
                       title: "Travel Worry-free",
                       description:
-                          "Enjoy a seamless travel experience.",
+                      "Enjoy a seamless and secure travel experience.",
                     ),
-                    SizedBox(height: 20),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to the RewardsDiscountsScreen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => RewardsDiscountsScreen()),
-                        );
-                      },
-                      child: buildFeatureCard(
-                        icon: Icons.discount,
-                        title: "Exclusive Rewards & Discounts",
-                        description: "Save with exclusive deals and rewards.",
-                      ),
+                    SizedBox(height: 10),
+                    buildFeatureCard(
+                      icon: Icons.discount,
+                      title: "Exclusive Rewards & Discounts",
+                      description: "Save big with exclusive deals and rewards.",
                     ),
                   ],
                 ),
@@ -308,6 +295,7 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
+
         // Navigation logic for destinations
         showModalBottomSheet(
           context: context,
