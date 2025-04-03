@@ -15,11 +15,36 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
   int _localTravelers = 1;
   String selectedCarType = 'Standard';
   String selectedPaymentMethod = 'Credit Card';
+  double totalPrice = 0.0; // Initialize total price
 
   @override
   void initState() {
     super.initState();
     _localTravelers = widget.travelers;
+    _calculateTotalPrice(); // Calculate initial total price
+  }
+
+  void _calculateTotalPrice() {
+    double basePrice = double.parse(widget.busDetails['price']!.substring(1)); // Remove '$'
+    double typeMultiplier = 1.0;
+
+    switch (selectedCarType) {
+      case 'Luxury':
+        typeMultiplier = 1.5;
+        break;
+      case 'Sleeper':
+        typeMultiplier = 1.2;
+        break;
+      case 'Semi-Sleeper':
+        typeMultiplier = 1.1;
+        break;
+      default:
+        typeMultiplier = 1.0;
+    }
+
+    setState(() {
+      totalPrice = basePrice * _localTravelers * typeMultiplier;
+    });
   }
 
   @override
@@ -73,6 +98,7 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                           setState(() {
                             if (_localTravelers > 1) {
                               _localTravelers--;
+                              _calculateTotalPrice();
                             }
                           });
                         },
@@ -83,6 +109,7 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                         onPressed: () {
                           setState(() {
                             _localTravelers++;
+                            _calculateTotalPrice();
                           });
                         },
                       ),
@@ -100,6 +127,7 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                 onChanged: (String? newValue) {
                   setState(() {
                     selectedCarType = newValue!;
+                    _calculateTotalPrice();
                   });
                 },
                 items: <String>['Standard', 'Luxury', 'Sleeper', 'Semi-Sleeper']
@@ -144,6 +172,11 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                     selectedPaymentMethod = value!;
                   });
                 },
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               Center(

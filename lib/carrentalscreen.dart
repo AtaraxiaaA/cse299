@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CarRentalScreen extends StatefulWidget {
-  final Map<String, String>? carDetails; // Make carDetails nullable
+  final Map<String, String>? carDetails;
   const CarRentalScreen({Key? key, required this.carDetails}) : super(key: key);
 
   @override
@@ -13,23 +13,37 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
   int _rentalDays = 1;
   String _selectedCarType = 'Standard';
   String _selectedPaymentMethod = 'Credit Card';
+  double _totalPrice = 0.0;
 
   final List<String> _paymentMethods = ['Credit Card', 'PayPal', 'Debit Card'];
 
-  double get totalPrice {
+  @override
+  void initState() {
+    super.initState();
+    _calculateTotalPrice();
+  }
+
+  void _calculateTotalPrice() {
     if (widget.carDetails == null || widget.carDetails!['price'] == null) {
       print('Error: Car details or price is null.');
-      return 0.0;
+      setState(() {
+        _totalPrice = 0.0;
+      });
+      return;
     }
     try {
       double basePrice = double.parse(
-        widget.carDetails!['price']!.substring(1), // Remove the '$' symbol
+        widget.carDetails!['price']!.substring(1).split('/')[0], // Remove the '$' and '/day'
       );
       double carTypeMultiplier = _selectedCarType == 'Luxury' ? 1.5 : 1.0;
-      return basePrice * _rentalDays * carTypeMultiplier;
+      setState(() {
+        _totalPrice = basePrice * _rentalDays * carTypeMultiplier;
+      });
     } catch (e) {
       print('Error parsing price: $e');
-      return 0.0; // Return 0.0 if there is a parsing error
+      setState(() {
+        _totalPrice = 0.0;
+      });
     }
   }
 
@@ -64,6 +78,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                         onPressed: () {
                           setState(() {
                             if (_rentalDays > 1) _rentalDays--;
+                            _calculateTotalPrice();
                           });
                         },
                       ),
@@ -73,6 +88,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                         onPressed: () {
                           setState(() {
                             _rentalDays++;
+                            _calculateTotalPrice();
                           });
                         },
                       ),
@@ -93,45 +109,49 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
               buildPaymentMethodSelector(),
               SizedBox(height: 20),
               Text(
-                'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+                'Total Price: \$${_totalPrice.toStringAsFixed(2)}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (widget.carDetails == null) {
-                    print("Car Details are null, booking cannot be processed.");
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Car details are missing.')),
-                    );
-                    return;
-                  }
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('Booking Confirmation'),
-                        content: Text(
-                          'You have successfully booked your rental car!',
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (widget.carDetails == null) {
+                      print("Car Details are null, booking cannot be processed.");
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Car details are missing.')),
                       );
-                    },
-                  );
-                },
-                child: Text('Book Now'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 252, 252, 252),
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  textStyle: TextStyle(fontSize: 18),
+                      return;
+                    }
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Booking Confirmation'),
+                          content: Text(
+                            'You have successfully booked your rental car!',
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Text('Confirm Booking'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF004B63),
+                    foregroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Reduced padding
+                    textStyle: TextStyle(fontSize: 14), // Smaller font size
+                  ),
                 ),
               ),
             ],
@@ -182,6 +202,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
       onChanged: (value) {
         setState(() {
           _selectedCarType = value!;
+          _calculateTotalPrice();
         });
       },
       decoration: InputDecoration(
