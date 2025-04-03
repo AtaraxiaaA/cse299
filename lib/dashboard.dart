@@ -3,10 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
-import 'carrentals.dart';
-import 'BusSearchScreen.dart';
-
-
+import 'flight.dart'; // Importing the FlightScreen
+import 'experiences.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -39,7 +37,9 @@ class DashboardScreen extends StatelessWidget {
                         // Navigate to the ProfileScreen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
                         );
                       },
                       child: CircleAvatar(
@@ -112,27 +112,37 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    buildIconCard(Icons.flight, "Flights"),
-
-
-                    buildIconCard(Icons.hotel, "Hotels"),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to the CarRentalsPage when the Car Rentals icon card is tapped
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CarRentalsPage()),
+                          MaterialPageRoute(
+                            builder: (context) => FlightScreen(),
+                          ),
                         );
                       },
-                      child: buildIconCard(Icons.directions_car, "Car Rentals"),
+                      child: buildIconCard(Icons.flight, "Flights"),
                     ),
 
-                    buildIconCard(Icons.tour, "Tour Packages"),
+                    buildIconCard(Icons.hotel, "Hotels"),
+                    buildIconCard(Icons.directions_car, "Car Rentals"),
+                    GestureDetector(
+                      onTap: () {
+                        // // Navigate to the TourPackagesScreen
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => TourPackagesScreen(),
+                        //   ),
+                        // );
+                      },
+                      child: buildIconCard(Icons.tour, "Tour Packages"),
+                    ),
                   ],
                 ),
               ),
 
-              // Second Row for Experiences, Trains, Buses , Travel Guides
+              // Second Row for Experiences, Trains, Transfers, Travel Guides
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -141,21 +151,24 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    buildIconCard(Icons.explore, "Experiences"),
-                    buildIconCard(Icons.train, "Trains"),
+                    // buildIconCard(Icons.explore, "Experiences"),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to the BusSearchScreen when the Buses icon card is tapped
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => BusSearchScreen()), // Changed to BusSearchScreen
+                          MaterialPageRoute(
+                            builder: (context) => ExperienceScreen(),
+                          ),
                         );
                       },
-                      child: buildIconCard(Icons.airport_shuttle, "Buses"),
+                      child: buildIconCard(Icons.explore, "Experiences"),
                     ),
-
-
-                    buildIconCard(Icons.map, "Travel Guides"),
+                    buildIconCard(Icons.train, "Trains"),
+                    buildIconCard(Icons.airport_shuttle, "Transfers"),
+                    GestureDetector(
+                      onTap: () {},
+                      child: buildIconCard(Icons.map, "Travel Guides"),
+                    ),
                   ],
                 ),
               ),
@@ -178,7 +191,7 @@ class DashboardScreen extends StatelessWidget {
                       icon: Icons.verified_user,
                       title: "Travel Worry-free",
                       description:
-                      "Enjoy a seamless and secure travel experience.",
+                          "Enjoy a seamless and secure travel experience.",
                     ),
                     SizedBox(height: 10),
                     buildFeatureCard(
@@ -295,7 +308,6 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-
         // Navigation logic for destinations
         showModalBottomSheet(
           context: context,
