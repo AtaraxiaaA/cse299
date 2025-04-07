@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dashboard.dart'; // Import DashboardScreen
+import 'firebase_options.dart';
 
-void main() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: AuthScreen()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: AuthScreen(),
+  ));
 }
+
 
 class AuthScreen extends StatefulWidget {
   @override

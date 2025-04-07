@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
+import 'TrainHomePage.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -30,8 +31,10 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
+                    GestureDetector
+                      (
+                      onTap: ()
+                      {
                         // Navigate to the ProfileScreen
                         Navigator.push(
                           context,
@@ -126,7 +129,18 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildIconCard(Icons.explore, "Experiences"),
-                    buildIconCard(Icons.train, "Trains"),
+
+                    //train
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to SearchTrainPage when the Train icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TrainHomePage()),
+                        );
+                      },
+                      child: buildIconCard(Icons.train, "Train"),
+                    ),
                     buildIconCard(Icons.airport_shuttle, "Transfers"),
                     buildIconCard(Icons.map, "Travel Guides"),
                   ],
@@ -268,7 +282,7 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
+
         // Navigation logic for destinations
       showModalBottomSheet(
           context: context,
