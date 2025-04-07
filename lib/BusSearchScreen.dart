@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'busbookingscreen.dart'; // Import your BusBookingScreen
+import 'busbookingscreen.dart';
 
 class BusSearchScreen extends StatefulWidget {
   const BusSearchScreen({super.key});
@@ -11,22 +11,27 @@ class BusSearchScreen extends StatefulWidget {
 }
 
 class _BusSearchScreenState extends State<BusSearchScreen> {
-  bool isRoundTrip = true;
   TextEditingController _fromLocationController = TextEditingController();
   TextEditingController _toLocationController = TextEditingController();
   TextEditingController _departureDateController = TextEditingController();
-  TextEditingController _returnDateController = TextEditingController();
   DateTime _departureDate = DateTime.now();
-  DateTime _returnDate = DateTime.now();
   int travelers = 1;
-  bool directBuses = false;
   String? driverAge;
-  String? _selectedBusType; // Added bus type selection
+  String? _selectedBusType;
+  bool _isFromLocationSelected = false;
+  bool _isToLocationSelected = false;
+  bool _isDepartureDateSelected = false;
 
   List<String> ageOptions =
   List.generate(80 - 18 + 1, (index) => (18 + index).toString());
 
-  List<String> busTypeOptions = ['All', 'AC', 'Non-AC']; // Added bus type options
+  List<String> busTypeOptions = [
+    'All',
+    'AC',
+    'Non-AC',
+    'Sleeper Coach AC',
+    'Sleeper Coach Non-AC'
+  ];
 
   List<Map<String, String>> _availableBuses = [
     {
@@ -36,17 +41,27 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'arrivalTime': '04:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
       'type': 'AC',
     },
     {
-      'bus': 'Scania AC Deluxe',
+      'bus': 'Volvo AC Sleeper',
+      'price': '\$20',
+      'departureTime': '08:00 AM',
+      'arrivalTime': '04:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-27',
+      'type': 'AC',
+    },
+    {
+      'bus': 'Scania AC',
       'price': '\$35',
       'departureTime': '10:00 AM',
       'arrivalTime': '06:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
       'type': 'AC',
     },
     {
@@ -56,7 +71,7 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'arrivalTime': '08:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
       'type': 'AC',
     },
     {
@@ -66,7 +81,7 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'arrivalTime': '10:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
       'type': 'AC',
     },
     {
@@ -76,7 +91,7 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'arrivalTime': '05:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
       'type': 'Non-AC',
     },
     {
@@ -86,11 +101,11 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'arrivalTime': '07:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
       'type': 'Non-AC',
     },
     {
-      'bus': 'Non-AC Deluxe',
+      'bus': 'Non-AC',
       'price': '\$22',
       'departureTime': '01:00 PM',
       'arrivalTime': '09:00 PM',
@@ -106,29 +121,109 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       'arrivalTime': '11:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
+      'type': 'Non-AC',
+    },
+    {
+      'bus': 'Sleeper Coach AC',
+      'price': '\$50',
+      'departureTime': '06:00 AM',
+      'arrivalTime': '02:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-26',
+      'type': 'Sleeper Coach AC',
+    },
+    {
+      'bus': 'Sleeper Coach Non-AC',
+      'price': '\$35',
+      'departureTime': '07:00 AM',
+      'arrivalTime': '03:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-26',
+      'type': 'Sleeper Coach Non-AC',
+    },
+    {
+      'bus': 'Sleeper Coach AC',
+      'price': '\$48',
+      'departureTime': '09:00 AM',
+      'arrivalTime': '05:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-27',
+      'type': 'Sleeper Coach AC',
+    },
+    {
+      'bus': 'Sleeper Coach Non-AC',
+      'price': '\$38',
+      'departureTime': '10:00 AM',
+      'arrivalTime': '06:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-27',
+      'type': 'Sleeper Coach Non-AC',
+    },
+    {
+      'bus': 'AC',
+      'price': '\$38',
+      'departureTime': '11:00 AM',
+      'arrivalTime': '07:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-27',
+      'type': 'AC',
+    },
+    {
+      'bus': 'Non-AC',
+      'price': '\$18',
+      'departureTime': '12:00 PM',
+      'arrivalTime': '08:00 PM',
+      'from': 'Dhaka',
+      'to': 'Chittagong',
+      'date': '2025-10-27',
       'type': 'Non-AC',
     },
   ];
-
   List<Map<String, String>> filteredBuses = [];
 
-  Future<void> _selectDate(BuildContext context, bool isDeparture) async {
+  Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: isDeparture ? _departureDate : _returnDate,
+      initialDate: _departureDate,
       firstDate: DateTime.now(),
       lastDate: DateTime(2026),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(primary: Colors.blue),
+            textTheme: TextTheme(
+              bodyLarge: TextStyle(color: Colors.black),
+              bodyMedium: TextStyle(color: Colors.black),
+              bodySmall: TextStyle(color: Colors.black),
+              titleLarge: TextStyle(color: Colors.black),
+              titleMedium: TextStyle(color: Colors.black),
+              titleSmall: TextStyle(color: Colors.black),
+              headlineLarge: TextStyle(color: Colors.black),
+              headlineMedium: TextStyle(color: Colors.black),
+              headlineSmall: TextStyle(color: Colors.black),
+              labelLarge: TextStyle(color: Colors.black),
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue[900],
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null) {
       setState(() {
-        if (isDeparture) {
-          _departureDate = picked;
-          _departureDateController.text = DateFormat('yyyy-MM-dd').format(picked);
-        } else {
-          _returnDate = picked;
-          _returnDateController.text = DateFormat('yyyy-MM-dd').format(picked);
-        }
+        _departureDate = picked;
+        _departureDateController.text = DateFormat('yyyy-MM-dd').format(picked);
+        _isDepartureDateSelected = true;
       });
     }
   }
@@ -137,8 +232,8 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
     setState(() {
       filteredBuses = _availableBuses
           .where((bus) =>
-      bus['from']!.toLowerCase().contains(_fromLocationController.text.toLowerCase()) &&
-          bus['to']!.toLowerCase().contains(_toLocationController.text.toLowerCase()) &&
+      bus['from']!.toLowerCase().trim() == _fromLocationController.text.toLowerCase().trim() &&
+          bus['to']!.toLowerCase().trim() == _toLocationController.text.toLowerCase().trim() &&
           bus['date'] == _departureDateController.text &&
           (_selectedBusType == null || _selectedBusType == 'All' || bus['type'] == _selectedBusType))
           .toList();
@@ -170,100 +265,126 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
       appBar: AppBar(
         title: Text(
           "Search for Buses",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.white),
         ),
         backgroundColor: Color(0xFF007E95),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            TextField(
-              controller: _fromLocationController,
-              decoration: InputDecoration(
-                labelText: 'Pick-up Location',
-                hintText: 'Enter pick-up location',
-                prefixIcon: Icon(Icons.location_on),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
               ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: _toLocationController,
-              decoration: InputDecoration(
-                labelText: 'Drop-off Location',
-                hintText: 'Enter drop-off location',
-                prefixIcon: Icon(Icons.location_on),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: _departureDateController,
-              readOnly: true,
-              decoration: InputDecoration(
-                labelText: 'Pick-up Date',
-                hintText: 'Select a pick-up date',
-                prefixIcon: Icon(Icons.calendar_today),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onTap: () => _selectDate(context, true),
-            ),
-            SizedBox(height: 10),
-            if (isRoundTrip)
-              TextField(
-                controller: _returnDateController,
-                readOnly: true,
-                decoration: InputDecoration(
-                  labelText: 'Return Date',
-                  hintText: 'Select return date',
-                  prefixIcon: Icon(Icons.calendar_today),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/busimage1.jpg'),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.4),
+                      BlendMode.darken,
+                    ),
                   ),
                 ),
-                onTap: () => _selectDate(context, false),
-              ),
-            SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              value: _selectedBusType,
-              items: busTypeOptions.map((type) {
-                return DropdownMenuItem<String>(
-                  value: type,
-                  child: Text(type),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedBusType = value;
-                });
-              },
-              decoration: InputDecoration(
-                labelText: 'Bus Type',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+                      TextField(
+                        controller: _fromLocationController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter pick-up location',
+                          hintStyle: TextStyle(color: Colors.black),
+                          prefixIcon: Icon(Icons.location_on, color: Colors.black),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.8),
+                        ),
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(height: 10),
+                      TextField(
+                        controller: _toLocationController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter drop-off location',
+                          hintStyle: TextStyle(color: Colors.black),
+                          prefixIcon: Icon(Icons.location_on, color: Colors.black),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.8),
+                        ),
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () => _selectDate(context),
+                        child: TextField(
+                          controller: _departureDateController,
+                          enabled: false,
+                          decoration: InputDecoration(
+                            hintText: 'Select a pick-up date',
+                            hintStyle: TextStyle(color: Colors.black),
+                            prefixIcon: Icon(Icons.calendar_today, color: Colors.black),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.8),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField<String>(
+                        value: _selectedBusType,
+                        items: busTypeOptions.map((type) {
+                          return DropdownMenuItem<String>(
+                            value: type,
+                            child: Text(type, style: TextStyle(color: Colors.black)),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedBusType = value;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Bus Type',
+                          labelStyle: TextStyle(color: Colors.black),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.8),
+                        ),
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(height: 20),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () => _searchBuses(context),
+                          child: Text('Search Buses', style: TextStyle(color: Colors.black)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _searchBuses(context),
-              child: Text('Search Buses'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF007E95),
-                foregroundColor: Colors.white,
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -288,25 +409,37 @@ class BusSearchResultsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Available Buses'),
+        title: Text('Available Buses', style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xFF007E95),
       ),
-      body: ListView.builder(
-        itemCount: filteredBuses.length,
-        itemBuilder: (context, index) {
-          var bus = filteredBuses[index];
-          return buildBusCard(
-            context,
-            bus['bus']!,
-            bus['price']!,
-            bus['departureTime']!,
-            bus['arrivalTime']!,
-            bus['from']!,
-            bus['to']!,
-            fromLocation,
-            toLocation,
-          );
-        },
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/busimage1.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.4),
+              BlendMode.darken,
+            ),
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: filteredBuses.length,
+          itemBuilder: (context, index) {
+            var bus = filteredBuses[index];
+            return buildBusCard(
+              context,
+              bus['bus']!,
+              bus['price']!,
+              bus['departureTime']!,
+              bus['arrivalTime']!,
+              bus['from']!,
+              bus['to']!,
+              fromLocation,
+              toLocation,
+            );
+          },
+        ),
       ),
     );
   }

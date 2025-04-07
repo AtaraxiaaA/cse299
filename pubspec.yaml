@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
   intl: ^0.20.2
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
@@ -47,13 +48,26 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  shared_preferences: ^2.0.0 # or the latest version
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  assets:
+    - images/busimage1.jpg # Or .png, .jpeg, depending on the file type.
+    - images/busimage2.jpg # Replace with the correct file extensions
+    - images/busimage3.jpg
+    - images/busimage4.jpg
+    - images/busimage5.jpg
+    - images/busimage6.jpg
+    - images/busimage7.jpg
+    - images/busimage8.jpeg
+    - images/busimage9.jpeg
+    - images/car1.jpg
+    - images/car2.jpg
+    - images/car3.jpg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
