@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 import 'book.dart';
 
 class FlightScreen extends StatefulWidget {
@@ -52,7 +52,7 @@ class _FlightScreenState extends State<FlightScreen> {
     if (picked != null && picked != _departureDate) {
       setState(() {
         _departureDate = picked;
-        _departureDateController.text = DateFormat('yyyy-MM-dd').format(picked);
+        //_departureDateController.text = DateFormat('yyyy-MM-dd').format(picked);
       });
     }
   }

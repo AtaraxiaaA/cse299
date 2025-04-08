@@ -7,6 +7,8 @@ import 'tourpackages.dart'; // Importing the TourPackagesScreen
 import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
 import 'Rewards&Discounts.dart'; // Importing the RewardsDiscountsScreen
 import 'customersupport.dart'; // Importing the CustomerSupportScreen
+import 'flight.dart'; // Importing the FlightScreen
+import 'experiences.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
