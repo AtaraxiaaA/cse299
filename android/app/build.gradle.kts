@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId = "com.tourify.explorer"
-        minSdk = 21 // ✅ Replace with your actual minSdk
+        minSdk = 23 // ✅ Replace with your actual minSdk
         targetSdk = 35 // ✅ Replace with your actual targetSdk
         versionCode = 1
         versionName = "1.0.0"
@@ -33,6 +33,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
 }
 
 flutter {
