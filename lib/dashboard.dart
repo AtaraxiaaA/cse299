@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tourify_sample_project/HotelHomePage.dart';
 import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
@@ -31,14 +32,14 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector
-                      (
-                      onTap: ()
-                      {
+                    GestureDetector(
+                      onTap: () {
                         // Navigate to the ProfileScreen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
                         );
                       },
                       child: CircleAvatar(
@@ -112,7 +113,18 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildIconCard(Icons.flight, "Flights"),
-                    buildIconCard(Icons.hotel, "Hotels"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to SearchHotelPage when the Hotels icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HotelHomePage(),
+                          ),
+                        );
+                      },
+                      child: buildIconCard(Icons.hotel, "Hotels"),
+                    ),
                     buildIconCard(Icons.directions_car, "Car Rentals"),
                     buildIconCard(Icons.tour, "Tour Packages"),
                   ],
@@ -129,14 +141,15 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildIconCard(Icons.explore, "Experiences"),
-
                     //train
                     GestureDetector(
                       onTap: () {
                         // Navigate to SearchTrainPage when the Train icon card is tapped
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TrainHomePage()),
+                          MaterialPageRoute(
+                            builder: (context) => TrainHomePage(),
+                          ),
                         );
                       },
                       child: buildIconCard(Icons.train, "Train"),
@@ -282,9 +295,8 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-
         // Navigation logic for destinations
-      showModalBottomSheet(
+        showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) {
