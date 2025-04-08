@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'carrentalscreen.dart'; // Make sure this import is correct
+import 'carrentalscreen.dart';
 
 class CarRentalsPage extends StatefulWidget {
-  const CarRentalsPage({super.key});
-
+  const CarRentalsPage({Key? key}) : super(key: key);
   @override
   _CarRentalsPageState createState() => _CarRentalsPageState();
 }
@@ -27,6 +26,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   List<String> carTypeOptions = ['2 Seater', '4 Seater', '12 Seater'];
 
   List<Map<String, String>> _availableCars = [
+    // ... (Your _availableCars data remains the same)
     {
       'car': 'Toyota Camry',
       'price': '\$50/day',
@@ -180,13 +180,16 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double inputWidth = MediaQuery.of(context).size.width * 0.5; // Shorter width
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Search for Cars",
+          "Search Car Rentals",
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.white),
         ),
         backgroundColor: Color(0xFF007E95),
+        leadingWidth: 20,
       ),
       body: Stack(
         children: [
@@ -207,6 +210,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
                   labelText: 'Pick-up Location',
                   hintText: 'Enter pick-up location',
                   prefixIcon: Icons.location_on,
+                  width: inputWidth,
                 ),
                 SizedBox(height: 10),
                 _buildTextField(
@@ -214,35 +218,43 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
                   labelText: 'Drop-off Location',
                   hintText: 'Enter drop-off location',
                   prefixIcon: Icons.location_on,
+                  width: inputWidth,
                 ),
                 SizedBox(height: 10),
                 _buildDateField(
                   controller: _pickUpDateController,
                   labelText: 'Pick-up Date',
                   onTap: () => _selectDate(context, true),
+                  width: inputWidth,
                 ),
                 SizedBox(height: 10),
                 _buildTimeField(
                   controller: _pickUpTimeController,
                   labelText: 'Pick-up Time',
                   onTap: () => _selectTime(context, true),
+                  width: inputWidth,
                 ),
                 SizedBox(height: 10),
                 _buildDateField(
                   controller: _returnDateController,
                   labelText: 'Return Date',
                   onTap: () => _selectDate(context, false),
+                  width: inputWidth,
                 ),
                 SizedBox(height: 10),
                 _buildTimeField(
                   controller: _returnTimeController,
                   labelText: 'Return Time',
                   onTap: () => _selectTime(context, false),
+                  width: inputWidth,
                 ),
                 SizedBox(height: 10),
-                _buildCarTypeDropdown(),
+                _buildCarTypeDropdown(width: inputWidth),
                 SizedBox(height: 20),
-                _buildSearchButton(context),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: _buildSearchButton(context),
+                ),
               ],
             ),
           ),
@@ -256,22 +268,26 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required String labelText,
     required String hintText,
     required IconData prefixIcon,
+    required double width,
   }) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: labelText,
-        hintText: hintText,
-        prefixIcon: Icon(prefixIcon),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+    return Container(
+      width: width,
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: labelText,
+          hintText: hintText,
+          prefixIcon: Icon(prefixIcon),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.7),
+          labelStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(color: Colors.black),
         ),
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.7),
-        labelStyle: TextStyle(color: Colors.black),
-        hintStyle: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black),
       ),
-      style: TextStyle(color: Colors.black),
     );
   }
 
@@ -279,23 +295,27 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required TextEditingController controller,
     required String labelText,
     required VoidCallback onTap,
+    required double width,
   }) {
-    return TextField(
-      controller: controller,
-      readOnly: true,
-      decoration: InputDecoration(
-        labelText: labelText,
-        prefixIcon: Icon(Icons.calendar_today),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+    return Container(
+      width: width,
+      child: TextField(
+        controller: controller,
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          prefixIcon: Icon(Icons.calendar_today),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.7),
+          labelStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(color: Colors.black),
         ),
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.7),
-        labelStyle: TextStyle(color: Colors.black),
-        hintStyle: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black),
+        onTap: onTap,
       ),
-      style: TextStyle(color: Colors.black),
-      onTap: onTap,
     );
   }
 
@@ -303,67 +323,72 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required TextEditingController controller,
     required String labelText,
     required VoidCallback onTap,
+    required double width,
   }) {
-    return TextField(
-      controller: controller,
-      readOnly: true,
-      decoration: InputDecoration(
-        labelText: labelText,
-        prefixIcon: Icon(Icons.access_time),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+    return Container(
+      width: width,
+      child: TextField(
+        controller: controller,
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          prefixIcon: Icon(Icons.access_time),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.7),
+          labelStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(color: Colors.black),
         ),
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.7),
-        labelStyle: TextStyle(color: Colors.black),
-        hintStyle: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black),
+        onTap: onTap,
       ),
-      style: TextStyle(color: Colors.black),
-      onTap: onTap,
     );
   }
 
-  Widget _buildCarTypeDropdown() {
-    return DropdownButtonFormField<String>(
-      value: _selectedCarType,
-      items: carTypeOptions.map((type) {
-        return DropdownMenuItem<String>(
-          value: type,
-          child: Text(
-            type,
-            style: TextStyle(color: Colors.black),
+  Widget _buildCarTypeDropdown({required double width}) {
+    return Container(
+      width: width,
+      child: DropdownButtonFormField<String>(
+        value: _selectedCarType,
+        items: carTypeOptions.map((type) {
+          return DropdownMenuItem<String>(
+            value: type,
+            child: Text(
+              type,
+              style: TextStyle(color: Colors.black),
+            ),
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            _selectedCarType = value;
+          });
+        },
+        decoration: InputDecoration(
+          labelText: 'Car Type',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
-        );
-      }).toList(),
-      onChanged: (value) {
-        setState(() {
-          _selectedCarType = value;
-        });
-      },
-      decoration: InputDecoration(
-        labelText: 'Car Type',
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.7),
+          labelStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(color: Colors.black),
         ),
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.7),
-        labelStyle: TextStyle(color: Colors.black),
-        hintStyle: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black),
       ),
-      style: TextStyle(color: Colors.black),
     );
   }
 
   Widget _buildSearchButton(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () => _searchCars(context),
-        child: Text('Search Cars'),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xFF007E95),
-          foregroundColor: Colors.white,
-          textStyle: TextStyle(fontWeight: FontWeight.bold),
-        ),
+    return ElevatedButton(
+      onPressed: () => _searchCars(context),
+      child: Text('Search Cars'),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF007E95),
+        foregroundColor: Colors.white,
+        textStyle: TextStyle(fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -387,6 +412,7 @@ class CarSearchResultsScreen extends StatelessWidget {
         title: Text('Available Cars'),
         backgroundColor: Color(0xFF007E95),
         foregroundColor: Colors.white,
+        leadingWidth: 100,
       ),
       body: Stack(
         children: [
@@ -425,7 +451,6 @@ class CarSearchResultsScreen extends StatelessWidget {
       String from,
       String to,
       ) {
-    // Find the corresponding car in filteredCars to get date, returnDate, and type
     Map<String, String>? selectedCar;
     for (var availableCar in filteredCars) {
       if (availableCar['car'] == car &&
@@ -438,6 +463,7 @@ class CarSearchResultsScreen extends StatelessWidget {
         break;
       }
     }
+
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -449,21 +475,19 @@ class CarSearchResultsScreen extends StatelessWidget {
           children: [
             Icon(Icons.directions_car, size: 40, color: Color(0xFF007E95)),
             SizedBox(width: 15),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    car,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  Text('Pick-up Time: $pickUpTime', style: TextStyle(color: Colors.black)),
-                  Text('Drop-off Time: $dropOffTime', style: TextStyle(color: Colors.black)),
-                  Text('Price: $price', style: TextStyle(color: Colors.black)),
-                  Text('Pick-up Location: $from', style: TextStyle(color: Colors.black)),
-                  Text('Drop-off Location: $to', style: TextStyle(color: Colors.black)),
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  car,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                Text('Pick-up Time: $pickUpTime', style: TextStyle(color: Colors.black)),
+                Text('Drop-off Time: $dropOffTime', style: TextStyle(color: Colors.black)),
+                Text('Price: $price', style: TextStyle(color: Colors.black)),
+                Text('Pick-up Location: $from', style: TextStyle(color: Colors.black)),
+                Text('Drop-off Location: $to', style: TextStyle(color: Colors.black)),
+              ],
             ),
             ElevatedButton(
               onPressed: () {
@@ -478,14 +502,14 @@ class CarSearchResultsScreen extends StatelessWidget {
                         'dropOffTime': dropOffTime,
                         'from': from,
                         'to': to,
-                        'type': selectedCar?['type'] ?? 'Not Available', // Pass car type
+                        'type': selectedCar?['type'] ?? 'Not Available',
                       },
                       rentalDetails: {
                         'from': from,
                         'to': to,
-                        'date': selectedCar?['date'] ?? 'Not Available', // Pass date
-                        'returnDate': selectedCar?['returnDate'] ?? 'Not Available', // Pass returnDate
-                        'type': selectedCar?['type'] ?? 'Not Available', // Pass type
+                        'date': selectedCar?['date'] ?? 'Not Available',
+                        'returnDate': selectedCar?['returnDate'] ?? 'Not Available',
+                        'type': selectedCar?['type'] ?? 'Not Available',
                       },
                     ),
                   ),

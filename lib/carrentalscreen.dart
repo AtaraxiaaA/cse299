@@ -18,7 +18,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
   String _couponCode = '';
   bool _isCouponValid = false;
   double _discountAmount = 0.0;
-  bool _discountApplied = false; // Add a state variable to track if discount is applied
+  bool _discountApplied = false;
 
   final List<String> _paymentMethods = ['Credit Card', 'PayPal', 'Debit Card'];
 
@@ -65,6 +65,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
         title: Text('Book Your Car Rental'),
         backgroundColor: Color(0xFF007E95),
         foregroundColor: Colors.white,
+        leadingWidth: 15,
       ),
       body: Stack(
         children: [
@@ -84,9 +85,12 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                     'Car Details',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
-                  SizedBox(height: 10),
-                  buildCarDetailsCard(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 5), // Shortened height
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: buildCarDetailsCard(),
+                  ),
+                  SizedBox(height: 10), // Shortened height
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -95,23 +99,37 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                         style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
                       ),
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.remove, color: Colors.black),
+                            icon: Icon(Icons.remove, color: Colors.black, size: 24),
+                            padding: EdgeInsets.all(8),
+                            constraints: BoxConstraints(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white.withOpacity(0.8),
+                            ),
                             onPressed: () {
                               setState(() {
                                 if (_rentalDays > 1) _rentalDays--;
-                                if(_discountApplied) _calculateTotalPrice(); // Recalculate if discount is applied
+                                if (_discountApplied) _calculateTotalPrice();
                               });
                             },
                           ),
-                          Text('$_rentalDays', style: TextStyle(fontSize: 18, color: Colors.black)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text('$_rentalDays', style: TextStyle(fontSize: 20, color: Colors.black)),
+                          ),
                           IconButton(
-                            icon: Icon(Icons.add, color: Colors.black),
+                            icon: Icon(Icons.add, color: Colors.black, size: 24),
+                            padding: EdgeInsets.all(8),
+                            constraints: BoxConstraints(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white.withOpacity(0.8),
+                            ),
                             onPressed: () {
                               setState(() {
                                 _rentalDays++;
-                                if(_discountApplied) _calculateTotalPrice(); // Recalculate if discount is applied
+                                if (_discountApplied) _calculateTotalPrice();
                               });
                             },
                           ),
@@ -119,27 +137,30 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Discount Code',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
+                  SizedBox(height: 10), // Shortened height
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Discount Code',
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.grey.shade300),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.grey.shade300),
+                        ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
+                      onChanged: (value) {
+                        _couponCode = value;
+                        _discountApplied = false;
+                      },
                     ),
-                    onChanged: (value) {
-                      _couponCode = value;
-                      _discountApplied = false; // Reset discount application on code change
-                    },
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5), // Shortened height
                   ElevatedButton(
                     onPressed: () {
                       _calculateTotalPrice();
@@ -155,24 +176,24 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5), // Shortened height
                   Text(
                     'Payment Method',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5), // Shortened height
                   buildPaymentMethodSelector(),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5), // Shortened height
                   Text(
                     'Discount: \$${_discountAmount.toStringAsFixed(2)}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5), // Shortened height
                   Text(
                     'Total Price: \$${_totalPrice.toStringAsFixed(2)}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 10), // Shortened height
                   Container(
                     width: double.infinity,
                     child: ElevatedButton(
