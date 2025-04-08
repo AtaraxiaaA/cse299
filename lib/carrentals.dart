@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'carrentalscreen.dart'; // Import your booking screen for car rental
+import 'carrentalscreen.dart'; // Make sure this import is correct
 
 class CarRentalsPage extends StatefulWidget {
   const CarRentalsPage({super.key});
@@ -15,10 +15,14 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   TextEditingController _dropOffLocationController = TextEditingController();
   TextEditingController _pickUpDateController = TextEditingController();
   TextEditingController _returnDateController = TextEditingController();
+  TextEditingController _pickUpTimeController = TextEditingController();
+  TextEditingController _returnTimeController = TextEditingController();
   String? _selectedCarType;
 
   DateTime _pickUpDate = DateTime.now();
   DateTime _returnDate = DateTime.now();
+  TimeOfDay _pickUpTime = TimeOfDay.now();
+  TimeOfDay _returnTime = TimeOfDay.now();
 
   List<String> carTypeOptions = ['2 Seater', '4 Seater', '12 Seater'];
 
@@ -30,7 +34,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       'dropOffTime': '05:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-04-26',
+      'returnDate': '2025-04-27',
       'type': '4 Seater',
     },
     {
@@ -40,7 +45,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       'dropOffTime': '08:00 PM',
       'from': 'Sylhet',
       'to': 'Rajshahi',
-      'date': '2024-10-27',
+      'date': '2025-10-27',
+      'returnDate': '2025-10-28',
       'type': '4 Seater',
     },
     {
@@ -50,7 +56,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       'dropOffTime': '04:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
+      'returnDate': '2025-10-27',
       'type': '2 Seater',
     },
     {
@@ -61,6 +68,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       'from': 'Rajshahi',
       'to': 'Sylhet',
       'date': '2025-10-28',
+      'returnDate': '2025-10-29',
       'type': '4 Seater',
     },
     {
@@ -70,7 +78,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       'dropOffTime': '07:00 PM',
       'from': 'Dhaka',
       'to': 'Chittagong',
-      'date': '2024-10-26',
+      'date': '2025-10-26',
+      'returnDate': '2025-10-28',
       'type': '12 Seater',
     },
     {
@@ -80,7 +89,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       'dropOffTime': '09:00 PM',
       'from': 'Sylhet',
       'to': 'Rajshahi',
-      'date': '2024-10-27',
+      'date': '2025-10-27',
+      'returnDate': '2025-10-29',
       'type': '12 Seater',
     },
   ];
@@ -102,6 +112,38 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
         } else {
           _returnDate = picked;
           _returnDateController.text = DateFormat('yyyy-MM-dd').format(picked);
+        }
+      });
+    }
+  }
+
+  Future<void> _selectTime(BuildContext context, bool isPickUp) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: isPickUp ? _pickUpTime : _returnTime,
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Colors.deepPurple,
+              onPrimary: Colors.white,
+              surface: Colors.deepPurple.shade50,
+              onSurface: Colors.black,
+            ),
+            dialogBackgroundColor: Colors.white,
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null) {
+      setState(() {
+        if (isPickUp) {
+          _pickUpTime = picked;
+          _pickUpTimeController.text = picked.format(context);
+        } else {
+          _returnTime = picked;
+          _returnTimeController.text = picked.format(context);
         }
       });
     }
@@ -142,99 +184,185 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       appBar: AppBar(
         title: Text(
           "Search for Cars",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.white),
         ),
         backgroundColor: Color(0xFF007E95),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            TextField(
-              controller: _pickUpLocationController,
-              decoration: InputDecoration(
-                labelText: 'Pick-up Location',
-                hintText: 'Enter pick-up location',
-                prefixIcon: Icon(Icons.location_on),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+      body: Stack(
+        children: [
+          Image.asset(
+            'images/car3.jpg',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          SingleChildScrollView(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20),
+                _buildTextField(
+                  controller: _pickUpLocationController,
+                  labelText: 'Pick-up Location',
+                  hintText: 'Enter pick-up location',
+                  prefixIcon: Icons.location_on,
                 ),
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: _dropOffLocationController,
-              decoration: InputDecoration(
-                labelText: 'Drop-off Location',
-                hintText: 'Enter drop-off location',
-                prefixIcon: Icon(Icons.location_on),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                SizedBox(height: 10),
+                _buildTextField(
+                  controller: _dropOffLocationController,
+                  labelText: 'Drop-off Location',
+                  hintText: 'Enter drop-off location',
+                  prefixIcon: Icons.location_on,
                 ),
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: _pickUpDateController,
-              readOnly: true,
-              decoration: InputDecoration(
-                labelText: 'Pick-up Date',
-                hintText: 'Select a pick-up date',
-                prefixIcon: Icon(Icons.calendar_today),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                SizedBox(height: 10),
+                _buildDateField(
+                  controller: _pickUpDateController,
+                  labelText: 'Pick-up Date',
+                  onTap: () => _selectDate(context, true),
                 ),
-              ),
-              onTap: () => _selectDate(context, true),
-            ),
-            SizedBox(height: 10),
-            if (true) // always show return date
-              TextField(
-                controller: _returnDateController,
-                readOnly: true,
-                decoration: InputDecoration(
+                SizedBox(height: 10),
+                _buildTimeField(
+                  controller: _pickUpTimeController,
+                  labelText: 'Pick-up Time',
+                  onTap: () => _selectTime(context, true),
+                ),
+                SizedBox(height: 10),
+                _buildDateField(
+                  controller: _returnDateController,
                   labelText: 'Return Date',
-                  hintText: 'Select return date',
-                  prefixIcon: Icon(Icons.calendar_today),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+                  onTap: () => _selectDate(context, false),
                 ),
-                onTap: () => _selectDate(context, false),
-              ),
-            SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              value: _selectedCarType,
-              items: carTypeOptions.map((type) {
-                return DropdownMenuItem<String>(
-                  value: type,
-                  child: Text(type),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedCarType = value;
-                });
-              },
-              decoration: InputDecoration(
-                labelText: 'Car Type',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                SizedBox(height: 10),
+                _buildTimeField(
+                  controller: _returnTimeController,
+                  labelText: 'Return Time',
+                  onTap: () => _selectTime(context, false),
                 ),
-              ),
+                SizedBox(height: 10),
+                _buildCarTypeDropdown(),
+                SizedBox(height: 20),
+                _buildSearchButton(context),
+              ],
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _searchCars(context),
-              child: Text('Search Cars'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF007E95),
-                foregroundColor: Colors.white,
-              ),
-            ),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String labelText,
+    required String hintText,
+    required IconData prefixIcon,
+  }) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        prefixIcon: Icon(prefixIcon),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.7),
+        labelStyle: TextStyle(color: Colors.black),
+        hintStyle: TextStyle(color: Colors.black),
+      ),
+      style: TextStyle(color: Colors.black),
+    );
+  }
+
+  Widget _buildDateField({
+    required TextEditingController controller,
+    required String labelText,
+    required VoidCallback onTap,
+  }) {
+    return TextField(
+      controller: controller,
+      readOnly: true,
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(Icons.calendar_today),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.7),
+        labelStyle: TextStyle(color: Colors.black),
+        hintStyle: TextStyle(color: Colors.black),
+      ),
+      style: TextStyle(color: Colors.black),
+      onTap: onTap,
+    );
+  }
+
+  Widget _buildTimeField({
+    required TextEditingController controller,
+    required String labelText,
+    required VoidCallback onTap,
+  }) {
+    return TextField(
+      controller: controller,
+      readOnly: true,
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(Icons.access_time),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.7),
+        labelStyle: TextStyle(color: Colors.black),
+        hintStyle: TextStyle(color: Colors.black),
+      ),
+      style: TextStyle(color: Colors.black),
+      onTap: onTap,
+    );
+  }
+
+  Widget _buildCarTypeDropdown() {
+    return DropdownButtonFormField<String>(
+      value: _selectedCarType,
+      items: carTypeOptions.map((type) {
+        return DropdownMenuItem<String>(
+          value: type,
+          child: Text(
+            type,
+            style: TextStyle(color: Colors.black),
+          ),
+        );
+      }).toList(),
+      onChanged: (value) {
+        setState(() {
+          _selectedCarType = value;
+        });
+      },
+      decoration: InputDecoration(
+        labelText: 'Car Type',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.7),
+        labelStyle: TextStyle(color: Colors.black),
+        hintStyle: TextStyle(color: Colors.black),
+      ),
+      style: TextStyle(color: Colors.black),
+    );
+  }
+
+  Widget _buildSearchButton(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () => _searchCars(context),
+        child: Text('Search Cars'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xFF007E95),
+          foregroundColor: Colors.white,
+          textStyle: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -258,21 +386,32 @@ class CarSearchResultsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Available Cars'),
         backgroundColor: Color(0xFF007E95),
+        foregroundColor: Colors.white,
       ),
-      body: ListView.builder(
-        itemCount: filteredCars.length,
-        itemBuilder: (context, index) {
-          var car = filteredCars[index];
-          return buildCarCard(
-            context,
-            car['car']!,
-            car['price']!,
-            car['pickUpTime']!,
-            car['dropOffTime']!,
-            car['from']!,
-            car['to']!,
-          );
-        },
+      body: Stack(
+        children: [
+          Image.asset(
+            'images/car3.jpg',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          ListView.builder(
+            itemCount: filteredCars.length,
+            itemBuilder: (context, index) {
+              var car = filteredCars[index];
+              return buildCarCard(
+                context,
+                car['car']!,
+                car['price']!,
+                car['pickUpTime']!,
+                car['dropOffTime']!,
+                car['from']!,
+                car['to']!,
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -286,10 +425,24 @@ class CarSearchResultsScreen extends StatelessWidget {
       String from,
       String to,
       ) {
+    // Find the corresponding car in filteredCars to get date, returnDate, and type
+    Map<String, String>? selectedCar;
+    for (var availableCar in filteredCars) {
+      if (availableCar['car'] == car &&
+          availableCar['price'] == price &&
+          availableCar['pickUpTime'] == pickUpTime &&
+          availableCar['dropOffTime'] == dropOffTime &&
+          availableCar['from'] == from &&
+          availableCar['to'] == to) {
+        selectedCar = availableCar;
+        break;
+      }
+    }
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.only(bottom: 16),
+      color: Colors.white.withOpacity(0.8),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
@@ -302,13 +455,13 @@ class CarSearchResultsScreen extends StatelessWidget {
                 children: [
                   Text(
                     car,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
-                  Text('Pick-up Time: $pickUpTime'),
-                  Text('Drop-off Time: $dropOffTime'),
-                  Text('Price: $price'),
-                  Text('Pick-up: $from'),
-                  Text('Drop-off: $to'),
+                  Text('Pick-up Time: $pickUpTime', style: TextStyle(color: Colors.black)),
+                  Text('Drop-off Time: $dropOffTime', style: TextStyle(color: Colors.black)),
+                  Text('Price: $price', style: TextStyle(color: Colors.black)),
+                  Text('Pick-up Location: $from', style: TextStyle(color: Colors.black)),
+                  Text('Drop-off Location: $to', style: TextStyle(color: Colors.black)),
                 ],
               ),
             ),
@@ -325,6 +478,14 @@ class CarSearchResultsScreen extends StatelessWidget {
                         'dropOffTime': dropOffTime,
                         'from': from,
                         'to': to,
+                        'type': selectedCar?['type'] ?? 'Not Available', // Pass car type
+                      },
+                      rentalDetails: {
+                        'from': from,
+                        'to': to,
+                        'date': selectedCar?['date'] ?? 'Not Available', // Pass date
+                        'returnDate': selectedCar?['returnDate'] ?? 'Not Available', // Pass returnDate
+                        'type': selectedCar?['type'] ?? 'Not Available', // Pass type
                       },
                     ),
                   ),
@@ -334,6 +495,7 @@ class CarSearchResultsScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF007E95),
                 foregroundColor: Colors.white,
+                textStyle: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
           ],
