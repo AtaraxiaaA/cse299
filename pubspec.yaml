@@ -57,6 +57,7 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+# The following section is specific to Flutter packages.
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -71,8 +72,7 @@ flutter:
     - Aimg/images/Long-Beach.jpg
     - Aimg/images/hotel-the-cox-today.jpg
     - Aimg/images/abas.jpg
-
-
+    - assets/images/coxsbazar.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
