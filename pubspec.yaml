@@ -74,7 +74,10 @@ flutter:
     - Aimg/images/hotel-the-cox-today.jpg
     - Aimg/images/abas.jpg
     - assets/images/coxsbazar.jpg
-
+    - images/busimage1.jpg
+    - images/car1.jpg
+    - images/car2.jpg
+    - images/car3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

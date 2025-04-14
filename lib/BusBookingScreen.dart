@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'discountforbusticket.dart'; // Import the DiscountForBusTicket class
+import 'discountforbusticket.dart';
 
 class BusBookingScreen extends StatefulWidget {
-  final Map<String, String> busDetails;
+  final Map<String, dynamic> busDetails; // Changed to dynamic
   final int travelers;
   final String? driverAge;
 
@@ -20,8 +20,14 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
   double discountPercentage = 0.0;
   bool discountApplied = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _calculateTotalPrice();
+  }
+
   void _calculateTotalPrice() {
-    double basePrice = double.parse(widget.busDetails['price']!.substring(1));
+    double basePrice = double.parse(widget.busDetails['price'].toString().substring(1)); // Adjusted
     double discount = discountPercentage;
 
     setState(() {
@@ -30,7 +36,7 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
   }
 
   void _applyDiscount() async {
-    bool isActive = await DiscountForBusTicket.isDiscountActive(); // Check if discount is active
+    bool isActive = await DiscountForBusTicket.isDiscountActive();
 
     if (DiscountForBusTicket.isCodeValid(discountCode) && isActive) {
       setState(() {
@@ -54,49 +60,45 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Book Your Bus Ticket',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text('Book Your Bus Ticket', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: Color(0xFF007E95),
       ),
       body: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                 image: AssetImage('images/busimage1.jpg'),
                 fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Color.fromRGBO(0, 0, 0, 0.4),
+                  BlendMode.darken,
+                ),
               ),
             ),
           ),
-          Container(
-            color: Colors.black.withOpacity(0.5),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.grey[800]?.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.busDetails['bus']!,
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                        ),
+                        Text(widget.busDetails['bus'].toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)), // Adjusted
                         SizedBox(height: 8),
-                        Text('From: ${widget.busDetails['from']}', style: TextStyle(fontSize: 16, color: Colors.white)),
-                        Text('To: ${widget.busDetails['to']}', style: TextStyle(fontSize: 16, color: Colors.white)),
-                        Text('Price: ${widget.busDetails['price']}', style: TextStyle(fontSize: 16, color: Colors.white)),
+                        Text('From: ${widget.busDetails['from'].toString()}', style: TextStyle(fontSize: 16, color: Colors.white)), // Adjusted
+                        Text('To: ${widget.busDetails['to'].toString()}', style: TextStyle(fontSize: 16, color: Colors.white)), // Adjusted
+                        Text('Ticket Price: ${widget.busDetails['price'].toString()}', style: TextStyle(fontSize: 16, color: Colors.white)), // Adjusted
+                        Text('Departure Time: ${widget.busDetails['departureTime'].toString()}', style: TextStyle(fontSize: 16, color: Colors.white)), // Adjusted
+                        Text('Arrival Time: ${widget.busDetails['arrivalTime'].toString()}', style: TextStyle(fontSize: 16, color: Colors.white)), // Adjusted
                       ],
                     ),
                   ),
@@ -104,7 +106,7 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Number of Travelers:', style: TextStyle(fontSize: 18, color: Colors.white)),
+                      Text('Number of Travelers:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                       Row(
                         children: [
                           IconButton(
@@ -141,16 +143,10 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                       labelText: 'Discount Code',
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: discountApplied
-                                ? Colors.green
-                                : Colors.white),
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: discountApplied
-                                ? Colors.green
-                                : Colors.white),
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
                     style: TextStyle(color: Colors.white),
@@ -160,25 +156,17 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                     onPressed: _applyDiscount,
                     child: Text(
                       discountApplied ? 'Discount Applied' : 'Apply Discount',
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                    ),
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   ),
                   if (discountApplied)
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Discount applied!',
-                        style: TextStyle(color: Colors.green),
-                      ),
+                      child: Text('Discount applied!', style: TextStyle(color: Colors.green)),
                     ),
                   SizedBox(height: 20),
-                  Text(
-                    'Payment Method',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
+                  Text('Payment Method', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                   RadioListTile<String>(
                     title: Text('Credit Card', style: TextStyle(color: Colors.white)),
                     value: 'Credit Card',
@@ -188,18 +176,13 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                         selectedPaymentMethod = value!;
                       });
                     },
-                    activeColor: Colors.purple,
+                    activeColor: Color(0xFF007E95),
                     controlAffinity: ListTileControlAffinity.leading,
-                    selectedTileColor: Colors.white,
-                    tileColor: Colors.transparent,
+                    selectedTileColor: Colors.grey[200],
+                    tileColor: Colors.white,
                     contentPadding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
-                    fillColor: MaterialStateColor.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return Colors.white;
-                      }
-                      return Colors.white;
-                    }),
+                    fillColor: MaterialStateColor.resolveWith((states) => states.contains(MaterialState.selected) ? Colors.grey[200]! : Colors.white),
                   ),
                   RadioListTile<String>(
                     title: Text('PayPal', style: TextStyle(color: Colors.white)),
@@ -210,18 +193,13 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                         selectedPaymentMethod = value!;
                       });
                     },
-                    activeColor: Colors.purple,
+                    activeColor: Color(0xFF007E95),
                     controlAffinity: ListTileControlAffinity.leading,
-                    selectedTileColor: Colors.white,
-                    tileColor: Colors.transparent,
+                    selectedTileColor: Colors.grey[200],
+                    tileColor: Colors.white,
                     contentPadding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
-                    fillColor: MaterialStateColor.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return Colors.white;
-                      }
-                      return Colors.white;
-                    }),
+                    fillColor: MaterialStateColor.resolveWith((states) => states.contains(MaterialState.selected) ? Colors.grey[200]! : Colors.white),
                   ),
                   RadioListTile<String>(
                     title: Text('Debit Card', style: TextStyle(color: Colors.white)),
@@ -232,24 +210,16 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                         selectedPaymentMethod = value!;
                       });
                     },
-                    activeColor: Colors.purple,
+                    activeColor: Color(0xFF007E95),
                     controlAffinity: ListTileControlAffinity.leading,
-                    selectedTileColor: Colors.white,
-                    tileColor: Colors.transparent,
+                    selectedTileColor: Colors.grey[200],
+                    tileColor: Colors.white,
                     contentPadding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
-                    fillColor: MaterialStateColor.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return Colors.white;
-                      }
-                      return Colors.white;
-                    }),
+                    fillColor: MaterialStateColor.resolveWith((states) => states.contains(MaterialState.selected) ? Colors.grey[200]! : Colors.white),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    'Total Price: \$${totalPrice.toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
+                  Text('Total Price: \$${totalPrice.toStringAsFixed(2)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
                   SizedBox(height: 20),
                   Center(
                     child: ElevatedButton(
@@ -273,14 +243,8 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                           },
                         );
                       },
-                      child: Text(
-                        'Confirm Booking',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                      ),
+                      child: Text('Confirm Booking', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.white, padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30)),
                     ),
                   ),
                 ],
