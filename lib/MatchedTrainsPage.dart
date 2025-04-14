@@ -214,4 +214,6 @@ class TrainCard extends StatelessWidget {
       ),
     );
   }
+
 }
+
