@@ -5,42 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa45e31e-5576-4d0d-9be8-c77e5fbcb8a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/images/busimage1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage8.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/busimage9.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/car1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/car2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/car3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/car4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/car5.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/BusBookingScreen.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/BusSearchScreen.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/carrentals.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/carrentalscreen.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/discountforbusticket.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/discountforcarrental.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Rewards&amp;Discounts.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/TravelGuides.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/customersupport.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dashboard.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/experiences.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/experiences.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tourpackages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tourpackages.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +88,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Merging merge",
+    "git-widget-placeholder": "merge",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/jumma/OneDrive/Desktop/merge/android/settings.gradle.kts",
@@ -109,6 +96,11 @@
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jumma\OneDrive\Desktop\merge" />
+    </key>
+  </component>
   <component name="RunManager" selected="Flutter.main.dart">
     <configuration name="android.app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="android.app" />

@@ -11,6 +11,8 @@ import 'experiences.dart';
 import 'flight.dart'; // Importing the FlightScreen
 import 'TrainHomePage.dart';
 import 'AuthScreen.dart';
+import 'carrentals.dart';
+import 'BusSearchScreen.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -140,8 +142,18 @@ class DashboardScreen extends StatelessWidget {
                       },
                       child: buildIconCard(Icons.hotel, "Hotels"),
                     ),
+                    //three
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the HotelHomePage
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CarRentalsPage()),
+                        );
+                      },
+                      child: buildIconCard(Icons.directions_car, "Car Rentals"),
+                    ),
 
-                    buildIconCard(Icons.directions_car, "Car Rentals"),
 
                     GestureDetector(
                       onTap: () {
@@ -188,7 +200,18 @@ class DashboardScreen extends StatelessWidget {
                       },
                       child: buildIconCard(Icons.train, "Train"),
                     ),
-                    buildIconCard(Icons.airport_shuttle, "Transfers"),
+
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the BusSearchScreen when the Buses icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BusSearchScreen()), // Changed to BusSearchScreen
+                        );
+                      },
+                      child: buildIconCard(Icons.airport_shuttle, "Buses"),
+                    ),
+                    // buildIconCard(Icons.airport_shuttle, "Buses"),
                     GestureDetector(
                       onTap: () {
                         // Navigate to the TravelGuidesScreen
