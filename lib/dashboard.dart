@@ -4,6 +4,7 @@ import 'main.dart'; // Assuming this contains AuthScreen or relevant pages
 import 'listofhotels.dart';
 import 'profile.dart'; // Importing the ProfileScreen
 import 'TrainHomePage.dart';
+import 'HotelHomePage.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -112,7 +113,16 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buildIconCard(Icons.flight, "Flights"),
-                    buildIconCard(Icons.hotel, "Hotels"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to SearchTrainPage when the Train icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HotelHomePage()),
+                        );
+                      },
+                      child: buildIconCard(Icons.hotel, "Hotel"),
+                    ),
                     buildIconCard(Icons.directions_car, "Car Rentals"),
                     buildIconCard(Icons.tour, "Tour Packages"),
                   ],
