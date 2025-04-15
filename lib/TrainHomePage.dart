@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'UpcomingTrains.dart';
 import 'MatchedTrainsPage.dart';
+import 'Dashboard.dart'; // Ensure you have imported this screen
 
 class TrainHomePage extends StatefulWidget {
   @override
@@ -30,7 +31,6 @@ class _TrainHomePageState extends State<TrainHomePage> {
 
   final List<String> countries = ['Bangladesh', 'India', 'Nepal'];
 
-
   Future<void> fetchStations() async {
     final doc = await FirebaseFirestore.instance.collection('Trains').doc(selectedCountry).get();
     final data = doc.data();
@@ -42,14 +42,11 @@ class _TrainHomePageState extends State<TrainHomePage> {
     setState(() {});
   }
 
-
-
-  // ✅ Updated `fetchTodayAndUpcomingTrains()` inside TrainHomePageState
   @override
   void initState() {
     super.initState();
     fetchStations();
-    fetchTodayAndUpcomingTrains(); // ✅ just call it directly
+    fetchTodayAndUpcomingTrains();
   }
 
   Future<void> fetchTodayAndUpcomingTrains() async {
@@ -91,11 +88,20 @@ class _TrainHomePageState extends State<TrainHomePage> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => DashboardScreen()),
+          ),
+        ),
+        backgroundColor: Color(0xFF003C5F),
+        title: Text('Train Search', style: GoogleFonts.lato(color: Colors.white)),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -138,7 +144,7 @@ class _TrainHomePageState extends State<TrainHomePage> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: _searchTrains,
-                      child: Text('Search Commuter Line'),
+                      child: Text('Search Commuter Line', style: TextStyle(color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF1E88E5),
                         padding: EdgeInsets.symmetric(vertical: 18),
@@ -151,7 +157,7 @@ class _TrainHomePageState extends State<TrainHomePage> {
               SizedBox(height: 30),
               _buildTodayScheduleCard(),
               SizedBox(height: 30),
-              _buildUpcomingTripsCard(),
+              _buildUpcomingTripsCard(), // Updated upcoming trains section
             ],
           ),
         ),
@@ -329,7 +335,7 @@ class _TrainHomePageState extends State<TrainHomePage> {
   }
 
   Widget _buildUpcomingTripsCard() {
-    print("🔥 Upcoming trains count: \${upcomingTrains.length}");
+    print("🔥 Upcoming trains count: ${upcomingTrains.length}");
     return Container(
       margin: EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
@@ -368,8 +374,8 @@ class _TrainHomePageState extends State<TrainHomePage> {
                       context,
                       MaterialPageRoute(builder: (context) => UpcomingTrains()),
                     ),
-                    icon: Icon(Icons.list_alt, size: 18),
-                    label: Text('View All'),
+                    icon: Icon(Icons.list_alt, size: 18, color: Colors.white),  // Icon color set to white
+                    label: Text('View All', style: TextStyle(color: Colors.white)),  // Text color set to white
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1E88E5),
                       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -381,7 +387,6 @@ class _TrainHomePageState extends State<TrainHomePage> {
                 ],
               ),
               SizedBox(height: 20),
-
               if (upcomingTrains.isEmpty)
                 Center(
                   child: Text(
@@ -389,8 +394,8 @@ class _TrainHomePageState extends State<TrainHomePage> {
                     style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[700]),
                   ),
                 ),
-
-              ...upcomingTrains.map((t) {
+              // Limit the display to the first train only
+              ...upcomingTrains.take(1).map((t) {
                 try {
                   final String from = t['From'] ?? 'Unknown';
                   final String to = t['To'] ?? 'Unknown';
@@ -447,7 +452,7 @@ class _TrainHomePageState extends State<TrainHomePage> {
                               Wrap(
                                 spacing: 10,
                                 children: [
-                                  _buildTag(Icons.attach_money, '৳$price', Colors.green.shade50, Colors.green.shade800),
+                                  _buildTag(Icons.attach_money, '\$price', Colors.green.shade50, Colors.green.shade800),
                                   _buildTag(Icons.event_seat, '$seats seats', Colors.orange.shade50, Colors.orange.shade700),
                                   _buildTag(Icons.timer, duration, Colors.grey.shade200, Colors.grey.shade700),
                                 ],
@@ -492,12 +497,6 @@ class _TrainHomePageState extends State<TrainHomePage> {
       ),
     );
   }
-
-
-
-
-
-
 
   Widget _buildScheduleRow(String from, String to, String time, String duration) {
     return Row(

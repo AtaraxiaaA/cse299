@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dashboard.dart';
-import 'profile.dart';
-import 'HotelHomePage.dart';
-import 'MatchedTrainsPage.dart';
 import 'package:intl/intl.dart';
+import 'MatchedTrainsPage.dart';
+import 'Dashboard.dart';
+import 'Profile.dart';
 
 class UpcomingTrains extends StatefulWidget {
   const UpcomingTrains({super.key});
@@ -149,13 +148,19 @@ class _UpcomingTrainsState extends State<UpcomingTrains> {
 
           switch (index) {
             case 0:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DashboardScreen()),
+              );
               break;
             case 1:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HotelHomePage()));
+
               break;
             case 2:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
+              );
               break;
           }
         },
@@ -218,7 +223,7 @@ class _UpcomingTrainsState extends State<UpcomingTrains> {
                 Wrap(
                   spacing: 10,
                   children: [
-                    _buildTag(Icons.attach_money, '৳$price', Colors.green.shade50, Colors.green.shade800),
+                    _buildTag(Icons.attach_money, '$price', Colors.green.shade50, Colors.green.shade800),
                     _buildTag(Icons.event_seat, '$seats seats', Colors.orange.shade50, Colors.orange.shade700),
                     _buildTag(Icons.timer, duration, Colors.grey.shade200, Colors.grey.shade700),
                   ],
