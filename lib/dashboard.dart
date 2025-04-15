@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tourify_sample_project/HotelHomePage.dart';
 import 'listofhotels.dart';
-import 'profile.dart';
-import 'tourpackages.dart';
-import 'TravelGuides.dart';
-import 'Rewards&Discounts.dart';
-import 'customersupport.dart';
+import 'profile.dart'; // Importing the ProfileScreen
+import 'tourpackages.dart'; // Importing the TourPackagesScreen
+import 'TravelGuides.dart'; // Importing the TravelGuidesScreen
+import 'Rewards&Discounts.dart'; // Importing the RewardsDiscountsScreen
+import 'customersupport.dart'; // Importing the CustomerSupportScreen
 import 'experiences.dart';
-import 'flight.dart';
+import 'flight.dart'; // Importing the FlightScreen
 import 'TrainHomePage.dart';
 import 'AuthScreen.dart';
+import 'carrentals.dart';
+import 'BusSearchScreen.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -40,6 +42,7 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the ProfileScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -117,8 +120,10 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    //one
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the flightScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => FlightScreen()),
@@ -126,8 +131,10 @@ class DashboardScreen extends StatelessWidget {
                       },
                       child: buildIconCard(Icons.flight, "Flights"),
                     ),
+                    //two
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the HotelHomePage
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HotelHomePage()),
@@ -135,9 +142,22 @@ class DashboardScreen extends StatelessWidget {
                       },
                       child: buildIconCard(Icons.hotel, "Hotels"),
                     ),
-                    buildIconCard(Icons.directions_car, "Car Rentals"),
+                    //three
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the HotelHomePage
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CarRentalsPage()),
+                        );
+                      },
+                      child: buildIconCard(Icons.directions_car, "Car Rentals"),
+                    ),
+
+
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the TourPackagesScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => TourPackagesScreen()),
@@ -149,7 +169,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
 
-              // Second Row
+              // Second Row for Experiences, Trains, Transfers, Travel Guides
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -158,8 +178,10 @@ class DashboardScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    //one
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the ExperienceScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => ExperienceScreen()),
@@ -167,8 +189,10 @@ class DashboardScreen extends StatelessWidget {
                       },
                       child: buildIconCard(Icons.explore, "Experiences"),
                     ),
+                    //two
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the TrainHomePage
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => TrainHomePage()),
@@ -176,9 +200,21 @@ class DashboardScreen extends StatelessWidget {
                       },
                       child: buildIconCard(Icons.train, "Train"),
                     ),
-                    buildIconCard(Icons.airport_shuttle, "Transfers"),
+
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the BusSearchScreen when the Buses icon card is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BusSearchScreen()), // Changed to BusSearchScreen
+                        );
+                      },
+                      child: buildIconCard(Icons.airport_shuttle, "Buses"),
+                    ),
+                    // buildIconCard(Icons.airport_shuttle, "Buses"),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the TravelGuidesScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => TravelGuidesScreen()),
@@ -200,6 +236,7 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the CustomerSupportScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => CustomerSupportScreen()),
@@ -220,6 +257,7 @@ class DashboardScreen extends StatelessWidget {
                     SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {
+                        // Navigate to the RewardsDiscountsScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => RewardsDiscountsScreen()),
@@ -275,6 +313,7 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  // Icon Card for Navigation Bar
   Widget buildIconCard(IconData icon, String title) {
     return Column(
       children: [
@@ -296,6 +335,7 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  // Feature Card for Additional Features
   Widget buildFeatureCard({
     required IconData icon,
     required String title,
@@ -334,9 +374,12 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  // Destination Card for Popular Destinations
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
+        
+        // Navigation logic for destinations
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
