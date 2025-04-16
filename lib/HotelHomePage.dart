@@ -1,5 +1,8 @@
+// HotelHomePage.dart
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'hotel_details_page.dart';
 
 class HotelHomePage extends StatefulWidget {
   @override
@@ -35,6 +38,9 @@ class _HotelHomePageState extends State<HotelHomePage> {
     {'city': 'Pokhara', 'country': 'Nepal'},
   ];
 
+  bool get _isSearchApplied =>
+      city != null || checkInDate != null || checkOutDate != null || rooms != 1 || guests != 1;
+
   @override
   void initState() {
     super.initState();
@@ -49,34 +55,58 @@ class _HotelHomePageState extends State<HotelHomePage> {
           .where('Country', isEqualTo: selectedLocation)
           .get();
 
+      final hotels = snapshot.docs
+          .map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+
+        // Extract flat info
+        List<dynamic> flatDetails = data['Flat(Guest-Room-Bath)'] ?? [0, 0, 0];
+
+        // Required fields for Home and Details
+        data['title'] = data['Name']?.toString() ?? 'No name';
+        data['city'] = data['City']?.toString() ?? '';
+        data['country'] = data['Country']?.toString() ?? '';
+
+        // Main image for card display
+        data['image'] = (data['Image'] is List)
+            ? (data['Image'] as List).isNotEmpty ? data['Image'][0].toString() : ''
+            : data['Image']?.toString() ?? '';
+
+// Gallery images
+        data['All Images'] = data['All Images'] ?? [];
+        data['rating'] = data['Rating'] ?? 0;
+        data['reviews'] = "${data['Review']?.toString() ?? '0'} reviews";
+        data['guest'] = flatDetails.isNotEmpty ? flatDetails[0] : 0;
+        data['room'] = flatDetails.length > 1 ? flatDetails[1] : 0;
+        data['bath'] = flatDetails.length > 2 ? flatDetails[2] : 0;
+
+        // Booking period
+        data['bookingDates'] = {
+          'start': data['Booking Start']?.toString() ?? '',
+          'end': data['Booking End']?.toString() ?? '2100-01-01',
+        };
+
+        // Pricing
+        data['oldPrice'] = data['Old Price']?.toString() ?? '';
+        data['newPrice'] = data['New Price']?.toString() ?? '';
+        data['total'] = "Per night";
+
+        // Additional full data
+        data['details'] = data['Is Popular'] == true ? "Popular choice" : "Standard hotel";
+        data['Facilities'] = data['Facilities'] ?? [];
+        data['Flat Title'] = data['Flat Title'] ?? [];
+        data['About'] = data['About']?.toString() ?? '';
+        data['Address'] = data['Address']?.toString() ?? '';
+        data['Image'] = data['Image'] ?? [];
+
+        return data;
+      })
+          .where((hotel) => hotel['Is Popular'] == true)
+          .toList();
+
       setState(() {
-        allHotels = snapshot.docs
-            .map((doc) => doc.data() as Map<String, dynamic>)
-            .where((data) => data['Is Popular'] == true)
-            .map((data) {
-          List<dynamic> flatDetails = data['Flat(Guest-Room-Bath)'] ?? [0, 0, 0];
-          return {
-            'title': data['Name'] ?? 'No name',
-            'city': data['City'] ?? '',
-            'country': data['Country'] ?? '',
-            'image': data['Image'] ?? '',
-            'bookingDates': {
-              'start': data['Booking Start'] ?? '',
-              'end': data['Booking End'] ?? '2100-01-01',
-            },
-            'roomsAvailable': data['Flat Available'] ?? 0,
-            'rating': data['Rating'] ?? 0,
-            'reviews': "${data['Review']} reviews",
-            'details': data['Is Popular'] == true ? "Popular choice" : "Standard hotel",
-            'oldPrice': "\$${data['Old Price'] ?? '0'}",
-            'newPrice': "\$${data['New Price'] ?? '0'} / night",
-            'total': "Per night",
-            'room': flatDetails.length > 1 ? flatDetails[1] : 0,
-            'guest': flatDetails.length > 0 ? flatDetails[0] : 0,
-            'bath': flatDetails.length > 2 ? flatDetails[2] : 0,
-          };
-        }).toList();
-        filteredHotels = List.from(allHotels);
+        allHotels = hotels;
+        filteredHotels = List.from(hotels);
         isLoading = false;
       });
     } catch (e) {
@@ -86,6 +116,8 @@ class _HotelHomePageState extends State<HotelHomePage> {
       );
     }
   }
+
+
 
   void filterHotels() {
     setState(() {
@@ -107,37 +139,35 @@ class _HotelHomePageState extends State<HotelHomePage> {
   void showSearchCityDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Select a City', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Divider(),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: majorCities.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text('${majorCities[index]['city']}, ${majorCities[index]['country']}'),
-                        onTap: () {
-                          setState(() {
-                            city = majorCities[index]['city'];
-                          });
-                          Navigator.of(context).pop();
-                        },
-                      );
-                    },
-                  ),
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Select a City', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Divider(),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: majorCities.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text('${majorCities[index]['city']}, ${majorCities[index]['country']}'),
+                      onTap: () {
+                        setState(() {
+                          city = majorCities[index]['city'];
+                        });
+                        Navigator.of(context).pop();
+                      },
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
@@ -146,9 +176,6 @@ class _HotelHomePageState extends State<HotelHomePage> {
       _selectedIndex = index;
     });
   }
-
-  bool get _isSearchApplied =>
-      city != null || checkInDate != null || checkOutDate != null || rooms != 1 || guests != 1;
 
   @override
   Widget build(BuildContext context) {
@@ -162,48 +189,72 @@ class _HotelHomePageState extends State<HotelHomePage> {
             const SizedBox(height: 20),
             if (isLoading)
               const Center(child: CircularProgressIndicator())
-            else if (filteredHotels.isEmpty)
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 50),
-                  child: Text(
-                    '❗ No hotels found. Check your filters or database.',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              )
             else ...[
-                if (!_isSearchApplied)
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  _isSearchApplied ? 'Filtered Hotels' : 'Popular Hotels',
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              if (filteredHotels.isEmpty)
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 30),
                     child: Text(
-                      'Popular Hotels',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      '❗ No hotels found. Try different filters.',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      textAlign: TextAlign.center,
                     ),
                   ),
+                )
+              else
                 ...filteredHotels.map((hotel) => buildHotelCard(hotel)).toList(),
-              ]
+            ],
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onNavBarTapped,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
+        selectedFontSize: 12,
+        unselectedFontSize: 11,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.deepPurple, // Selected icon/text color
+        unselectedItemColor: Colors.grey[600], // Unselected icon/text color
+        showUnselectedLabels: true,
+        elevation: 12,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: "Bookings"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Colors.teal), // 👈 Custom icon color
+            activeIcon: Icon(Icons.home, color: Colors.deepPurple), // 👈 Color when selected
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border, color: Colors.pink),
+            activeIcon: Icon(Icons.favorite, color: Colors.red),
+            label: "Favorites",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_outlined, color: Colors.indigo),
+            activeIcon: Icon(Icons.book, color: Colors.deepPurple),
+            label: "Bookings",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline, color: Colors.orange),
+            activeIcon: Icon(Icons.person, color: Colors.deepPurple),
+            label: "Profile",
+          ),
         ],
       ),
+
     );
   }
 
-  Widget buildSearchBar() {
+
+
+Widget buildSearchBar() {
     return LayoutBuilder(
       builder: (context, constraints) {
         bool isMobile = constraints.maxWidth < 600;
@@ -285,26 +336,40 @@ class _HotelHomePageState extends State<HotelHomePage> {
       ),
       child: Row(
         children: [
+
+
           Expanded(
-            child: GestureDetector(
-              onTap: () => showSearchCityDialog(context),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Where", style: TextStyle(color: Colors.black54, fontSize: 14)),
-                  if (isMobile) ...[
-                    const SizedBox(height: 4),
-                    const Icon(Icons.search, color: Colors.blue, size: 18),
-                  ],
-                ],
-              ),
+            child: DropdownButton<String>(
+              value: city,
+              isExpanded: true,
+              hint: Text("Where", style: TextStyle(color: Colors.black54, fontSize: 14)),
+              icon: Icon(Icons.keyboard_arrow_down),
+              underline: SizedBox(),
+              style: const TextStyle(fontSize: 12, color: Colors.black), // 👈 This makes selected text small
+              onChanged: (String? newValue) {
+                setState(() {
+                  city = newValue;
+                });
+              },
+              items: majorCities
+                  .where((c) => c['country'] == selectedLocation)
+                  .map<DropdownMenuItem<String>>((Map<String, String> cityData) {
+                return DropdownMenuItem<String>(
+                  value: cityData['city'],
+                  child: Text(cityData['city'] ?? '', style: const TextStyle(color: Colors.black54,fontSize: 12)), // 👈 Small dropdown items
+                );
+              }).toList(),
+              alignment: Alignment.centerLeft,
             ),
           ),
+
+
           buildDatePicker("Check-in", checkInDate, (picked) => checkInDate = picked),
           buildDatePicker("Check-out", checkOutDate, (picked) => checkOutDate = picked),
           buildRoomGuestPicker(isMobile),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+          Container
+            (
+            padding: const EdgeInsets.symmetric(horizontal: 1),
             child: ElevatedButton(
               onPressed: filterHotels,
               style: ElevatedButton.styleFrom(
@@ -347,7 +412,7 @@ class _HotelHomePageState extends State<HotelHomePage> {
           children: [
             if (!isMobile) const Icon(Icons.group, color: Colors.black54, size: 16),
             const SizedBox(height: 4),
-            const Text("Guests & Rooms", style: TextStyle(color: Colors.black54, fontSize: 12)),
+            const Text("Guests  Rooms", style: TextStyle(color: Colors.black54, fontSize: 12)),
           ],
         ),
       ),
@@ -399,112 +464,140 @@ class _HotelHomePageState extends State<HotelHomePage> {
   Widget buildHotelCard(Map<String, dynamic> hotel) {
     bool isFavorite = favoriteHotels.contains(hotel['title']);
 
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      elevation: 6,
-      margin: const EdgeInsets.only(bottom: 20),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.network(
-                hotel['image'],
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HotelDetailsPage(hotel: hotel),
+          ),
+        );
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        elevation: 5,
+        margin: const EdgeInsets.only(bottom: 20),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Image.network(
+                  hotel['image'],
                   height: 200,
-                  color: Colors.grey[300],
-                  child: const Center(child: Text("Image not available")),
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 200,
+                    color: Colors.grey[300],
+                    child: const Center(child: Text("Image not available")),
+                  ),
                 ),
-              ),
-              Positioned(
-                top: 10,
-                right: 10,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isFavorite
-                          ? favoriteHotels.remove(hotel['title'])
-                          : favoriteHotels.add(hotel['title']);
-                    });
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.8),
-                    child: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: isFavorite ? Colors.red : Colors.grey,
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isFavorite
+                            ? favoriteHotels.remove(hotel['title'])
+                            : favoriteHotels.add(hotel['title']);
+                      });
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white.withOpacity(0.8),
+                      child: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: isFavorite ? Colors.red : Colors.grey,
+                      ),
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(hotel['title'], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    const Icon(Icons.star, color: Colors.amber, size: 16),
-                    const SizedBox(width: 4),
-                    Text("${hotel['rating']} (${hotel['reviews']})", style: const TextStyle(fontWeight: FontWeight.w500)),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    const Icon(Icons.meeting_room, size: 16, color: Colors.grey),
-                    const SizedBox(width: 4),
-                    Text("${hotel['room']} rooms, ", style: const TextStyle(fontSize: 12)),
-                    const Icon(Icons.group, size: 16, color: Colors.grey),
-                    const SizedBox(width: 4),
-                    Text("${hotel['guest']} guests, ", style: const TextStyle(fontSize: 12)),
-                    const Icon(Icons.bathtub, size: 16, color: Colors.grey),
-                    const SizedBox(width: 4),
-                    Text("${hotel['bath']} bath", style: const TextStyle(fontSize: 12)),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                Text(hotel['details'], style: TextStyle(color: Colors.grey.shade700)),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      hotel['oldPrice'],
-                      style: const TextStyle(
-                        decoration: TextDecoration.lineThrough,
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      hotel['newPrice'],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      hotel['total'],
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    hotel['title'],
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      const Icon(Icons.star, color: Colors.amber, size: 16),
+                      const SizedBox(width: 4),
+                      Text(
+                        "${hotel['rating']} (${hotel['reviews']})",
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Icon(Icons.meeting_room, size: 16, color: Colors.grey),
+                      const SizedBox(width: 4),
+                      Text("${hotel['room']} rooms, ", style: const TextStyle(fontSize: 12)),
+                      const Icon(Icons.group, size: 16, color: Colors.grey),
+                      const SizedBox(width: 4),
+                      Text("${hotel['guest']} guests, ", style: const TextStyle(fontSize: 12)),
+                      const Icon(Icons.bathtub, size: 16, color: Colors.grey),
+                      const SizedBox(width: 4),
+                      Text("${hotel['bath']} bath", style: const TextStyle(fontSize: 12)),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  if (hotel['details'].toString().isNotEmpty)
+                    Container(
+                      margin: const EdgeInsets.only(top: 6),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.orange.shade100,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        hotel['details'],
+                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(
+                        "${hotel['oldPrice']}",
+                        style: const TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        "${hotel['newPrice']}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        hotel['total'],
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

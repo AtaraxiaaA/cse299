@@ -6,7 +6,7 @@ class BusBookingScreen extends StatefulWidget {
   final int travelers;
   final String? driverAge;
 
-  BusBookingScreen({required this.busDetails, required this.travelers, this.driverAge});
+  const BusBookingScreen({super.key, required this.busDetails, required this.travelers, this.driverAge});
 
   @override
   _BusBookingScreenState createState() => _BusBookingScreenState();
@@ -158,12 +158,12 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: _applyDiscount,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
                     child: Text(
                       discountApplied ? 'Discount Applied' : 'Apply Discount',
                       style: TextStyle(color: Colors.black),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
                     ),
                   ),
                   if (discountApplied)
@@ -194,8 +194,8 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                     tileColor: Colors.transparent,
                     contentPadding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
-                    fillColor: MaterialStateColor.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
+                    fillColor: WidgetStateColor.resolveWith((states) {
+                      if (states.contains(WidgetState.selected)) {
                         return Colors.white;
                       }
                       return Colors.white;
@@ -216,8 +216,8 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                     tileColor: Colors.transparent,
                     contentPadding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
-                    fillColor: MaterialStateColor.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
+                    fillColor: WidgetStateColor.resolveWith((states) {
+                      if (states.contains(WidgetState.selected)) {
                         return Colors.white;
                       }
                       return Colors.white;
@@ -238,8 +238,8 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                     tileColor: Colors.transparent,
                     contentPadding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
-                    fillColor: MaterialStateColor.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
+                    fillColor: WidgetStateColor.resolveWith((states) {
+                      if (states.contains(WidgetState.selected)) {
                         return Colors.white;
                       }
                       return Colors.white;
@@ -273,13 +273,13 @@ class _BusBookingScreenState extends State<BusBookingScreen> {
                           },
                         );
                       },
-                      child: Text(
-                        'Confirm Booking',
-                        style: TextStyle(color: Colors.black),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                      ),
+                      child: Text(
+                        'Confirm Booking',
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),

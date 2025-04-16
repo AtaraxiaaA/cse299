@@ -5,18 +5,18 @@ import 'carrentalscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarRentalsPage extends StatefulWidget {
-  const CarRentalsPage({Key? key}) : super(key: key);
+  const CarRentalsPage({super.key});
   @override
   _CarRentalsPageState createState() => _CarRentalsPageState();
 }
 
 class _CarRentalsPageState extends State<CarRentalsPage> {
-  TextEditingController _pickUpLocationController = TextEditingController();
-  TextEditingController _dropOffLocationController = TextEditingController();
-  TextEditingController _pickUpDateController = TextEditingController();
-  TextEditingController _returnDateController = TextEditingController();
-  TextEditingController _pickUpTimeController = TextEditingController();
-  TextEditingController _returnTimeController = TextEditingController();
+  final TextEditingController _pickUpLocationController = TextEditingController();
+  final TextEditingController _dropOffLocationController = TextEditingController();
+  final TextEditingController _pickUpDateController = TextEditingController();
+  final TextEditingController _returnDateController = TextEditingController();
+  final TextEditingController _pickUpTimeController = TextEditingController();
+  final TextEditingController _returnTimeController = TextEditingController();
   String? _selectedCarType;
 
   DateTime _pickUpDate = DateTime.now();
@@ -42,7 +42,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       await FirebaseFirestore.instance.collection('cars').get();
 
       List<Map<String, String>> fetchedCars = [];
-      querySnapshot.docs.forEach((doc) {
+      for (var doc in querySnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         print(
             'Firestore Car: ${data['car']}, From: ${data['from']}, To: ${data['to']}, Date: ${data['date']}, Type: ${data['type']}');
@@ -57,7 +57,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
           'returnDate': data['returnDate'] ?? '',
           'type': data['type'] ?? '',
         });
-      });
+      }
 
       setState(() {
         _availableCars = fetchedCars;
@@ -101,8 +101,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
               onPrimary: Colors.white,
               surface: Colors.deepPurple.shade50,
               onSurface: Colors.black,
-            ),
-            dialogBackgroundColor: Colors.white,
+            ), dialogTheme: DialogThemeData(backgroundColor: Colors.white),
           ),
           child: child!,
         );
@@ -257,7 +256,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required IconData prefixIcon,
     required double width,
   }) {
-    return Container(
+    return SizedBox(
       width: width,
       child: TextField(
         controller: controller,
@@ -284,7 +283,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required VoidCallback onTap,
     required double width,
   }) {
-    return Container(
+    return SizedBox(
       width: width,
       child: TextField(
         controller: controller,
@@ -312,7 +311,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required VoidCallback onTap,
     required double width,
   }) {
-    return Container(
+    return SizedBox(
       width: width,
       child: TextField(
         controller: controller,
@@ -335,7 +334,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   }
 
   Widget _buildCarTypeDropdown({required double width}) {
-    return Container(
+    return SizedBox(
       width: width,
       child: DropdownButtonFormField<String>(
         value: _selectedCarType,
@@ -371,12 +370,12 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   Widget _buildSearchButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () => _searchCars(context),
-      child: Text('Search Cars'),
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xFF007E95),
         foregroundColor: Colors.white,
         textStyle: TextStyle(fontWeight: FontWeight.bold),
       ),
+      child: Text('Search Cars'),
     );
   }
 }
@@ -386,7 +385,7 @@ class CarSearchResultsScreen extends StatelessWidget {
   final String fromLocation;
   final String toLocation;
 
-  CarSearchResultsScreen({
+  const CarSearchResultsScreen({super.key, 
     required this.filteredCars,
     required this.fromLocation,
     required this.toLocation,
@@ -502,12 +501,12 @@ class CarSearchResultsScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Book Now'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF007E95),
                 foregroundColor: Colors.white,
                 textStyle: TextStyle(fontWeight: FontWeight.bold),
               ),
+              child: Text('Book Now'),
             ),
           ],
         ),

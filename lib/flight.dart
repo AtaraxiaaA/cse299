@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'book.dart';
+import 'flightbook.dart';
 import 'dart:async';
-import 'populateFlight.dart';
-
 
 class FlightScreen extends StatefulWidget {
   const FlightScreen({super.key});
@@ -31,19 +30,25 @@ class _FlightScreenState extends State<FlightScreen>
     super.initState();
     // Initialize animation controller for gradient background
     _animationController = AnimationController(
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 8),
       vsync: this,
     )..repeat(reverse: true);
 
     _colorAnimation1 = ColorTween(
-      begin: const Color(0xFFA3C6C6).withOpacity(0.3),
-      end: Colors.blueGrey.withOpacity(0.3),
-    ).animate(_animationController);
+      begin: const Color(0xFF007E95),
+      end: const Color(0xFF264653),
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
 
     _colorAnimation2 = ColorTween(
-      begin: Colors.blueGrey.withOpacity(0.3),
-      end: const Color(0xFFA3C6C6).withOpacity(0.3),
-    ).animate(_animationController);
+      begin: const Color(0xFF264653),
+      end: const Color(0xFF007E95),
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
   }
 
   @override
@@ -63,6 +68,20 @@ class _FlightScreenState extends State<FlightScreen>
       initialDate: DateTime.now(),
       firstDate: DateTime(2023),
       lastDate: DateTime(2026),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Color(0xFF007E95),
+              onPrimary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.black87,
+            ),
+            dialogBackgroundColor: Colors.white,
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null && picked != _departureDate) {
       setState(() {
@@ -128,16 +147,38 @@ class _FlightScreenState extends State<FlightScreen>
     }
 
     return query.snapshots().map((snapshot) => snapshot.docs
-        .map((doc) => {...doc.data() as Map<String, dynamic>, 'id': doc.id})
+        .map((doc) => {...doc.data(), 'id': doc.id})
         .toList());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Flights'),
-        backgroundColor: const Color(0xFFA3C6C6),
+        title: Text(
+          'Explore Flights',
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            shadows: [
+              const Shadow(
+                color: Colors.black26,
+                offset: Offset(2, 2),
+                blurRadius: 4,
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 28),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: Stack(
         children: [
@@ -154,124 +195,152 @@ class _FlightScreenState extends State<FlightScreen>
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
+                    stops: const [0.0, 1.0],
+                    tileMode: TileMode.clamp,
                   ),
                 ),
               );
             },
           ),
           // Main Content
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ElevatedButton(
-                  //   onPressed: () async {
-                  //     await PopulateFlights.addFlights();
-                  //   },
-                  //   child: const Text('Populate Flights'),
-                  // ),
-                  // const SizedBox(height: 20),
-                  const Text(
-                    'Search Flights',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-                  // From Field
-                  TextField(
-                    controller: _fromController,
-                    decoration: InputDecoration(
-                      labelText: 'From',
-                      hintText: 'Enter departure city',
-                      prefixIcon: const Icon(Icons.flight_takeoff),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header Text
+                    Text(
+                      'Find Your Perfect Flight',
+                      style: GoogleFonts.poppins(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          const Shadow(
+                            color: Colors.black26,
+                            offset: Offset(2, 2),
+                            blurRadius: 4,
+                          ),
+                        ],
                       ),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
                     ),
-                    onChanged: _onSearchChanged,
-                  ),
-                  const SizedBox(height: 10),
-                  // To Field
-                  TextField(
-                    controller: _toController,
-                    decoration: InputDecoration(
-                      labelText: 'To',
-                      hintText: 'Enter destination city',
-                      prefixIcon: const Icon(Icons.flight_land),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                    const SizedBox(height: 20),
+                    // From Field
+                    _buildTextField(
+                      controller: _fromController,
+                      label: 'From',
+                      hint: 'Enter departure city',
+                      icon: Icons.flight_takeoff,
+                      onChanged: _onSearchChanged,
+                    ),
+                    const SizedBox(height: 15),
+                    // To Field
+                    _buildTextField(
+                      controller: _toController,
+                      label: 'To',
+                      hint: 'Enter destination city',
+                      icon: Icons.flight_land,
+                      onChanged: _onSearchChanged,
+                    ),
+                    const SizedBox(height: 15),
+                    // Departure Date Field
+                    _buildTextField(
+                      controller: _departureDateController,
+                      label: 'Departure Date',
+                      hint: 'Select a departure date',
+                      icon: Icons.calendar_today,
+                      readOnly: true,
+                      onTap: () => _selectDate(context),
+                    ),
+                    const SizedBox(height: 30),
+                    // Available Flights Header
+                    Text(
+                      'Available Flights',
+                      style: GoogleFonts.poppins(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          const Shadow(
+                            color: Colors.black26,
+                            offset: Offset(2, 2),
+                            blurRadius: 4,
+                          ),
+                        ],
                       ),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
                     ),
-                    onChanged: _onSearchChanged,
-                  ),
-                  const SizedBox(height: 10),
-                  // Departure Date Field
-                  TextField(
-                    controller: _departureDateController,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Departure Date',
-                      hintText: 'Select a departure date',
-                      prefixIcon: const Icon(Icons.calendar_today),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
+                    const SizedBox(height: 20),
+                    // StreamBuilder for real-time flight data
+                    StreamBuilder<List<Map<String, dynamic>>>(
+                      stream: _fetchFlights(),
+                      builder: (context, snapshot) {
+                        if (_isLoading || snapshot.connectionState == ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          );
+                        }
+                        if (snapshot.hasError) {
+                          // Log the error for debugging
+                          print('Firestore Error: ${snapshot.error}');
+                          return Text(
+                            'Error loading flights. Check console for details.',
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              color: Colors.white70,
+                            ),
+                          );
+                        }
+                        final flights = snapshot.data ?? [];
+                        if (flights.isEmpty) {
+                          return Center(
+                            child: Column(
+                              children: [
+                                const Icon(
+                                  Icons.airplane_ticket_outlined,
+                                  size: 80,
+                                  color: Colors.white70,
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  'No flights found for the given criteria.',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                        return Column(
+                          children: flights
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                            int index = entry.key;
+                            var flight = entry.value;
+                            return buildFlightCard(
+                              context,
+                              flight['from']!,
+                              flight['to']!,
+                              flight['departureTime']!,
+                              flight['price']!,
+                              flight['stopType']!,
+                              flight['id']!,
+                              index,
+                            );
+                          })
+                              .toList(),
+                        );
+                      },
                     ),
-                    onTap: () => _selectDate(context),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Available Flights',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-                  // StreamBuilder for real-time flight data
-                  StreamBuilder<List<Map<String, dynamic>>>(
-                    stream: _fetchFlights(),
-                    builder: (context, snapshot) {
-                      if (_isLoading || snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if (snapshot.hasError) {
-                        // Log the error for debugging
-                        print('Firestore Error: ${snapshot.error}');
-                        return const Text(
-                          'Error loading flights. Check console for details.',
-                          style: TextStyle(fontSize: 18),
-                        );
-                      }
-                      final flights = snapshot.data ?? [];
-                      if (flights.isEmpty) {
-                        return const Text(
-                          'No flights found for the given criteria.',
-                          style: TextStyle(fontSize: 18),
-                        );
-                      }
-                      return Column(
-                        children: flights
-                            .map((flight) => buildFlightCard(
-                          context,
-                          flight['from']!,
-                          flight['to']!,
-                          flight['departureTime']!,
-                          flight['price']!,
-                          flight['stopType']!,
-                          flight['id']!,
-                        ))
-                            .toList(),
-                      );
-                    },
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),
@@ -280,7 +349,79 @@ class _FlightScreenState extends State<FlightScreen>
     );
   }
 
-  // Flight Card Widget
+  // Custom TextField Widget with Fancy Styling
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required String hint,
+    required IconData icon,
+    bool readOnly = false,
+    Function(String)? onChanged,
+    VoidCallback? onTap,
+  }) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        readOnly: readOnly,
+        onTap: onTap,
+        onChanged: onChanged,
+        style: GoogleFonts.poppins(
+          fontSize: 16,
+          color: Colors.black87,
+        ),
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: GoogleFonts.poppins(
+            fontSize: 16,
+            color: Colors.black54,
+          ),
+          hintText: hint,
+          hintStyle: GoogleFonts.poppins(
+            fontSize: 16,
+            color: Colors.black38,
+          ),
+          prefixIcon: Icon(
+            icon,
+            color: const Color(0xFF007E95),
+            size: 28,
+          ),
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.9),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              color: Color(0xFF007E95),
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Fancy Flight Card Widget with Animation
   Widget buildFlightCard(
       BuildContext context,
       String from,
@@ -289,58 +430,211 @@ class _FlightScreenState extends State<FlightScreen>
       String price,
       String stopType,
       String flightId,
+      int index,
       ) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            const Icon(Icons.flight_takeoff, size: 40, color: Color(0xFF003653)),
-            const SizedBox(width: 15),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '$from to $to',
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Text('Departure: $departure'),
-                  Text('Stop Type: $stopType'),
-                  Text('Price: $price'),
+    return AnimatedOpacity(
+      opacity: 1.0,
+      duration: Duration(milliseconds: 500 + (index * 100)),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        margin: const EdgeInsets.only(bottom: 20),
+        child: Material(
+          elevation: 8,
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white,
+                  Color(0xFFE6F0FA),
                 ],
               ),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.5),
+                width: 2,
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BookScreen(
-                      flightDetails: {
-                        'from': from,
-                        'to': to,
-                        'departure': departure,
-                        'price': price,
-                        'flightId': flightId,
-                      },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Flight Route with Icons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.flight_takeoff,
+                          color: Color(0xFF007E95),
+                          size: 28,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          from.toUpperCase(),
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF264653),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Icon(
+                      Icons.arrow_forward,
+                      color: Color(0xFF007E95),
+                      size: 24,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          to.toUpperCase(),
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF264653),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        const Icon(
+                          Icons.flight_land,
+                          color: Color(0xFF007E95),
+                          size: 28,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const Divider(
+                  color: Color(0xFF007E95),
+                  thickness: 1,
+                  height: 20,
+                ),
+                // Flight Details
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildFlightInfoRow(
+                          icon: Icons.access_time,
+                          label: "Departure",
+                          value: departure,
+                        ),
+                        const SizedBox(height: 10),
+                        _buildFlightInfoRow(
+                          icon: Icons.swap_horiz,
+                          label: "Stop Type",
+                          value: stopType,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Price",
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          price,
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF007E95),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                // Book Now Button
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FlightBookScreen(
+                            flightDetails: {
+                              'from': from,
+                              'to': to,
+                              'departure': departure,
+                              'price': price,
+                              'flightId': flightId,
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF007E95),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 5,
+                    ),
+                    child: Text(
+                      'Book Now',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF003653),
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Book Now'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
+    );
+  }
+
+  // Helper method to build flight info rows
+  Widget _buildFlightInfoRow({
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: const Color(0xFF007E95),
+          size: 24,
+        ),
+        const SizedBox(width: 10),
+        Text(
+          "$label: ",
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.black54,
+          ),
+        ),
+        Text(
+          value,
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.black87,
+          ),
+        ),
+      ],
     );
   }
 }

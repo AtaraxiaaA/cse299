@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'discountforcarrental.dart';
 
 class CarRentalScreen extends StatefulWidget {
   final Map<String, String>? carDetails;
   final Map<String, String>? rentalDetails;
-  const CarRentalScreen({Key? key, required this.carDetails, this.rentalDetails}) : super(key: key);
+  const CarRentalScreen({super.key, required this.carDetails, this.rentalDetails});
 
   @override
   _CarRentalScreenState createState() => _CarRentalScreenState();
@@ -86,7 +85,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   SizedBox(height: 5), // Shortened height
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.7,
                     child: buildCarDetailsCard(),
                   ),
@@ -138,7 +137,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                     ],
                   ),
                   SizedBox(height: 10), // Shortened height
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: TextField(
                       decoration: InputDecoration(
@@ -168,13 +167,13 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                         _discountApplied = true;
                       });
                     },
-                    child: Text('Apply Discount', style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF004B63),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
+                    child: Text('Apply Discount', style: TextStyle(color: Colors.white)),
                   ),
                   SizedBox(height: 5), // Shortened height
                   Text(
@@ -194,7 +193,7 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   SizedBox(height: 10), // Shortened height
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
@@ -226,13 +225,13 @@ class _CarRentalScreenState extends State<CarRentalScreen> {
                           },
                         );
                       },
-                      child: Text('Confirm Booking'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF004B63),
                         foregroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                         textStyle: TextStyle(fontSize: 14),
                       ),
+                      child: Text('Confirm Booking'),
                     ),
                   ),
                 ],

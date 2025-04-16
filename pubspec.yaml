@@ -31,12 +31,15 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_auth: ^5.3.1  # Add this line
+  carousel_slider: ^4.2.1
   #firebase packages
   firebase_core: ^3.13.0
   cloud_firestore: ^5.6.6
   image_picker: ^1.1.2
   firebase_storage: ^12.3.3
   animated_background: ^2.0.0
+  url_launcher: ^6.2.1
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -58,7 +61,6 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter packages.
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -68,12 +70,37 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/busimage1.jpg
+    - images/busimage2.jpg
+    - images/busimage3.jpg
+    - images/busimage4.jpg
+    - images/busimage5.jpg
+    - images/busimage6.jpg
+    - images/busimage7.jpg
+    - images/busimage8.jpeg
+    - images/busimage9.jpeg
+    - images/car1.jpg
+    - images/car2.jpg
+    - images/car3.jpg
     - Aimg/images/a1.jpg
     - Aimg/images/HotelHomePage-cover.jpg
     - Aimg/images/Long-Beach.jpg
     - Aimg/images/hotel-the-cox-today.jpg
     - Aimg/images/abas.jpg
     - assets/images/coxsbazar.jpg
+    - images/busimage1.jpg
+    - images/busimage2.jpg
+    - images/busimage3.jpg
+    - images/busimage4.jpg
+    - images/busimage5.jpg
+    - images/busimage6.jpg
+    - images/busimage7.jpg
+    - images/busimage8.jpeg
+    - images/busimage9.jpeg
+    - images/car1.jpg
+    - images/car2.jpg
+    - images/car3.jpg
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

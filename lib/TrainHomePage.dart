@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'UpcomingTrains.dart'; //train page
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+import 'UpcomingTrains.dart';
+import 'MatchedTrainsPage.dart';
+import 'Dashboard.dart'; // Ensure you have imported this screen
 
 class TrainHomePage extends StatefulWidget {
   @override
@@ -8,23 +12,100 @@ class TrainHomePage extends StatefulWidget {
 }
 
 class _TrainHomePageState extends State<TrainHomePage> {
-  TextEditingController currentLocationController = TextEditingController();
-  TextEditingController destinationController = TextEditingController();
   TextEditingController departureDateController = TextEditingController();
+  TextEditingController returnDateController = TextEditingController();
+
+  String? selectedFromStation;
+  String? selectedToStation;
   String seatCount = '2';
-  String tripType = 'One Way'; // Default option is One Way
+  String tripType = 'One Way';
+  String selectedCountry = 'Bangladesh';
+
+  DateTime? selectedDepartureDate;
+  DateTime? selectedReturnDate;
+
+  List<String> stationList = [];
+  List<Map<String, dynamic>> matchedTrains = [];
+  List<Map<String, dynamic>> todayTrains = [];
+  List<Map<String, dynamic>> upcomingTrains = [];
+
+  final List<String> countries = ['Bangladesh', 'India', 'Nepal'];
+
+  Future<void> fetchStations() async {
+    final doc = await FirebaseFirestore.instance.collection('Trains').doc(selectedCountry).get();
+    final data = doc.data();
+    if (data != null && data['Stations'] != null) {
+      stationList = List<String>.from(data['Stations']);
+    } else {
+      stationList = [];
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchStations();
+    fetchTodayAndUpcomingTrains();
+  }
+
+  Future<void> fetchTodayAndUpcomingTrains() async {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final todayEnd = DateTime(now.year, now.month, now.day, 23, 59, 59);
+    final fifteenDaysLater = now.add(Duration(days: 15));
+
+    List<Map<String, dynamic>> todayList = [];
+    List<Map<String, dynamic>> upcomingList = [];
+
+    for (String country in countries) {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('Trains')
+          .doc(country)
+          .collection('OneWay')
+          .get();
+
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        if (data.containsKey('Time') && data['Time'] is Timestamp) {
+          final DateTime trainTime = (data['Time'] as Timestamp).toDate();
+
+          if (trainTime.isAfter(now) && trainTime.isBefore(todayEnd)) {
+            todayList.add({ ...data, 'ParsedDeparture': trainTime });
+          } else if (trainTime.isAfter(todayEnd) && trainTime.isBefore(fifteenDaysLater)) {
+            upcomingList.add({ ...data, 'ParsedDeparture': trainTime });
+          }
+        }
+      }
+    }
+
+    todayList.sort((a, b) => a['ParsedDeparture'].compareTo(b['ParsedDeparture']));
+    upcomingList.sort((a, b) => a['ParsedDeparture'].compareTo(b['ParsedDeparture']));
+
+    setState(() {
+      todayTrains = todayList;
+      upcomingTrains = upcomingList;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null, // Removed AppBar
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => DashboardScreen()),
+          ),
+        ),
+        backgroundColor: Color(0xFF003C5F),
+        title: Text('Train Search', style: GoogleFonts.lato(color: Colors.white)),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFF003C5F), // Darker blue (top)
-              Color(0xFF006F8E), // Medium blue (bottom)
-            ],
+            colors: [Color(0xFF003C5F), Color(0xFF006F8E)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -34,168 +115,49 @@ class _TrainHomePageState extends State<TrainHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // One Way and Round Trip Radio Buttons at the top
               Row(
-                children: <Widget>[
-                  _buildGradientRadio('One Way', 'One Way',
-                      [Color(0xFF1E88E5), Color(0xFF26C6DA)]), // Blue to Cyan gradient
-                  SizedBox(width: 10), // Gap between One Way and Round Trip
-                  _buildGradientRadio('Round Trip', 'Round Trip',
-                      [Color(0xFF1E88E5), Color(0xFF26C6DA)]), // Blue to Cyan gradient
-                ],
-              ),
-              SizedBox(height: 20),
-              // Text Fields for Current Location, Destination, Departure Date
-              _buildTextField(
-                controller: currentLocationController,
-                label: 'Current Location',
-                hint: 'Enter your current location',
-              ),
-              SizedBox(height: 20),
-              _buildTextField(
-                controller: destinationController,
-                label: 'Destination',
-                hint: 'Enter your destination',
-              ),
-              SizedBox(height: 20),
-              _buildTextField(
-                controller: departureDateController,
-                label: 'Departure Date',
-                hint: 'Select your departure date',
-                onTap: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2020),
-                    lastDate: DateTime(2101),
-                  );
-                  if (pickedDate != null) {
-                    setState(() {
-                      departureDateController.text =
-                      '${pickedDate.year}-${pickedDate.month}-${pickedDate.day}';
-                    });
-                  }
-                },
-              ),
-              SizedBox(height: 20),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Seats:',
-                    style: GoogleFonts.lato(fontSize: 16, color: Colors.white),
-                  ),
+                children: [
+                  _buildGradientRadio('One Way', 'One Way'),
                   SizedBox(width: 10),
-                  _buildDropdownButton(),
+                  _buildGradientRadio('Round Trip', 'Round Trip'),
+                ],
+              ),
+              SizedBox(height: 20),
+              Text('Country:', style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
+              SizedBox(height: 10),
+              _buildCountryDropdown(),
+              SizedBox(height: 20),
+              _buildStationDropdown('Current Location', selectedFromStation, (val) => setState(() => selectedFromStation = val)),
+              SizedBox(height: 20),
+              _buildStationDropdown('Destination', selectedToStation, (val) => setState(() => selectedToStation = val)),
+              SizedBox(height: 20),
+              _buildDateTextField(departureDateController, 'Departure Date'),
+              SizedBox(height: 20),
+              if (tripType == 'Round Trip') _buildDateTextField(returnDateController, 'Return Date', isReturn: true),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Text('Seats:', style: GoogleFonts.lato(fontSize: 16, color: Colors.white)),
+                  SizedBox(width: 10),
+                  Container(width: 80, child: _buildDropdownButton()),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: _searchTrains,
+                      child: Text('Search Commuter Line', style: TextStyle(color: Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF1E88E5),
+                        padding: EdgeInsets.symmetric(vertical: 18),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  // Add the search commuter line functionality here
-                },
-                child: Text(
-                  'Search Commuter Line',
-                  style: TextStyle(color: Colors.white), // Text color changed to white
-                ),
-                style: ElevatedButton.styleFrom(
-                  elevation: 8.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 18, horizontal: 30),
-                  backgroundColor: Color(0xFF1E88E5), // Blue to Cyan gradient
-                  shadowColor: Colors.blueGrey.withOpacity(0.3),
-                ),
-              ),
+              _buildTodayScheduleCard(),
               SizedBox(height: 30),
-              // Card for Today's Schedule
-              Card(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                color: Color(0xFFFAFAFA), // Light card background
-                shadowColor: Colors.black.withOpacity(0.2),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Today\'s Schedule',
-                        style: GoogleFonts.lato(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      _buildScheduleRow('Rangpur', 'Dhaka', '10:45 PM', '2H 45M Trip'),
-                      Divider(),
-                      SizedBox(height: 10),
-                      _buildScheduleRow('Rajshahi', 'Chittagong', '10:45 PM', '3H 30M Trip'),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
-              // Card for More Upcoming Trips
-              Card(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                color: Color(0xFFFAFAFA), // Light card background
-                shadowColor: Colors.black.withOpacity(0.2),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'More Upcoming Trips',
-                            style: GoogleFonts.lato(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Navigate to the UpcomingTrains page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UpcomingTrains(), // Navigate to the UpcomingTrains page
-                                ),
-                              );
-                            },
-                            child: Text(
-                              'View All',
-                              style: GoogleFonts.lato(fontSize: 14, color: Colors.white),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                              backgroundColor: Color(0xFF1E88E5), // Blue to Cyan gradient
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      _buildUpcomingTrips('12 May, 10:00 am', 'Kamalapur → Agartala'),
-                      Divider(),
-                      SizedBox(height: 10),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
+              _buildUpcomingTripsCard(), // Updated upcoming trains section
             ],
           ),
         ),
@@ -203,68 +165,91 @@ class _TrainHomePageState extends State<TrainHomePage> {
     );
   }
 
-  Widget _buildGradientRadio(String title, String value, List<Color> gradientColors) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: gradientColors,
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: RadioListTile<String>(
-          title: Text(
-            title,
-            style: GoogleFonts.lato(color: Colors.black), // Text color changed to black
-          ),
-          value: value,
-          groupValue: tripType,
-          onChanged: (value) {
-            setState(() {
-              tripType = value!;
-            });
-          },
-          activeColor: Colors.white,
-          tileColor: Colors.transparent,
+  Future<void> _pickDate(BuildContext context, TextEditingController controller, {bool isReturn = false}) async {
+    final initialDate = isReturn && selectedDepartureDate != null
+        ? selectedDepartureDate!.add(Duration(days: 1))
+        : DateTime.now();
+
+    final pickedDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: initialDate,
+      lastDate: DateTime(2101),
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        controller.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+        if (isReturn) selectedReturnDate = pickedDate;
+        else {
+          selectedDepartureDate = pickedDate;
+          returnDateController.clear();
+        }
+      });
+    }
+  }
+
+  void _searchTrains() async {
+    if (selectedFromStation == null || selectedToStation == null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please select both stations')));
+      return;
+    }
+
+    final snapshot = await FirebaseFirestore.instance
+        .collection('Trains')
+        .doc(selectedCountry)
+        .collection('OneWay')
+        .where('From', isEqualTo: selectedFromStation)
+        .where('To', isEqualTo: selectedToStation)
+        .get();
+
+    if (snapshot.docs.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('No matching trains found')));
+    } else {
+      matchedTrains = snapshot.docs.map((doc) => doc.data()).toList();
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MatchedTrainsPage(trains: matchedTrains)));
+    }
+  }
+
+  Widget _buildDateTextField(TextEditingController controller, String label, {bool isReturn = false}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15.0),
+        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 8)],
+      ),
+      child: TextField(
+        controller: controller,
+        readOnly: true,
+        onTap: () => _pickDate(context, controller, isReturn: isReturn),
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: 'Select your date',
+          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide.none),
         ),
       ),
     );
   }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    required String hint,
-    Function()? onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
+  Widget _buildGradientRadio(String title, String value) {
+    return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 8,
-              offset: Offset(0, 4),
-            ),
-          ],
+          gradient: LinearGradient(colors: [Color(0xFF1E88E5), Color(0xFF26C6DA)]),
+          borderRadius: BorderRadius.circular(25),
         ),
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            labelText: label,
-            hintText: hint,
-            contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              borderSide: BorderSide.none,
-            ),
-          ),
+        child: RadioListTile<String>(
+          title: Text(title, style: GoogleFonts.lato(color: Colors.black)),
+          value: value,
+          groupValue: tripType,
+          onChanged: (val) {
+            setState(() {
+              tripType = val!;
+              returnDateController.clear();
+            });
+          },
+          activeColor: Colors.white,
         ),
       ),
     );
@@ -275,33 +260,240 @@ class _TrainHomePageState extends State<TrainHomePage> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
+        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 8)],
       ),
       child: DropdownButton<String>(
         value: seatCount,
-        onChanged: (String? newValue) {
-          setState(() {
-            seatCount = newValue!;
-          });
-        },
-        items: <String>['1', '2', '3', '4', '5']
-            .map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(value),
-            ),
-          );
-        }).toList(),
+        onChanged: (val) => setState(() => seatCount = val!),
+        items: ['1', '2', '3', '4', '5'].map((v) => DropdownMenuItem(value: v, child: Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: Text(v)))).toList(),
         underline: SizedBox(),
+      ),
+    );
+  }
+
+  Widget _buildCountryDropdown() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15.0),
+        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 8)],
+      ),
+      child: DropdownButton<String>(
+        value: selectedCountry,
+        onChanged: (val) => setState(() {
+          selectedCountry = val!;
+          fetchStations();
+        }),
+        items: countries.map((country) => DropdownMenuItem(value: country, child: Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: Text(country)))).toList(),
+        underline: SizedBox(),
+        isExpanded: true,
+      ),
+    );
+  }
+
+  Widget _buildStationDropdown(String label, String? value, ValueChanged<String?> onChanged) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15.0),
+        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 8)],
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: DropdownButton<String>(
+        value: value,
+        onChanged: onChanged,
+        hint: Text(label),
+        items: stationList.map((station) => DropdownMenuItem(value: station, child: Text(station))).toList(),
+        isExpanded: true,
+        underline: SizedBox(),
+      ),
+    );
+  }
+
+  Widget _buildTodayScheduleCard() {
+    return Card(
+      elevation: 10,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      color: Color(0xFFFAFAFA),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Today Schedule', style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            if (todayTrains.isEmpty)
+              Text('No trains available now.'),
+            ...todayTrains.map((t) => Column(children: [
+              _buildScheduleRow(t['From'], t['To'], DateFormat('hh:mm a').format(t['ParsedDeparture']), t['Duration']),
+              Divider(),
+            ])),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildUpcomingTripsCard() {
+    print("🔥 Upcoming trains count: ${upcomingTrains.length}");
+    return Container(
+      margin: EdgeInsets.only(bottom: 24),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 14,
+            offset: Offset(0, 8),
+          ),
+        ],
+      ),
+      child: Card(
+        elevation: 12,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        color: Colors.white,
+        shadowColor: Colors.grey.shade300,
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Upcoming Trains',
+                    style: GoogleFonts.lato(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => UpcomingTrains()),
+                    ),
+                    icon: Icon(Icons.list_alt, size: 18, color: Colors.white),  // Icon color set to white
+                    label: Text('View All', style: TextStyle(color: Colors.white)),  // Text color set to white
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF1E88E5),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              if (upcomingTrains.isEmpty)
+                Center(
+                  child: Text(
+                    'No upcoming trains found.',
+                    style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[700]),
+                  ),
+                ),
+              // Limit the display to the first train only
+              ...upcomingTrains.take(1).map((t) {
+                try {
+                  final String from = t['From'] ?? 'Unknown';
+                  final String to = t['To'] ?? 'Unknown';
+                  final DateTime parsed = t['ParsedDeparture'];
+                  final String time = DateFormat('hh:mm a').format(parsed);
+                  final String date = DateFormat('EEE, MMM dd').format(parsed);
+                  final String duration = t['Duration'] ?? 'N/A';
+                  final String name = t['Name'] ?? 'Unnamed';
+                  final String price = t['Price']?.toString() ?? '—';
+                  final String seats = t['AvailableSeats']?.toString() ?? '—';
+
+                  return Container(
+                    margin: EdgeInsets.only(bottom: 18),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 10,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 26,
+                          backgroundColor: Colors.blue.shade100,
+                          child: Icon(Icons.train, size: 28, color: Colors.blue.shade900),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                name,
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '$from → $to',
+                                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                '$date • $time',
+                                style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                              ),
+                              SizedBox(height: 10),
+                              Wrap(
+                                spacing: 10,
+                                children: [
+                                  _buildTag(Icons.attach_money, '\$price', Colors.green.shade50, Colors.green.shade800),
+                                  _buildTag(Icons.event_seat, '$seats seats', Colors.orange.shade50, Colors.orange.shade700),
+                                  _buildTag(Icons.timer, duration, Colors.grey.shade200, Colors.grey.shade700),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Icon(Icons.arrow_forward_ios_rounded, size: 16, color: Colors.grey.shade500),
+                      ],
+                    ),
+                  );
+                } catch (e) {
+                  print("❌ Error rendering train: \$e");
+                  return SizedBox();
+                }
+              }).toList(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTag(IconData icon, String text, Color bgColor, Color textColor) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: textColor),
+          SizedBox(width: 4),
+          Text(
+            text,
+            style: TextStyle(fontSize: 12, color: textColor, fontWeight: FontWeight.w600),
+          ),
+        ],
       ),
     );
   }
@@ -309,42 +501,12 @@ class _TrainHomePageState extends State<TrainHomePage> {
   Widget _buildScheduleRow(String from, String to, String time, String duration) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          from,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
-        Icon(Icons.train, size: 16, color: Colors.black), // Train icon instead of arrow
-        Text(
-          to,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
-        Text(
-          time,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
-        Text(
-          duration,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildUpcomingTrips(String time, String route) {
-    return Row(
-      children: <Widget>[
-        Text(
-          time,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
-        SizedBox(width: 10),
-        Icon(Icons.train, size: 16, color: Colors.black), // Train icon instead of flight
-        SizedBox(width: 10),
-        Text(
-          route,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
+      children: [
+        Text(from, style: TextStyle(fontSize: 14)),
+        Icon(Icons.train, size: 16),
+        Text(to, style: TextStyle(fontSize: 14)),
+        Text(time, style: TextStyle(fontSize: 14)),
+        Text(duration, style: TextStyle(fontSize: 14)),
       ],
     );
   }
