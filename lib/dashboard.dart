@@ -13,7 +13,7 @@ import 'TrainHomePage.dart';
 import 'AuthScreen.dart';
 import 'carrentals.dart';
 import 'BusSearchScreen.dart';
-
+import 'populate_experiences.dart';
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
@@ -186,7 +186,7 @@ class DashboardScreen extends StatelessWidget {
                         // Navigate to the ExperienceScreen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ExperienceScreen()),
+                          MaterialPageRoute(builder: (context) => ExperiencesScreen()),
                         );
                       },
                       child: buildIconCard(Icons.explore, "Experiences"),
