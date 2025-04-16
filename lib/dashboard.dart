@@ -381,7 +381,7 @@ class DashboardScreen extends StatelessWidget {
   Widget buildDestinationCard(String destination, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
+
         // Navigation logic for destinations
         showModalBottomSheet(
           context: context,
