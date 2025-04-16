@@ -59,7 +59,7 @@
     <string msgid="2427401033573778270" name="expand_button_title">"Nâng cao"</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Sao chép đường liên kết"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Mở trong trình duyệt"</string>
-    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Chia sẻ liên kết"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Chia sẻ đường liên kết"</string>
     <string msgid="6573031135582639649" name="not_set">"Chưa đặt"</string>
     <string msgid="6685851473431805375" name="preference_copied">"Đã sao chép \"<ns1:g id="SUMMARY">%1$s</ns1:g>\" vào bảng nhớ tạm."</string>
     <string msgid="730395136688082741" name="search_menu_title">"Tìm kiếm"</string>

@@ -24,6 +24,7 @@ MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\U
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-34:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jumma\OneDrive\Desktop\merge\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] C:\Users\jumma\OneDrive\Desktop\merge\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-14:12
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\63578c5934d1754c35e892f00415452f\transformed\preference-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3ef9d999fb7436ef34227ccd929c5ffc\transformed\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
@@ -71,7 +72,7 @@ MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] C:\Users
 MERGED from [com.google.android.gms:play-services-basement:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2d5c92e1a0980dd03c58a5d7a811e105\transformed\jetified-play-services-basement-18.5.0\AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3169e63dc8500c9557a7cfb0d201c392\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ab5f57018b716843a6e25bc0c75ef552\transformed\jetified-activity-1.9.3\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\60b2ffebbd9f2195d7f85ee02a55c57d\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\212f99b8e80d088e5efd06b7b37dd808\transformed\browser-1.8.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d440a57ca296d1e6ddf272e65aae3e09\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a8e0be560b4c16565d6e851b6b111c1b\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a20d053d717df44553d0efbc20b3724c\transformed\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -157,6 +158,8 @@ MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:23:5-42:19
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
+MERGED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\db9f8685748160de55771cedbb3e2e5b\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:22:5-39:19
@@ -329,6 +332,8 @@ MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jumma\OneDrive\Desktop\
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jumma\OneDrive\Desktop\merge\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Users\jumma\OneDrive\Desktop\merge\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Users\jumma\OneDrive\Desktop\merge\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\63578c5934d1754c35e892f00415452f\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\63578c5934d1754c35e892f00415452f\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3ef9d999fb7436ef34227ccd929c5ffc\transformed\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -423,8 +428,8 @@ MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jumma\.gradle\caches\8.1
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3169e63dc8500c9557a7cfb0d201c392\transformed\fragment-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ab5f57018b716843a6e25bc0c75ef552\transformed\jetified-activity-1.9.3\AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ab5f57018b716843a6e25bc0c75ef552\transformed\jetified-activity-1.9.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\60b2ffebbd9f2195d7f85ee02a55c57d\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\60b2ffebbd9f2195d7f85ee02a55c57d\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\212f99b8e80d088e5efd06b7b37dd808\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\212f99b8e80d088e5efd06b7b37dd808\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d440a57ca296d1e6ddf272e65aae3e09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d440a57ca296d1e6ddf272e65aae3e09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a8e0be560b4c16565d6e851b6b111c1b\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
@@ -783,6 +788,14 @@ ADDED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\i
 		ADDED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:30:17-33
 	android:name
 		ADDED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-63
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher_android] C:\Users\jumma\OneDrive\Desktop\merge\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-74
 provider#com.google.firebase.provider.FirebaseInitProvider
 ADDED from [com.google.firebase:firebase-common:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\db9f8685748160de55771cedbb3e2e5b\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:23:9-28:39
 	android:authorities

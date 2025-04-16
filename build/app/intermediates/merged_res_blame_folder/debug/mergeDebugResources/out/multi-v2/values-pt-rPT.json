@@ -55,23 +55,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jumma\\.gradle\\caches\\8.10.2\\transforms\\60b2ffebbd9f2195d7f85ee02a55c57d\\transformed\\browser-1.4.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,171,270,382",
-                        "endColumns": "115,98,111,102",
-                        "endOffsets": "166,265,377,480"
-                    },
-                    "to": {
-                        "startLines": "57,59,60,61",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "6223,6427,6526,6638",
-                        "endColumns": "115,98,111,102",
-                        "endOffsets": "6334,6521,6633,6736"
-                    }
-                },
-                {
                     "source": "C:\\Users\\jumma\\.gradle\\caches\\8.10.2\\transforms\\8bfc2f267192dd9f486e9ccb48d15aa5\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2,3",
@@ -120,6 +103,23 @@
                         "startOffsets": "6153,6339,6741,6820,7157,7326,7413",
                         "endColumns": "69,87,78,150,168,86,80",
                         "endOffsets": "6218,6422,6815,6966,7321,7408,7489"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\jumma\\.gradle\\caches\\8.10.2\\transforms\\212f99b8e80d088e5efd06b7b37dd808\\transformed\\browser-1.8.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,171,270,382",
+                        "endColumns": "115,98,111,102",
+                        "endOffsets": "166,265,377,480"
+                    },
+                    "to": {
+                        "startLines": "57,59,60,61",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6223,6427,6526,6638",
+                        "endColumns": "115,98,111,102",
+                        "endOffsets": "6334,6521,6633,6736"
                     }
                 }
             ]

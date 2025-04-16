@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'AvailableBusesScreen.dart';
 
 class BusSearchScreen extends StatefulWidget {
-  const BusSearchScreen({super.key});
+  const BusSearchScreen({Key? key}) : super(key: key);
 
   @override
   _BusSearchScreenState createState() => _BusSearchScreenState();
@@ -58,7 +59,7 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
     });
 
     try {
-      Query query = FirebaseFirestore.instance.collection('bus'); // Use correct collection name
+      Query query = FirebaseFirestore.instance.collection('bus');
 
       if (_fromLocationController.text.isNotEmpty) {
         query = query.where('from', isEqualTo: _fromLocationController.text);
@@ -84,8 +85,28 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('No buses found matching your criteria.')),
         );
-      }
+      } else {
+        List<Map<String, dynamic>> busData = _searchResults.map((doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          return {
+            'bus': data['bus'] ?? '',
+            'from': data['from'] ?? '',
+            'to': data['to'] ?? '',
+            'price': data['price'] ?? '',
+            'date': data['date'] ?? '',
+            'type': data['type'] ?? '',
+            'departureTime': data['departureTime'] ?? 'N/A', // Adjusted
+            'arrivalTime': data['arrivalTime'] ?? 'N/A',   // Adjusted
+          };
+        }).toList();
 
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AvailableBusesScreen(availableBuses: busData),
+          ),
+        );
+      }
     } on FirebaseException catch (e) {
       debugPrint('FirebaseException [${e.code}]: ${e.message}');
       if (mounted) {
@@ -118,7 +139,7 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
         borderRadius: BorderRadius.circular(12),
       ),
       filled: true,
-      fillColor: Colors.white.withOpacity(0.9),  // Fixed the color opacity issue
+      fillColor: Colors.white.withOpacity(0.9),
     );
   }
 
@@ -144,11 +165,11 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                   constraints: BoxConstraints(minHeight: viewportConstraints.maxHeight),
                   child: Container(
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: const AssetImage('images/busimage1.jpg'),
+                      image: const DecorationImage(
+                        image: AssetImage('images/busimage1.jpg'),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.4),
+                          Color.fromRGBO(0, 0, 0, 0.4),
                           BlendMode.darken,
                         ),
                       ),
@@ -160,13 +181,13 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                           const SizedBox(height: 20),
                           TextField(
                             controller: _fromLocationController,
-                            decoration: _inputDecoration('Enter pick-up location', Icons.location_on),
+                            decoration: _inputDecoration('From', Icons.location_on),
                             style: const TextStyle(color: Colors.black),
                           ),
                           const SizedBox(height: 10),
                           TextField(
                             controller: _toLocationController,
-                            decoration: _inputDecoration('Enter drop-off location', Icons.location_on),
+                            decoration: _inputDecoration('To', Icons.location_on),
                             style: const TextStyle(color: Colors.black),
                           ),
                           const SizedBox(height: 10),
@@ -175,7 +196,7 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                             child: AbsorbPointer(
                               child: TextField(
                                 controller: _departureDateController,
-                                decoration: _inputDecoration('Select a pick-up date', Icons.calendar_today),
+                                decoration: _inputDecoration('Select a journey date', Icons.calendar_today),
                                 style: const TextStyle(color: Colors.black),
                               ),
                             ),
@@ -215,48 +236,10 @@ class _BusSearchScreenState extends State<BusSearchScreen> {
                               ),
                               child: const Text(
                                 'Search Buses',
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          if (_searchResults.isNotEmpty)
-                            Column(
-                              children: [
-                                const Text(
-                                  'Search Results:',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: _searchResults.length,
-                                  itemBuilder: (context, index) {
-                                    final data = _searchResults[index].data() as Map<String, dynamic>;
-                                    return Card(
-                                      color: Colors.white.withOpacity(0.9),
-                                      margin: const EdgeInsets.symmetric(vertical: 5),
-                                      child: ListTile(
-                                        title: Text('Bus: ${data['bus'] ?? 'N/A'}', style: const TextStyle(color: Colors.black)),
-                                        subtitle: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text('From: ${data['from'] ?? 'N/A'}, To: ${data['to'] ?? 'N/A'}', style: const TextStyle(color: Colors.black)),
-                                            Text('Date: ${data['date'] ?? 'N/A'}, Type: ${data['type'] ?? 'N/A'}', style: const TextStyle(color: Colors.black)),
-                                            Text('Price: ${data['price'] ?? 'N/A'}', style: const TextStyle(color: Colors.black)),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
                         ],
                       ),
                     ),

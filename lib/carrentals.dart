@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'carrentalscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'AvailableCarsScreen.dart'; // Import AvailableCarsScreen
 
 class CarRentalsPage extends StatefulWidget {
-  const CarRentalsPage({super.key});
+  const CarRentalsPage({Key? key}) : super(key: key);
   @override
   _CarRentalsPageState createState() => _CarRentalsPageState();
 }
 
 class _CarRentalsPageState extends State<CarRentalsPage> {
-  final TextEditingController _pickUpLocationController = TextEditingController();
-  final TextEditingController _dropOffLocationController = TextEditingController();
-  final TextEditingController _pickUpDateController = TextEditingController();
-  final TextEditingController _returnDateController = TextEditingController();
-  final TextEditingController _pickUpTimeController = TextEditingController();
-  final TextEditingController _returnTimeController = TextEditingController();
+  TextEditingController _pickUpLocationController = TextEditingController();
+  TextEditingController _dropOffLocationController = TextEditingController();
+  TextEditingController _pickUpDateController = TextEditingController();
+  TextEditingController _returnDateController = TextEditingController();
+  TextEditingController _pickUpTimeController = TextEditingController();
+  TextEditingController _returnTimeController = TextEditingController();
   String? _selectedCarType;
 
   DateTime _pickUpDate = DateTime.now();
@@ -24,7 +24,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   TimeOfDay _pickUpTime = TimeOfDay.now();
   TimeOfDay _returnTime = TimeOfDay.now();
 
-  List<String> carTypeOptions = ['2 Seater', '4 Seater', '12 Seater'];
+  List<String> carTypeOptions = ['2 seater', '4 seater', '12 seater'];
 
   List<Map<String, String>> _availableCars = [];
 
@@ -39,33 +39,35 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   Future<void> _fetchCarsFromFirestore() async {
     try {
       QuerySnapshot querySnapshot =
-      await FirebaseFirestore.instance.collection('cars').get();
+      await FirebaseFirestore.instance.collection('car').get();
 
       List<Map<String, String>> fetchedCars = [];
-      for (var doc in querySnapshot.docs) {
+      querySnapshot.docs.forEach((doc) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         print(
             'Firestore Car: ${data['car']}, From: ${data['from']}, To: ${data['to']}, Date: ${data['date']}, Type: ${data['type']}');
         fetchedCars.add({
-          'car': data['car'] ?? '',
-          'price': data['price'] ?? '',
-          'pickUpTime': data['pickUpTime'] ?? '',
-          'dropOffTime': data['dropOffTime'] ?? '',
-          'from': data['from'] ?? '',
-          'to': data['to'] ?? '',
-          'date': data['date'] ?? '',
-          'returnDate': data['returnDate'] ?? '',
-          'type': data['type'] ?? '',
+          'car': data['car'] as String? ?? '',
+          'price': data['price'] as String? ?? '',
+          'pickUpTime': data['pickUpTime'] as String? ?? '',
+          'dropOffTime': data['dropOffTime'] as String? ?? '',
+          'from': data['from']?.toLowerCase() ?? '',
+          'to': data['to']?.toLowerCase() ?? '',
+          'date': data['date'] as String? ?? '',
+          'returnDate': data['returnDate'] as String? ?? '',
+          'type': data['type']?.toLowerCase() ?? '',
         });
-      }
+      });
 
       setState(() {
         _availableCars = fetchedCars;
-        print('Available Cars: $_availableCars'); // Added print statement
+        print('Available Cars: $_availableCars');
       });
     } catch (e) {
       print('Error fetching cars: $e');
-      // Handle error accordingly
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to load cars. Please check your connection.')),
+      );
     }
   }
 
@@ -101,7 +103,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
               onPrimary: Colors.white,
               surface: Colors.deepPurple.shade50,
               onSurface: Colors.black,
-            ), dialogTheme: DialogThemeData(backgroundColor: Colors.white),
+            ),
+            dialogBackgroundColor: Colors.white,
           ),
           child: child!,
         );
@@ -135,10 +138,8 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     setState(() {
       filteredCars = _availableCars
           .where((car) =>
-      car['from']!.toLowerCase() ==
-          _pickUpLocationController.text.toLowerCase() &&
-          car['to']!.toLowerCase() ==
-              _dropOffLocationController.text.toLowerCase() &&
+      car['from'] == _pickUpLocationController.text.toLowerCase() &&
+          car['to'] == _dropOffLocationController.text.toLowerCase() &&
           car['date'] == _pickUpDateController.text &&
           (_selectedCarType == null || car['type'] == _selectedCarType))
           .toList();
@@ -154,7 +155,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CarSearchResultsScreen(
+          builder: (context) => AvailableCarsScreen( // Use AvailableCarsScreen
             filteredCars: filteredCars,
             fromLocation: _pickUpLocationController.text,
             toLocation: _dropOffLocationController.text,
@@ -171,7 +172,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Search Car Rentals",
+          "Search Car For Rentals",
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.white),
         ),
         backgroundColor: Color(0xFF007E95),
@@ -179,12 +180,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
       ),
       body: Stack(
         children: [
-          Image.asset(
-            'images/car3.jpg',
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+          Image.asset('images/car3.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
           SingleChildScrollView(
             padding: EdgeInsets.all(20),
             child: Column(
@@ -256,7 +252,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required IconData prefixIcon,
     required double width,
   }) {
-    return SizedBox(
+    return Container(
       width: width,
       child: TextField(
         controller: controller,
@@ -283,7 +279,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required VoidCallback onTap,
     required double width,
   }) {
-    return SizedBox(
+    return Container(
       width: width,
       child: TextField(
         controller: controller,
@@ -311,7 +307,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
     required VoidCallback onTap,
     required double width,
   }) {
-    return SizedBox(
+    return Container(
       width: width,
       child: TextField(
         controller: controller,
@@ -334,7 +330,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   }
 
   Widget _buildCarTypeDropdown({required double width}) {
-    return SizedBox(
+    return Container(
       width: width,
       child: DropdownButtonFormField<String>(
         value: _selectedCarType,
@@ -349,7 +345,7 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
         }).toList(),
         onChanged: (value) {
           setState(() {
-            _selectedCarType = value;
+            _selectedCarType = value?.toLowerCase();
           });
         },
         decoration: InputDecoration(
@@ -370,146 +366,11 @@ class _CarRentalsPageState extends State<CarRentalsPage> {
   Widget _buildSearchButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () => _searchCars(context),
+      child: Text('Search Cars'),
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xFF007E95),
         foregroundColor: Colors.white,
         textStyle: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      child: Text('Search Cars'),
-    );
-  }
-}
-
-class CarSearchResultsScreen extends StatelessWidget {
-  final List<Map<String, String>> filteredCars;
-  final String fromLocation;
-  final String toLocation;
-
-  const CarSearchResultsScreen({super.key, 
-    required this.filteredCars,
-    required this.fromLocation,
-    required this.toLocation,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Available Cars'),
-        backgroundColor: Color(0xFF007E95),
-        foregroundColor: Colors.white,
-        leadingWidth: 100,
-      ),
-      body: Stack(
-        children: [
-          Image.asset(
-            'images/car3.jpg',
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
-          ListView.builder(
-            itemCount: filteredCars.length,
-            itemBuilder: (context, index) {
-              var car = filteredCars[index];
-              return buildCarCard(
-                context,
-                car['car']!,
-                car['price']!,
-                car['pickUpTime']!,
-                car['dropOffTime']!,
-                car['from']!,
-                car['to']!,
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildCarCard(
-      BuildContext context,
-      String car,
-      String price,
-      String pickUpTime,
-      String dropOffTime,
-      String from,
-      String to,
-      ) {
-    Map<String, String>? selectedCar;
-    for (var availableCar in filteredCars) {
-      if (availableCar['car'] == car &&
-          availableCar['price'] == price &&
-          availableCar['pickUpTime'] == pickUpTime &&
-          availableCar['dropOffTime'] == dropOffTime &&
-          availableCar['from'] == from &&
-          availableCar['to'] == to) {
-        selectedCar = availableCar;
-        break;
-      }
-    }
-
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: EdgeInsets.only(bottom: 16),
-      color: Colors.white.withOpacity(0.8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Icon(Icons.directions_car, size: 40, color: Color(0xFF007E95)),
-            SizedBox(width: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  car,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-                ),
-                Text('Pick-up Time: $pickUpTime', style: TextStyle(color: Colors.black)),
-                Text('Drop-off Time: $dropOffTime', style: TextStyle(color: Colors.black)),
-                Text('Price: $price', style: TextStyle(color: Colors.black)),
-                Text('Pick-up Location: $from', style: TextStyle(color: Colors.black)),
-                Text('Drop-off Location: $to', style: TextStyle(color: Colors.black)),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CarRentalScreen(
-                      carDetails: {
-                        'car': car,
-                        'price': price,
-                        'pickUpTime': pickUpTime,
-                        'dropOffTime': dropOffTime,
-                        'from': from,
-                        'to': to,
-                        'type': selectedCar?['type'] ?? 'Not Available',
-                      },
-                      rentalDetails: {
-                        'from': from,
-                        'to': to,
-                        'date': selectedCar?['date'] ?? 'Not Available',
-                        'returnDate': selectedCar?['returnDate'] ?? 'Not Available',
-                        'type': selectedCar?['type'] ?? 'Not Available',
-                      },
-                    ),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF007E95),
-                foregroundColor: Colors.white,
-                textStyle: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              child: Text('Book Now'),
-            ),
-          ],
-        ),
       ),
     );
   }
