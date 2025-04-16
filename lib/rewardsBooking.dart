@@ -763,7 +763,7 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> with SingleTick
                         Icon(Icons.check, color: Colors.green),
                         SizedBox(width: 8),
                         Text(
-                          "No prepayment needed - pay at the property",
+                          "No prepayment needed",
                           style: GoogleFonts.poppins(color: Colors.white),
                         ),
                       ],
