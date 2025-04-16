@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TravelGuidesScreen extends StatelessWidget {
+  const TravelGuidesScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,7 +147,7 @@ class TravelGuidesScreen extends StatelessWidget {
 class CityGuideScreen extends StatelessWidget {
   final String city;
 
-  CityGuideScreen({required this.city});
+  const CityGuideScreen({super.key, required this.city});
 
   @override
   Widget build(BuildContext context) {
@@ -316,7 +318,7 @@ class CityGuideScreen extends StatelessWidget {
 class AttractionDetailScreen extends StatelessWidget {
   final String attractionName;
 
-  AttractionDetailScreen({required this.attractionName});
+  const AttractionDetailScreen({super.key, required this.attractionName});
 
   @override
   Widget build(BuildContext context) {

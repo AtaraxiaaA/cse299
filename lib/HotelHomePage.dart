@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HotelHomePage extends StatefulWidget {
+  const HotelHomePage({super.key});
+
   @override
   _HotelHomePageState createState() => _HotelHomePageState();
 }
@@ -51,7 +53,7 @@ class _HotelHomePageState extends State<HotelHomePage> {
 
       setState(() {
         allHotels = snapshot.docs
-            .map((doc) => doc.data() as Map<String, dynamic>)
+            .map((doc) => doc.data())
             .where((data) => data['Is Popular'] == true)
             .map((data) {
           List<dynamic> flatDetails = data['Flat(Guest-Room-Bath)'] ?? [0, 0, 0];
@@ -72,7 +74,7 @@ class _HotelHomePageState extends State<HotelHomePage> {
             'newPrice': "\$${data['New Price'] ?? '0'} / night",
             'total': "Per night",
             'room': flatDetails.length > 1 ? flatDetails[1] : 0,
-            'guest': flatDetails.length > 0 ? flatDetails[0] : 0,
+            'guest': flatDetails.isNotEmpty ? flatDetails[0] : 0,
             'bath': flatDetails.length > 2 ? flatDetails[2] : 0,
           };
         }).toList();
@@ -182,7 +184,7 @@ class _HotelHomePageState extends State<HotelHomePage> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                ...filteredHotels.map((hotel) => buildHotelCard(hotel)).toList(),
+                ...filteredHotels.map((hotel) => buildHotelCard(hotel)),
               ]
           ],
         ),

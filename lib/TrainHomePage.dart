@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'UpcomingTrains.dart'; //train page
 
 class TrainHomePage extends StatefulWidget {
+  const TrainHomePage({super.key});
+
   @override
   _TrainHomePageState createState() => _TrainHomePageState();
 }
@@ -93,10 +95,6 @@ class _TrainHomePageState extends State<TrainHomePage> {
                 onPressed: () {
                   // Add the search commuter line functionality here
                 },
-                child: Text(
-                  'Search Commuter Line',
-                  style: TextStyle(color: Colors.white), // Text color changed to white
-                ),
                 style: ElevatedButton.styleFrom(
                   elevation: 8.0,
                   shape: RoundedRectangleBorder(
@@ -105,6 +103,10 @@ class _TrainHomePageState extends State<TrainHomePage> {
                   padding: EdgeInsets.symmetric(vertical: 18, horizontal: 30),
                   backgroundColor: Color(0xFF1E88E5), // Blue to Cyan gradient
                   shadowColor: Colors.blueGrey.withOpacity(0.3),
+                ),
+                child: Text(
+                  'Search Commuter Line',
+                  style: TextStyle(color: Colors.white), // Text color changed to white
                 ),
               ),
               SizedBox(height: 30),
@@ -173,16 +175,16 @@ class _TrainHomePageState extends State<TrainHomePage> {
                                 ),
                               );
                             },
-                            child: Text(
-                              'View All',
-                              style: GoogleFonts.lato(fontSize: 14, color: Colors.white),
-                            ),
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                               backgroundColor: Color(0xFF1E88E5), // Blue to Cyan gradient
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
+                            ),
+                            child: Text(
+                              'View All',
+                              style: GoogleFonts.lato(fontSize: 14, color: Colors.white),
                             ),
                           ),
                         ],

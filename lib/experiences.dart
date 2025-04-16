@@ -9,11 +9,11 @@ class ExperienceScreen extends StatefulWidget {
 }
 
 class _ExperienceScreenState extends State<ExperienceScreen> {
-  TextEditingController _locationController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
 
   bool _isVisible = false; // For fade-in animation
 
-  List<Map<String, dynamic>> _experiences = [
+  final List<Map<String, dynamic>> _experiences = [
     {
       'title': 'Sunset Cruise in Cox\'s Bazar',
       'location': 'Cox\'s Bazar',
@@ -193,7 +193,7 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
                       experience['image']!,
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),

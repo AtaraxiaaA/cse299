@@ -30,6 +30,8 @@ class TourPackagesScreen extends StatelessWidget {
     },
   ];
 
+ TourPackagesScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,7 +164,7 @@ class TourPackagesScreen extends StatelessWidget {
 class TourPackageDetailsScreen extends StatelessWidget {
   final Map<String, String> package;
 
-  TourPackageDetailsScreen({required this.package});
+  const TourPackageDetailsScreen({super.key, required this.package});
 
   @override
   Widget build(BuildContext context) {
@@ -286,11 +288,11 @@ class TourPackageDetailsScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text("Select Option"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF264653),
                 foregroundColor: Colors.white,
               ),
+              child: Text("Select Option"),
             ),
           ],
         ),
@@ -304,7 +306,7 @@ class BookingDetailsScreen extends StatefulWidget {
   final String optionName;
   final int originalPrice;
 
-  const BookingDetailsScreen({
+  const BookingDetailsScreen({super.key, 
     required this.packageName,
     required this.optionName,
     required this.originalPrice,
@@ -462,11 +464,11 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                           SizedBox(width: 10),
                           ElevatedButton(
                             onPressed: _applyCoupon,
-                            child: Text("Apply"),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFF264653),
                               foregroundColor: Colors.white,
                             ),
+                            child: Text("Apply"),
                           ),
                         ],
                       ),
@@ -510,27 +512,27 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         children: [
                           ElevatedButton(
                             onPressed: () => _selectDate(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF264653),
+                              foregroundColor: Colors.white,
+                            ),
                             child: Text(
                               _selectedDate == null
                                   ? "Select Date"
                                   : "Date: ${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}",
                             ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF264653),
-                              foregroundColor: Colors.white,
-                            ),
                           ),
                           SizedBox(width: 10),
                           ElevatedButton(
                             onPressed: () => _selectTime(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF264653),
+                              foregroundColor: Colors.white,
+                            ),
                             child: Text(
                               _selectedTime == null
                                   ? "Select Time"
                                   : "Time: ${_selectedTime!.format(context)}",
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF264653),
-                              foregroundColor: Colors.white,
                             ),
                           ),
                         ],
@@ -566,6 +568,13 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                               Navigator.popUntil(context, (route) => route.isFirst);
                             }
                           },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF007E95),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                             child: Text(
@@ -574,13 +583,6 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF007E95),
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
                             ),
                           ),
                         ),

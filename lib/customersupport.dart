@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomerSupportScreen extends StatefulWidget {
+  const CustomerSupportScreen({super.key});
+
   @override
   _CustomerSupportScreenState createState() => _CustomerSupportScreenState();
 }
@@ -399,7 +401,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
             SizedBox(height: 24),
 
             // Horizontally scrollable service options
-            Container(
+            SizedBox(
               height: 120,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -647,72 +649,72 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
   Widget _buildFlightFAQButton(String text) {
     return ElevatedButton(
       onPressed: () => _onFlightFAQTopicClicked(text),
-      child: Text(text),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
+      child: Text(text),
     );
   }
 
   Widget _buildHotelFAQButton(String text) {
     return ElevatedButton(
       onPressed: () => _onHotelFAQTopicClicked(text),
-      child: Text(text),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
+      child: Text(text),
     );
   }
 
   Widget _buildCarRentalFAQButton(String text) {
     return ElevatedButton(
       onPressed: () => _onCarRentalFAQTopicClicked(text),
-      child: Text(text),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
+      child: Text(text),
     );
   }
 
   Widget _buildAttractionsFAQButton(String text) {
     return ElevatedButton(
       onPressed: () => _onAttractionsFAQTopicClicked(text),
-      child: Text(text),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
+      child: Text(text),
     );
   }
 
   Widget _buildTrainFAQButton(String text) {
     return ElevatedButton(
       onPressed: () => _onTrainFAQTopicClicked(text),
-      child: Text(text),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
+      child: Text(text),
     );
   }
 
   Widget _buildAirportTransfersFAQButton(String text) {
     return ElevatedButton(
       onPressed: () => _onAirportTransfersFAQTopicClicked(text),
-      child: Text(text),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
+      child: Text(text),
     );
   }
 
@@ -756,7 +758,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
 class ChatBoxScreen extends StatelessWidget {
   final String question;
 
-  ChatBoxScreen({required this.question});
+  const ChatBoxScreen({super.key, required this.question});
 
   @override
   Widget build(BuildContext context) {
@@ -813,7 +815,7 @@ class FAQScreen extends StatelessWidget {
   final List<String> faqs;
   final String topic;
 
-  FAQScreen({required this.faqs, required this.topic});
+  const FAQScreen({super.key, required this.faqs, required this.topic});
 
   @override
   Widget build(BuildContext context) {
@@ -851,6 +853,8 @@ class FAQScreen extends StatelessWidget {
 
 
 class CallUsScreen extends StatelessWidget {
+  const CallUsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -918,10 +922,10 @@ class ChatBubble extends StatelessWidget {
   final bool isUser;
 
   const ChatBubble({
-    Key? key,
+    super.key,
     required this.message,
     required this.isUser,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -969,7 +973,7 @@ class ChatBubble extends StatelessWidget {
 }
 
 class HotelServiceChat extends StatefulWidget {
-  const HotelServiceChat({Key? key}) : super(key: key);
+  const HotelServiceChat({super.key});
 
   @override
   _HotelServiceChatState createState() => _HotelServiceChatState();

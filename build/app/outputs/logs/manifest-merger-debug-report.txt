@@ -5,6 +5,7 @@ MERGED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\main\AndroidMa
 INJECTED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+MERGED from [:shared_preferences_android] C:\Users\jumma\OneDrive\Desktop\merge\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:cloud_firestore] C:\Users\jumma\OneDrive\Desktop\merge\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_auth] C:\Users\jumma\OneDrive\Desktop\merge\build\firebase_auth\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_storage] C:\Users\jumma\OneDrive\Desktop\merge\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
@@ -17,15 +18,18 @@ MERGED from [com.google.android.gms:play-services-measurement-api:22.4.0] C:\Use
 MERGED from [com.google.firebase:firebase-appcheck:18.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b114536c3b0b053255b0269a5be83d9d\transformed\jetified-firebase-appcheck-18.0.0\AndroidManifest.xml:15:1-34:12
 MERGED from [com.google.firebase:firebase-installations:18.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4f7b4044bf50caa3aad41fb5c0ebe4f9\transformed\jetified-firebase-installations-18.0.0\AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:2:1-18:12
+MERGED from [androidx.credentials:credentials:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8bfc2f267192dd9f486e9ccb48d15aa5\transformed\jetified-credentials-1.2.0-rc01\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:17:1-44:12
+MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c1c490ce04aa9b4bee16dede66269b8e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:2:1-7:12
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-34:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jumma\OneDrive\Desktop\merge\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] C:\Users\jumma\OneDrive\Desktop\merge\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.preference:preference:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\63578c5934d1754c35e892f00415452f\transformed\preference-1.2.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3ef9d999fb7436ef34227ccd929c5ffc\transformed\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\db9f8685748160de55771cedbb3e2e5b\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:15:1-41:12
 MERGED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\860945800df0ebe71b955d32aba3f09d\transformed\jetified-play-services-measurement-22.4.0\AndroidManifest.xml:17:1-46:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4c628449db0fecfb0af183607e5c3abb\transformed\jetified-play-services-measurement-sdk-22.4.0\AndroidManifest.xml:17:1-25:12
-MERGED from [androidx.credentials:credentials:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8bfc2f267192dd9f486e9ccb48d15aa5\transformed\jetified-credentials-1.2.0-rc01\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:17:1-44:12
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\18e0edcf3a728e3d1ce406bfbf4c2b57\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\30dce693c3aa23d49170244b0e4e80d0\transformed\jetified-play-services-auth-api-phone-18.0.2\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c76b16323d21911cd75bccdc90267ef8\transformed\jetified-recaptcha-18.6.1\AndroidManifest.xml:2:1-11:12
@@ -33,16 +37,28 @@ MERGED from [com.google.android.play:integrity:1.3.0] C:\Users\jumma\.gradle\cac
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\eeaebacdb84d24098dc1695098352afb\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8976399bd2af934813641107aa105948\transformed\jetified-play-services-measurement-impl-22.4.0\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ce79d501bdc12476434cbef6fa5110ae\transformed\jetified-play-services-fido-20.1.0\AndroidManifest.xml:2:1-10:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5124fd9c036e46f89804f5d5eafb5606\transformed\recyclerview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1f30e3598d26bd2bb0fa018e1eb16c7e\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4b454e309756f243a4010155072d4bb8\transformed\slidingpanelayout-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.window:window-java:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\957827aa9525f3b9750bfe66dcfc24af\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
+MERGED from [androidx.datastore:datastore-core-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\caae2a75c697c66779b829c54e5cc5a1\transformed\jetified-datastore-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.datastore:datastore-preferences-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3b9988900e285c961243c3b5459e3a3e\transformed\jetified-datastore-preferences-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d9b58e73a6ee63d8075fca16a3882a1f\transformed\jetified-datastore-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8defe018e80cffa38ba2938000f490c0\transformed\jetified-ads-adservices-java-1.1.0-beta11\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:17:1-28:12
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\9dde870c2e3ccae0ec1e10bfe870fbe0\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a0de697eedc9b5d8eac507f08a4dd60f\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment-ktx:1.7.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a9d56c7a51f083eaa1172f3c45aa70d8\transformed\jetified-fragment-ktx-1.7.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-ktx:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7ae5a68fde6225485adb33d31d0c27f9\transformed\jetified-activity-ktx-1.9.3\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5303f63051198cc9d64bcb9b894784f4\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5d19ba9c89086db0e4ac54ea1d4b40ed\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f672f6486e97a39381dbc98b42cab4ca\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\78716647c95d812f3182a563a6649cab\transformed\jetified-lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\39f4cb0cb21ec8055d493dde564e3362\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\52c65a4b1e01d54742fbac08c7ab69b9\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\0b466a124acf4d9a76ac9cfc20073642\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.window:window-java:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\957827aa9525f3b9750bfe66dcfc24af\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
-MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5d19ba9c89086db0e4ac54ea1d4b40ed\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4549587839f700993d71c6495726888c\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\jumma\.gradle\caches\8.10.2\transforms\e331053b4091dd2ab24e6c4ee1ae2830\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c0846a34194be9098c70f304f41cc004\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:2:1-7:12
@@ -57,15 +73,21 @@ MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jumma\.gradle\caches\8.1
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ab5f57018b716843a6e25bc0c75ef552\transformed\jetified-activity-1.9.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\60b2ffebbd9f2195d7f85ee02a55c57d\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d440a57ca296d1e6ddf272e65aae3e09\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8defe018e80cffa38ba2938000f490c0\transformed\jetified-ads-adservices-java-1.1.0-beta11\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a8e0be560b4c16565d6e851b6b111c1b\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3752e6b94e9ea19b84b20f87474307d5\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a20d053d717df44553d0efbc20b3724c\transformed\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\08043143f5a8f659b2112c739afc8356\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a80ee5dbda04679ee1800a0a07f856bc\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\09dbcd91c43240d5243d739e80f30ccc\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.4.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\142c4b537cd60af30e38760fd2ba0341\transformed\transition-1.4.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\38b82de4e3ce5a246231b39b67ad9aea\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\deaab17a5a106917e1f7156880638a8c\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2cd00047d6d3576d3a837b38128c483b\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\76da7d4c05f3f4a0df766ba1a3714a95\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7176151f2818701b1c6131984e4acf7a\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b1c6e13ca8755808d02522c86b91a3de\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\eb00c8e257447bcf910a4939820b7e88\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f5e9570f97e360b2ad6d85bf8df21e63\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\dee64e87fe9bec56f0a9850ea8ddf513\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c1c490ce04aa9b4bee16dede66269b8e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f021abe046c0db7d42e3aa2d86e10d78\transformed\exifinterface-1.3.7\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7c0ba5c7f30336a2a76608bca8e1806c\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\42afd54ad539a05d407a6fe2968ef805\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
@@ -75,6 +97,7 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\67c84506d6bb66ade76e2094b5a3b9ae\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b9fa09c5af61f334a66d8eefabbdcf0d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7cb8e279aa0c2da705646f748d1f1bcc\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8dd761f31c45cd496e22a663f8c98329\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ae088b7c2276c8ad0c038eb3c3236f63\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8e9a6d355b2080a1e407879c38857599\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\355282f9b61ed4d0c671e4847c28059c\transformed\jetified-core-1.0.0\AndroidManifest.xml:2:1-7:12
@@ -130,6 +153,8 @@ MERGED from [com.google.firebase:firebase-installations:18.0.0] C:\Users\jumma\.
 MERGED from [com.google.firebase:firebase-installations:18.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4f7b4044bf50caa3aad41fb5c0ebe4f9\transformed\jetified-firebase-installations-18.0.0\AndroidManifest.xml:11:5-22:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:8:5-16:19
+MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:23:5-42:19
+MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:23:5-42:19
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
@@ -140,8 +165,6 @@ MERGED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\j
 MERGED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\860945800df0ebe71b955d32aba3f09d\transformed\jetified-play-services-measurement-22.4.0\AndroidManifest.xml:28:5-44:19
 MERGED from [com.google.android.gms:play-services-measurement-sdk:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4c628449db0fecfb0af183607e5c3abb\transformed\jetified-play-services-measurement-sdk-22.4.0\AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-measurement-sdk:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4c628449db0fecfb0af183607e5c3abb\transformed\jetified-play-services-measurement-sdk-22.4.0\AndroidManifest.xml:22:5-23:19
-MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:23:5-42:19
-MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:23:5-42:19
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\18e0edcf3a728e3d1ce406bfbf4c2b57\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\18e0edcf3a728e3d1ce406bfbf4c2b57\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.play:integrity:1.3.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\acc94c050f1b1c55e30b8c74530f8739\transformed\jetified-integrity-1.3.0\AndroidManifest.xml:5:5-6:19
@@ -152,10 +175,12 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:22.4.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8976399bd2af934813641107aa105948\transformed\jetified-play-services-measurement-impl-22.4.0\AndroidManifest.xml:29:5-30:19
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ce79d501bdc12476434cbef6fa5110ae\transformed\jetified-play-services-fido-20.1.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ce79d501bdc12476434cbef6fa5110ae\transformed\jetified-play-services-fido-20.1.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:7:5-20
 MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c0846a34194be9098c70f304f41cc004\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
 MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c0846a34194be9098c70f304f41cc004\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
 MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\50442124961d108d0e34a5c632006081\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
@@ -168,8 +193,6 @@ MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] C:\Users
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b27eeac32cf50d2fa23c3453bda5eaf4\transformed\jetified-firebase-measurement-connector-19.0.0\AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-basement:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2d5c92e1a0980dd03c58a5d7a811e105\transformed\jetified-play-services-basement-18.5.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.google.android.gms:play-services-basement:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2d5c92e1a0980dd03c58a5d7a811e105\transformed\jetified-play-services-basement-18.5.0\AndroidManifest.xml:20:5-24:19
-MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.core:core:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7176151f2818701b1c6131984e4acf7a\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7176151f2818701b1c6131984e4acf7a\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\eb00c8e257447bcf910a4939820b7e88\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
@@ -268,6 +291,8 @@ uses-sdk
 INJECTED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\debug\AndroidManifest.xml
 INJECTED from C:\Users\jumma\OneDrive\Desktop\merge\android\app\src\debug\AndroidManifest.xml
+MERGED from [:shared_preferences_android] C:\Users\jumma\OneDrive\Desktop\merge\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\jumma\OneDrive\Desktop\merge\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\jumma\OneDrive\Desktop\merge\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\jumma\OneDrive\Desktop\merge\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] C:\Users\jumma\OneDrive\Desktop\merge\build\firebase_auth\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
@@ -292,12 +317,22 @@ MERGED from [com.google.firebase:firebase-installations:18.0.0] C:\Users\jumma\.
 MERGED from [com.google.firebase:firebase-installations:18.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4f7b4044bf50caa3aad41fb5c0ebe4f9\transformed\jetified-firebase-installations-18.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.credentials:credentials:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8bfc2f267192dd9f486e9ccb48d15aa5\transformed\jetified-credentials-1.2.0-rc01\AndroidManifest.xml:5:5-44
+MERGED from [androidx.credentials:credentials:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8bfc2f267192dd9f486e9ccb48d15aa5\transformed\jetified-credentials-1.2.0-rc01\AndroidManifest.xml:5:5-44
+MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:21:5-44
+MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:21:5-44
+MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c1c490ce04aa9b4bee16dede66269b8e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c1c490ce04aa9b4bee16dede66269b8e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
 MERGED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jumma\OneDrive\Desktop\merge\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jumma\OneDrive\Desktop\merge\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Users\jumma\OneDrive\Desktop\merge\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Users\jumma\OneDrive\Desktop\merge\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [androidx.preference:preference:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\63578c5934d1754c35e892f00415452f\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.preference:preference:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\63578c5934d1754c35e892f00415452f\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3ef9d999fb7436ef34227ccd929c5ffc\transformed\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3ef9d999fb7436ef34227ccd929c5ffc\transformed\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\86c5bd607bfff9d44c1653057721e83a\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\db9f8685748160de55771cedbb3e2e5b\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:19:5-44
@@ -306,10 +341,6 @@ MERGED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\j
 MERGED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\860945800df0ebe71b955d32aba3f09d\transformed\jetified-play-services-measurement-22.4.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4c628449db0fecfb0af183607e5c3abb\transformed\jetified-play-services-measurement-sdk-22.4.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4c628449db0fecfb0af183607e5c3abb\transformed\jetified-play-services-measurement-sdk-22.4.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.credentials:credentials:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8bfc2f267192dd9f486e9ccb48d15aa5\transformed\jetified-credentials-1.2.0-rc01\AndroidManifest.xml:5:5-44
-MERGED from [androidx.credentials:credentials:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8bfc2f267192dd9f486e9ccb48d15aa5\transformed\jetified-credentials-1.2.0-rc01\AndroidManifest.xml:5:5-44
-MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:21:5-44
-MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:21:5-44
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\18e0edcf3a728e3d1ce406bfbf4c2b57\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\18e0edcf3a728e3d1ce406bfbf4c2b57\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\30dce693c3aa23d49170244b0e4e80d0\transformed\jetified-play-services-auth-api-phone-18.0.2\AndroidManifest.xml:5:5-44
@@ -324,26 +355,50 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:22.4.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8976399bd2af934813641107aa105948\transformed\jetified-play-services-measurement-impl-22.4.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ce79d501bdc12476434cbef6fa5110ae\transformed\jetified-play-services-fido-20.1.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ce79d501bdc12476434cbef6fa5110ae\transformed\jetified-play-services-fido-20.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5124fd9c036e46f89804f5d5eafb5606\transformed\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5124fd9c036e46f89804f5d5eafb5606\transformed\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1f30e3598d26bd2bb0fa018e1eb16c7e\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1f30e3598d26bd2bb0fa018e1eb16c7e\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4b454e309756f243a4010155072d4bb8\transformed\slidingpanelayout-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4b454e309756f243a4010155072d4bb8\transformed\slidingpanelayout-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window-java:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\957827aa9525f3b9750bfe66dcfc24af\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
+MERGED from [androidx.window:window-java:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\957827aa9525f3b9750bfe66dcfc24af\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\caae2a75c697c66779b829c54e5cc5a1\transformed\jetified-datastore-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\caae2a75c697c66779b829c54e5cc5a1\transformed\jetified-datastore-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-preferences-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3b9988900e285c961243c3b5459e3a3e\transformed\jetified-datastore-preferences-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3b9988900e285c961243c3b5459e3a3e\transformed\jetified-datastore-preferences-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d9b58e73a6ee63d8075fca16a3882a1f\transformed\jetified-datastore-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-android:1.1.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d9b58e73a6ee63d8075fca16a3882a1f\transformed\jetified-datastore-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8defe018e80cffa38ba2938000f490c0\transformed\jetified-ads-adservices-java-1.1.0-beta11\AndroidManifest.xml:5:5-44
+MERGED from [androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8defe018e80cffa38ba2938000f490c0\transformed\jetified-ads-adservices-java-1.1.0-beta11\AndroidManifest.xml:5:5-44
+MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:20:5-44
+MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\jumma\.gradle\caches\8.10.2\transforms\6439ff75fc1e083a59ec63d3b6a76995\transformed\jetified-play-services-stats-17.0.2\AndroidManifest.xml:5:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\9dde870c2e3ccae0ec1e10bfe870fbe0\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\9dde870c2e3ccae0ec1e10bfe870fbe0\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a0de697eedc9b5d8eac507f08a4dd60f\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a0de697eedc9b5d8eac507f08a4dd60f\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.7.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a9d56c7a51f083eaa1172f3c45aa70d8\transformed\jetified-fragment-ktx-1.7.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.7.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a9d56c7a51f083eaa1172f3c45aa70d8\transformed\jetified-fragment-ktx-1.7.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7ae5a68fde6225485adb33d31d0c27f9\transformed\jetified-activity-ktx-1.9.3\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.3] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7ae5a68fde6225485adb33d31d0c27f9\transformed\jetified-activity-ktx-1.9.3\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5303f63051198cc9d64bcb9b894784f4\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5303f63051198cc9d64bcb9b894784f4\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5d19ba9c89086db0e4ac54ea1d4b40ed\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5d19ba9c89086db0e4ac54ea1d4b40ed\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f672f6486e97a39381dbc98b42cab4ca\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f672f6486e97a39381dbc98b42cab4ca\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\78716647c95d812f3182a563a6649cab\transformed\jetified-lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\78716647c95d812f3182a563a6649cab\transformed\jetified-lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\39f4cb0cb21ec8055d493dde564e3362\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\39f4cb0cb21ec8055d493dde564e3362\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\52c65a4b1e01d54742fbac08c7ab69b9\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\52c65a4b1e01d54742fbac08c7ab69b9\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\0b466a124acf4d9a76ac9cfc20073642\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\0b466a124acf4d9a76ac9cfc20073642\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.window:window-java:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\957827aa9525f3b9750bfe66dcfc24af\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
-MERGED from [androidx.window:window-java:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\957827aa9525f3b9750bfe66dcfc24af\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
-MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5d19ba9c89086db0e4ac54ea1d4b40ed\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\5d19ba9c89086db0e4ac54ea1d4b40ed\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4549587839f700993d71c6495726888c\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\4549587839f700993d71c6495726888c\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\jumma\.gradle\caches\8.10.2\transforms\e331053b4091dd2ab24e6c4ee1ae2830\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44
@@ -372,24 +427,36 @@ MERGED from [androidx.browser:browser:1.4.0] C:\Users\jumma\.gradle\caches\8.10.
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\60b2ffebbd9f2195d7f85ee02a55c57d\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d440a57ca296d1e6ddf272e65aae3e09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\d440a57ca296d1e6ddf272e65aae3e09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8defe018e80cffa38ba2938000f490c0\transformed\jetified-ads-adservices-java-1.1.0-beta11\AndroidManifest.xml:5:5-44
-MERGED from [androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8defe018e80cffa38ba2938000f490c0\transformed\jetified-ads-adservices-java-1.1.0-beta11\AndroidManifest.xml:5:5-44
-MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:20:5-44
-MERGED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a8e0be560b4c16565d6e851b6b111c1b\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a8e0be560b4c16565d6e851b6b111c1b\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3752e6b94e9ea19b84b20f87474307d5\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\3752e6b94e9ea19b84b20f87474307d5\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a20d053d717df44553d0efbc20b3724c\transformed\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a20d053d717df44553d0efbc20b3724c\transformed\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\08043143f5a8f659b2112c739afc8356\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\08043143f5a8f659b2112c739afc8356\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a80ee5dbda04679ee1800a0a07f856bc\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\a80ee5dbda04679ee1800a0a07f856bc\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\09dbcd91c43240d5243d739e80f30ccc\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\09dbcd91c43240d5243d739e80f30ccc\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\142c4b537cd60af30e38760fd2ba0341\transformed\transition-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\142c4b537cd60af30e38760fd2ba0341\transformed\transition-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\38b82de4e3ce5a246231b39b67ad9aea\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\38b82de4e3ce5a246231b39b67ad9aea\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\deaab17a5a106917e1f7156880638a8c\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\deaab17a5a106917e1f7156880638a8c\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2cd00047d6d3576d3a837b38128c483b\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2cd00047d6d3576d3a837b38128c483b\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\76da7d4c05f3f4a0df766ba1a3714a95\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\76da7d4c05f3f4a0df766ba1a3714a95\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7176151f2818701b1c6131984e4acf7a\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7176151f2818701b1c6131984e4acf7a\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b1c6e13ca8755808d02522c86b91a3de\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b1c6e13ca8755808d02522c86b91a3de\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\eb00c8e257447bcf910a4939820b7e88\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\eb00c8e257447bcf910a4939820b7e88\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f5e9570f97e360b2ad6d85bf8df21e63\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f5e9570f97e360b2ad6d85bf8df21e63\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\dee64e87fe9bec56f0a9850ea8ddf513\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\dee64e87fe9bec56f0a9850ea8ddf513\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c1c490ce04aa9b4bee16dede66269b8e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c1c490ce04aa9b4bee16dede66269b8e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f021abe046c0db7d42e3aa2d86e10d78\transformed\exifinterface-1.3.7\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\jumma\.gradle\caches\8.10.2\transforms\f021abe046c0db7d42e3aa2d86e10d78\transformed\exifinterface-1.3.7\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7c0ba5c7f30336a2a76608bca8e1806c\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
@@ -408,6 +475,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ju
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\b9fa09c5af61f334a66d8eefabbdcf0d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7cb8e279aa0c2da705646f748d1f1bcc\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7cb8e279aa0c2da705646f748d1f1bcc\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8dd761f31c45cd496e22a663f8c98329\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8dd761f31c45cd496e22a663f8c98329\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ae088b7c2276c8ad0c038eb3c3236f63\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\ae088b7c2276c8ad0c038eb3c3236f63\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\8e9a6d355b2080a1e407879c38857599\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
@@ -646,6 +715,36 @@ ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.grad
 		ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:14:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\41a7ebc4cd0389fa65d9a79591b69d8b\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:13:17-116
+service#androidx.credentials.playservices.CredentialProviderMetadataHolder
+ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:24:9-32:19
+	android:enabled
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:26:13-35
+	android:exported
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:28:13-60
+	android:name
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:25:13-94
+meta-data#androidx.credentials.CREDENTIAL_PROVIDER_KEY
+ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:29:13-31:104
+	android:value
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:31:17-101
+	android:name
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:30:17-76
+activity#androidx.credentials.playservices.HiddenActivity
+ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:34:9-41:20
+	android:fitsSystemWindows
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:39:13-45
+	android:enabled
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:38:13-37
+	android:configChanges
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:36:13-87
+	android:theme
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:40:13-48
+	android:name
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:35:13-76
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
 ADDED from [:image_picker_android] C:\Users\jumma\OneDrive\Desktop\merge\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-17:20
 	android:grantUriPermissions
@@ -734,36 +833,6 @@ ADDED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\ju
 		ADDED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\860945800df0ebe71b955d32aba3f09d\transformed\jetified-play-services-measurement-22.4.0\AndroidManifest.xml:43:13-69
 	android:name
 		ADDED from [com.google.android.gms:play-services-measurement:22.4.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\860945800df0ebe71b955d32aba3f09d\transformed\jetified-play-services-measurement-22.4.0\AndroidManifest.xml:40:13-87
-service#androidx.credentials.playservices.CredentialProviderMetadataHolder
-ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:24:9-32:19
-	android:enabled
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:26:13-35
-	android:exported
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:27:13-37
-	tools:ignore
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:28:13-60
-	android:name
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:25:13-94
-meta-data#androidx.credentials.CREDENTIAL_PROVIDER_KEY
-ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:29:13-31:104
-	android:value
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:31:17-101
-	android:name
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:30:17-76
-activity#androidx.credentials.playservices.HiddenActivity
-ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:34:9-41:20
-	android:fitsSystemWindows
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:39:13-45
-	android:enabled
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:37:13-35
-	android:exported
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:38:13-37
-	android:configChanges
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:36:13-87
-	android:theme
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:40:13-48
-	android:name
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\jumma\.gradle\caches\8.10.2\transforms\1403d1f729fb6d997178036d5402762e\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:35:13-76
 activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
 ADDED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\18e0edcf3a728e3d1ce406bfbf4c2b57\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
 	android:excludeFromRecents
@@ -800,6 +869,12 @@ ADDED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\t
 		ADDED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
 	android:name
 		ADDED from [androidx.window:window:1.2.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\cd3cf2eb80964e7329388b267399da2f\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
+uses-library#android.ext.adservices
+ADDED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:24:13-50
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c0846a34194be9098c70f304f41cc004\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:9-173
 	android:exported
@@ -814,12 +889,6 @@ ADDED from [com.google.android.gms:play-services-basement:18.5.0] C:\Users\jumma
 		ADDED from [com.google.android.gms:play-services-basement:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2d5c92e1a0980dd03c58a5d7a811e105\transformed\jetified-play-services-basement-18.5.0\AndroidManifest.xml:23:13-66
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:18.5.0] C:\Users\jumma\.gradle\caches\8.10.2\transforms\2d5c92e1a0980dd03c58a5d7a811e105\transformed\jetified-play-services-basement-18.5.0\AndroidManifest.xml:22:13-58
-uses-library#android.ext.adservices
-ADDED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:23:9-25:40
-	android:required
-		ADDED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:25:13-37
-	android:name
-		ADDED from [androidx.privacysandbox.ads:ads-adservices:1.1.0-beta11] C:\Users\jumma\.gradle\caches\8.10.2\transforms\c75bc2f2ece64a51b01c8f8de7b1c2c8\transformed\jetified-ads-adservices-1.1.0-beta11\AndroidManifest.xml:24:13-50
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.13.1] C:\Users\jumma\.gradle\caches\8.10.2\transforms\7176151f2818701b1c6131984e4acf7a\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel

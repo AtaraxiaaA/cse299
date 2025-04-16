@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RewardsDiscountsScreen extends StatelessWidget {
   List<Map<String, String>> hotels = [
@@ -92,6 +91,8 @@ class RewardsDiscountsScreen extends StatelessWidget {
       'coupon': 'Luxury chauffeur service included with suite bookings',
     },
   ];
+
+  RewardsDiscountsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

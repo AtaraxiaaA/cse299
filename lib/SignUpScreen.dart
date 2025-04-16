@@ -9,6 +9,8 @@ import 'dashboard.dart'; // Import DashboardScreen
 import 'AuthScreen.dart'; // Import AuthScreen for navigation
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }

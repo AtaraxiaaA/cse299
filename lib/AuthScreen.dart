@@ -5,6 +5,8 @@ import 'dashboard.dart'; // Import DashboardScreen
 import 'SignUpScreen.dart'; // Import SignUpScreen for navigation
 
 class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -127,7 +129,7 @@ class _AuthScreenState extends State<AuthScreen>
         password: _passwordController.text.trim(),
       );
       navigateToDashboard();
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       // Handle specific Firebase Authentication errors
       String errorMessage = 'Sign-in failed: Email or password is incorrect';
 
